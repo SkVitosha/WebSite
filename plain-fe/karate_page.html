@@ -6,49 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Карате клуб "Витоша"</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <link rel="stylesheet" href="./css_page.css" />
 </head>
 
 <body>
     <div class="overlay" id="overlay"></div>
 
-    <header id="header">
-        <div class="container">
-            <div class="logo-nav">
-                <a href="#" class="logo">
-                    <svg height="30" viewBox="0 0 50 30" fill="none">
-                        <path d="M0,15 L10,5 L20,15 L30,5 L40,15 L50,5" stroke="#2d7a4f" stroke-width="3"
-                            stroke-dasharray="60" stroke-dashoffset="0" />
-                    </svg>
-                    <span class="logo-text">ВИТОША</span>
-                </a>
-
-                <button class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-
-                <nav id="nav">
-                    <ul>
-                        <li><a href="./claude_vers.html">Начало</a></li>
-                        <!-- <li><a href="#">Събития</a></li> -->
-                        <li><a href="#">Тренировки</a></li>
-                        <!-- <li><a href="#">Галерия</a></li> -->
-                        <li><a href="#">Карате До</a></li>
-                        <li><a href="#">За нас</a></li>
-                    </ul>
-                </nav>
-
-                <button class="contact-btn">Контакти</button>
-            </div>
-        </div>
-    </header>
+    <header id="header"></header>
 
     <main>
         <section class="hero">
             <div class="container">
-                <h1 data-aos="fade-up" data-aos-duration="800">"Шотокан"</h1>
+                <h1 data-aos="fade-up" data-aos-duration="800">ШОТОКАН</h1>
                 <h2 data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">Пътят на дисциплината, уважението и
                     усъвършенстването</h2>
                 <a href="#" class="cta-button" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">ТРЕНЬОРИ ›</a>
@@ -159,69 +129,16 @@
         </section>
 
     </main>
-    <footer style="background-color: var(--white); border-top: 1px solid var(--border-color);">
-        <div class="container"
-            style="display: flex; flex-wrap: wrap; justify-content: space-between; padding: 60px 0; gap: 40px;">
-
-            <div>
-                <h4
-                    style="text-transform: uppercase; font-size: 14px; font-weight: bold; color: var(--text-color); margin-bottom: 20px;">
-                    Актуално</h4>
-                <ul style="list-style: none; padding: 0; line-height: 2;">
-                    <li><a href="#"
-                            style="text-decoration: none; color: var(--text-color); transition: var(--transition);">Състезания</a>
-                    </li>
-                    <li><a href="#"
-                            style="text-decoration: none; color: var(--text-color); transition: var(--transition);">Събития</a>
-                    </li>
-                    <li><a href="#"
-                            style="text-decoration: none; color: var(--text-color); transition: var(--transition);">Тренировки</a>
-                    </li>
-                    <li><a href="#"
-                            style="text-decoration: none; color: var(--text-color); transition: var(--transition);">Галерия</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div>
-                <h4
-                    style="text-transform: uppercase; font-size: 14px; font-weight: bold; color: var(--text-color); margin-bottom: 20px;">
-                    За нас</h4>
-                <ul style="list-style: none; padding: 0; line-height: 2;">
-                    <li><a href="#" style="text-decoration: none; color: var(--text-color);">История</a></li>
-                    <li><a href="#" style="text-decoration: none; color: var(--text-color);">Екип</a></li>
-                    <li><a href="#" style="text-decoration: none; color: var(--text-color);">Ценности</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4
-                    style="text-transform: uppercase; font-size: 14px; font-weight: bold; color: var(--text-color); margin-bottom: 20px;">
-                    За карате</h4>
-                <ul style="list-style: none; padding: 0; line-height: 2;">
-                    <li><a href="#" style="text-decoration: none; color: var(--text-color);">Карате До</a></li>
-                    <li><a href="#" style="text-decoration: none; color: var(--text-color);">Видове</a></li>
-                    <li><a href="#" style="text-decoration: none; color: var(--text-color);">Видео</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4
-                    style="text-transform: uppercase; font-size: 14px; font-weight: bold; color: var(--text-color); margin-bottom: 20px;">
-                    Контакти</h4>
-                <ul style="list-style: none; padding: 0; line-height: 2; color: var(--text-color);">
-                    <li>Имейл: info@vitokarate.bg</li>
-                    <li>Телефон: +359 88 123 4567</li>
-                    <li>Адрес: София, България</li>
-                </ul>
-            </div>
-
-        </div>
-    </footer>
+    <footer id="footer"></footer>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
+        $(function(){
+            $("#header").load("./common_elems/navbar.html");
+            $("#footer").load("./common_elems/footer.html");
+
+        });
         // Initialize AOS animation library
         AOS.init({
             offset: 120,
