@@ -517,6 +517,30 @@
             }
         }
 
+        .grid-section-triple .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .grid-section-triple .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .grid-section-five .container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 40px;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .grid-section-five .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
         th, td {
             border:1px solid black;
           }
@@ -809,4 +833,7 @@
                z-index: 0;
         };
 
-        
+        .sensei-img{
+            width: 30px;
+            height: 50px;
+        }
