@@ -76,113 +76,8 @@
             </div>
         </section>
 
-        <section class="content-section">
-            <div class="container">
-                <div class="dojo-grid">
-                    <!-- SATORI -->
-                    <div class="dojo-card">
-                        <a href="satori-details.html" class="dojo-card-link" aria-label="View SATORI dojo details">
-                        <div class="logo">
-                            <img src="https://colortest.page/wp-content/uploads/2024/03/rainbow-printer-test-page.jpg" width="200px" height="200px" alt="SATORI Logo">
-                        </div>
-                        <div class="dojo-type">ДОДЖО</div>
-                        <div class="dojo-name">SATORI</div>
-                    </a>
-                        
-                        <div class="instructor-label">СЕНСЕЙ</div>
-                        <div class="instructor-name">Анджей Згжива</div>
-                        <div class="instructor-rank">4 дан</div>
-                        
-                        <div class="location">
-                            Зала Spotlight<br>
-                            София, Борово,<br>
-                            ул. "Родопски извор" 45В<br>
-                            <span class="arrow">→</span>
-                        </div>
-                        
-                        <div class="location">
-                            107. ОУ „Хан Крум"<br>
-                            София, Лозенец,<br>
-                            ул. „Д. Димов" 13<br>
-                            <span class="arrow">→</span>
-                        </div>
-                        
-                        <a href="satori-schedule.html" class="program-link">ГРАФИК НА ТРЕНИРОВКИ</a>
-                    </div>
-                    
-                    <!-- SHIROTORA -->
-                    <div class="dojo-card">
-                        <a href="shirotora-details.html" class="dojo-card-link" aria-label="View SHIROTORA dojo details">
-                        <div class="logo">
-                            <img src="https://colortest.page/wp-content/uploads/2024/03/rainbow-printer-test-page.jpg" width="200px" height="200px"  alt="SHIROTORA Logo">
-                        </div>
-                        <div class="dojo-type">ДОДЖО</div>
-                        <div class="dojo-name">SHIROTORA</div>
-                    </a>
-                        
-                        <div class="instructor-label">СЕНСЕЙ</div>
-                        <div class="instructor-name">Весел Чушков</div>
-                        <div class="instructor-rank">3 дан</div>
-                        
-                        <div class="location">
-                            София, Център,<br>
-                            бул. "Васил Левски" 140
-                        </div>
-                        
-                        <a href="shirotora-program.html" class="program-link">ПРОГРАМА</a>
-                    </div>
-                    
-                    <!-- FENIX SPORT -->
-                    <div class="dojo-card">
-                        <a href="fenix-details.html" class="dojo-card-link" aria-label="View FENIX SPORT dojo details">
-                        <div class="logo">
-                            <img src="https://colortest.page/wp-content/uploads/2024/03/rainbow-printer-test-page.jpg" width="200px" height="200px"  alt="FENIX SPORT Logo">
-                        </div>
-                        <div class="dojo-type">ДОДЖО</div>
-                        <div class="dojo-name">FENIX SPORT</div>
-                    </a>
-                        
-                        <div class="instructor-label">СЕНСЕЙ</div>
-                        <div class="instructor-name">Виктор Свиленов</div>
-                        <div class="instructor-rank">3 дан</div>
-                        
-                        <div class="location">
-                            София, Красно село,<br>
-                            ул. „Борино" 2
-                        </div>
-                        
-                        <div class="location">
-                            София, Овча купел 2,<br>
-                            ул. „Феникс", бл 38
-                        </div>
-                        
-                        <a href="fenix-program.html" class="program-link">ПРОГРАМА</a>
-                    </div>
-                    
-                    <!-- UNDERGROUND -->
-                    <div class="dojo-card">
-                        <a href="underground-details.html" class="dojo-card-link" aria-label="View UNDERGROUND dojo details">
-                        <div class="logo">
-                            <img src="https://colortest.page/wp-content/uploads/2024/03/rainbow-printer-test-page.jpg" width="200px" height="200px"  alt="UNDERGROUND Logo">
-                        </div>
-                        <div class="dojo-type">ДОДЖО</div>
-                        <div class="dojo-name">UNDERGROUND</div>
-                    </a>
-                        
-                        <div class="instructor-label">СЕНСЕЙ</div>
-                        <div class="instructor-name">Илиан Илиев</div>
-                        <div class="instructor-rank">3 дан</div>
-                        
-                        <div class="location">
-                            София, Хаджи Димитър,<br>
-                            ул. „Цанко Дюстабанов"
-                        </div>
-                        
-                        <a href="underground-program.html" class="program-link">ПРОГРАМА</a>
-                    </div>
-                </div>
-            </div>
-            </div>
+        <section class="content-section" id="dojo_table">
+
         </section>
 
         <section class="content-section" id="timetable-section"></section>
@@ -196,6 +91,8 @@
             $("#header").load("./common_elems/navbar.html");
             $("#footer").load("./common_elems/footer.html");
             $("#timetable-section").load("./common_elems/timetable_section.html");
+            $("#dojo_table").load("./common_elems/dojos_table.html");
+
 
         });
         // Initialize AOS animation library

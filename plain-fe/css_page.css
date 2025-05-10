@@ -669,16 +669,12 @@
             display: flex;
             flex-direction: column;
             position: relative;
-            align-items: flex-start;
-            justify-content: flex-start;
         }
         
         .dojo-card-link {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
             z-index: 1;
             text-decoration: none;
             color: inherit;
@@ -804,7 +800,7 @@
         .location {
             font-size: 14px;
             line-height: 1.4;
-            margin-bottom: 5px;
+            margin-bottom: 25px;
         }
         
         .arrow {
