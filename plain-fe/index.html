@@ -115,9 +115,12 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="./static/common.js"></script>
     <script>
-        $(function(){
-            $("#header").load("./common_elems/navbar.html");
+        $(function () {
+            $("#header").load("./common_elems/navbar.html", function () {
+                initMobileMenu();
+            });
             $("#footer").load("./common_elems/footer.html");
             $("#timetable-section").load("./common_elems/timetable_section.html");
 
@@ -133,42 +136,7 @@
             anchorPlacement: 'top-bottom'
         });
 
-        // Mobile menu functionality
-        const hamburger = document.getElementById('hamburger');
-        const nav = document.getElementById('nav');
-        const overlay = document.getElementById('overlay');
-
-        if (hamburger && nav && overlay) {
-            hamburger.addEventListener('click', () => {
-                nav.classList.toggle('active');
-                overlay.classList.toggle('active');
-                hamburger.classList.toggle('active');
-            });
-
-            overlay.addEventListener('click', () => {
-                nav.classList.remove('active');
-                overlay.classList.remove('active');
-                hamburger.classList.remove('active');
-            });
-        }
-
-        // Sticky header on scroll
-        const header = document.getElementById('header');
-        let scrolled = false;
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                if (!scrolled) {
-                    header.classList.add('scrolled');
-                    scrolled = true;
-                }
-            } else {
-                if (scrolled) {
-                    header.classList.remove('scrolled');
-                    scrolled = false;
-                }
-            }
-        });
+        initStickyHeader();
     </script>
 </body>
 

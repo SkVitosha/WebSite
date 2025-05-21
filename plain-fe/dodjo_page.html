@@ -22,7 +22,8 @@
                 <h1 data-aos="fade-up" data-aos-duration="800">ДОДЖО</h1>
                 <h2 data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">Мястото, където се изграждат
                     умения и характер</h2>
-                <a href="./test.html" class="cta-button" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">ЛОКАЦИИ
+                <a href="./test.html" class="cta-button" data-aos="fade-up" data-aos-duration="800"
+                    data-aos-delay="400">ЛОКАЦИИ
                     ›</a>
             </div>
         </section>
@@ -38,8 +39,8 @@
                         грижата, с която подхождаме към всеки ученик.
                     </p>
                 </div>
-    
-                <div class="grid-item" data-aos="fade-right" data-aos-duration="800" >
+
+                <div class="grid-item" data-aos="fade-right" data-aos-duration="800">
                     <h3>Треньори</h3>
                     <p>Нашите сенсеи са вдъхновяващи лидери и компетентни
                         наставници, които притежават дълбоки познания в
@@ -49,7 +50,7 @@
                         подготовка – да се чувства подкрепен, мотивиран и насърчен
                         да даде най-доброто от себе си.</p>
                 </div>
-    
+
                 <div class="grid-item" data-aos="fade-up-left" data-aos-duration="800" data-aos-delay="200">
                     <h3>Тренировки</h3>
                     <p>
@@ -61,7 +62,7 @@
                         тренировъчната зала.
                     </p>
                 </div>
-    
+
                 <div class="grid-item" data-aos="fade-up-right" data-aos-duration="800" data-aos-delay="200">
                     <h3>Ученици</h3>
                     <p>
@@ -83,16 +84,17 @@
         <section class="content-section" id="timetable-section"></section>
 
     </main>
-    <footer id = "footer"></footer>
+    <footer id="footer"></footer>
 
 
+    <script src="./static/common.js"></script>
     <script>
-        $(function(){
-            $("#header").load("./common_elems/navbar.html");
+        $(function () {
+            $("#header").load("./common_elems/navbar.html", function () {
+                initMobileMenu();
+            });
             $("#footer").load("./common_elems/footer.html");
             $("#timetable-section").load("./common_elems/timetable_section.html");
-            $("#dojo_table").load("./common_elems/dojos_table.html");
-
 
         });
         // Initialize AOS animation library
@@ -106,42 +108,7 @@
             anchorPlacement: 'top-bottom'
         });
 
-        // Mobile menu functionality
-        const hamburger = document.getElementById('hamburger');
-        const nav = document.getElementById('nav');
-        const overlay = document.getElementById('overlay');
-
-        if (hamburger && nav && overlay) {
-            hamburger.addEventListener('click', () => {
-                nav.classList.toggle('active');
-                overlay.classList.toggle('active');
-                hamburger.classList.toggle('active');
-            });
-
-            overlay.addEventListener('click', () => {
-                nav.classList.remove('active');
-                overlay.classList.remove('active');
-                hamburger.classList.remove('active');
-            });
-        }
-
-        // Sticky header on scroll
-        const header = document.getElementById('header');
-        let scrolled = false;
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                if (!scrolled) {
-                    header.classList.add('scrolled');
-                    scrolled = true;
-                }
-            } else {
-                if (scrolled) {
-                    header.classList.remove('scrolled');
-                    scrolled = false;
-                }
-            }
-        });
+        initStickyHeader();
     </script>
 </body>
 

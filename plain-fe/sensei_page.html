@@ -94,7 +94,7 @@
                     по пътя на карате.</h2>
             </div>
             <div class="container">
-                <div class="grid-item" data-aos="fade-left" data-aos-duration="800">
+                <div class="grid-item" data-aos="fade-left" data-aos-duration="600">
                     <a href="./sensei_details/sensei_andjey.html">
                         <img class="sensei-img" src="./images/andzhei_zgzhiva_cover.jpg" alt="Andzhey Zhzhiva">
                     </a>
@@ -102,7 +102,7 @@
                     <p>4-ти дан</p>
                 </div>
 
-                <div class="grid-item" data-aos="fade-left" data-aos-duration="800">
+                <div class="grid-item" data-aos="fade-left" data-aos-duration="600">
                     <a href="./sensei_details/sensei_viktor.html">
                         <img class="sensei-img" src="./images/viktor_svilenov_cover.jpg" alt="Viktor Svilenov">
                     </a>
@@ -110,7 +110,7 @@
                     <p>3-ти дан</p>
                 </div>
 
-                <div class="grid-item" data-aos="fade-left" data-aos-duration="800">
+                <div class="grid-item" data-aos="fade-left" data-aos-duration="400">
                     <a href="./sensei_details/sensei_vesel.html">
                         <img class="sensei-img" src="./images/vesel_chushkov_cover.jpg" alt="Vesel Chushkov">
                     </a>
@@ -118,7 +118,7 @@
                     <p>3-ти дан</p>
                 </div>
 
-                <div class="grid-item" data-aos="fade-left" data-aos-duration="800">
+                <div class="grid-item" data-aos="fade-left" data-aos-duration="400">
                     <a href="./sensei_details/sensei_iliyan.html">
                         <img class="sensei-img" src="./images/iliyan_iliev_cover.jpg" alt="Iliyan Iliev">
                     </a>
@@ -126,7 +126,7 @@
                     <p>3-ти дан</p>
                 </div>
 
-                <div class="grid-item" data-aos="fade-left" data-aos-duration="800">
+                <div class="grid-item" data-aos="fade-left" data-aos-duration=" 200">
                     <a href="./sensei_details/sensei_krisi.html">
                         <img class="sensei-img" src="./images/krisi_svilenova_cover.jpg" alt="Kristina Svilenova">
                     </a>
@@ -134,7 +134,7 @@
                     <p>3-ти дан</p>
                 </div>
 
-                <div class="grid-item" data-aos="fade-left" data-aos-duration="800">
+                <div class="grid-item" data-aos="fade-left" data-aos-duration=" 200">
                     <a href="./sensei_details/sensei_adi.html">
                         <img class="sensei-img" src="./images/adi_ilieva_cover.jpg" alt="Adriana Ilieva">
                     </a>
@@ -142,7 +142,7 @@
                     <p>2-ри дан</p>
                 </div>
 
-                <div class="grid-item" data-aos="fade-left" data-aos-duration="800">
+                <div class="grid-item" data-aos="fade-left" data-aos-duration=" 200">
                     <a href="./sensei_details/sensei_toni.html">
                         <img class="sensei-img" src="./images/antoan_teofilov_cover.jpg" alt="Antoan Teofilov">
                     </a>
@@ -150,7 +150,7 @@
                     <p>2-ри дан</p>
                 </div>
 
-                <div class="grid-item" data-aos="fade-left" data-aos-duration="800">
+                <div class="grid-item" data-aos="fade-left" data-aos-duration=" 200">
                     <a href="./sensei_details/sensei_sveti.html">
                         <img class="sensei-img" src="./images/svetislav_todorov_cover.jpg" alt="Svetislav Todorov">
                     </a>
@@ -158,7 +158,7 @@
                     <p>2-ри дан</p>
                 </div>
 
-                <div class="grid-item" data-aos="fade-left" data-aos-duration="800">
+                <div class="grid-item" data-aos="fade-left" data-aos-duration=" 200">
                     <a href="./sensei_details/sensei_marti.html">
                         <img class="sensei-img" src="./images/martin_iliev_cover.jpg" alt="Martin Iliev">
                     </a>
@@ -166,7 +166,7 @@
                     <p>1-ви дан</p>
                 </div>
 
-                <div class="grid-item" data-aos="fade-left" data-aos-duration="800">
+                <div class="grid-item" data-aos="fade-left" data-aos-duration=" 200">
                     <a href="./sensei_details/sensei_dani.html">
                         <img class="sensei-img" src="./images/dani_krustev_cover.jpg" alt="Daniel Krustev">
                     </a>
@@ -174,7 +174,7 @@
                     <p>1-ви дан</p>
                 </div>
 
-                <div class="grid-item" data-aos="fade-left" data-aos-duration="800">
+                <div class="grid-item" data-aos="fade-left" data-aos-duration=" 200">
                     <a href="./sensei_details/sensei_yoana.html">
                         <img class="sensei-img" src="./images/yoana_nikolova_cover.jpg" alt="Yoana Nikolova">
                     </a>
@@ -182,7 +182,7 @@
                     <p>1-ви дан</p>
                 </div>
 
-                <div class="grid-item" data-aos="fade-left" data-aos-duration="800">
+                <div class="grid-item" data-aos="fade-left" data-aos-duration=" 200">
                     <a href="./sensei_details/sensei_zlati.html">
                         <img class="sensei-img" src="./images/zlatina_lilova_cover.jpg" alt="Zlatina Lilova">
                     </a>
@@ -201,11 +201,14 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="./static/common.js"></script>
     <script>
         $(function () {
-            $("#header").load("./common_elems/navbar.html");
+            $("#header").load("./common_elems/navbar.html", function () {
+                initMobileMenu();
+            });
             $("#footer").load("./common_elems/footer.html");
-            $("#dojo_table").load("./common_elems/dojos_table.html");
+            $("#timetable-section").load("./common_elems/timetable_section.html");
 
         });
         // Initialize AOS animation library
@@ -219,43 +222,9 @@
             anchorPlacement: 'top-bottom'
         });
 
-        // Mobile menu functionality
-        const hamburger = document.getElementById('hamburger');
-        const nav = document.getElementById('nav');
-        const overlay = document.getElementById('overlay');
-
-        if (hamburger && nav && overlay) {
-            hamburger.addEventListener('click', () => {
-                nav.classList.toggle('active');
-                overlay.classList.toggle('active');
-                hamburger.classList.toggle('active');
-            });
-
-            overlay.addEventListener('click', () => {
-                nav.classList.remove('active');
-                overlay.classList.remove('active');
-                hamburger.classList.remove('active');
-            });
-        }
-
-        // Sticky header on scroll
-        const header = document.getElementById('header');
-        let scrolled = false;
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                if (!scrolled) {
-                    header.classList.add('scrolled');
-                    scrolled = true;
-                }
-            } else {
-                if (scrolled) {
-                    header.classList.remove('scrolled');
-                    scrolled = false;
-                }
-            }
-        });
+        initStickyHeader();
     </script>
+
 </body>
 
 </html>
