@@ -890,3 +890,10 @@ footer {
   width: 10em;
   height: 15em;
 }
+
+
+    .disabled-contact {
+        color: lightgrey;
+        opacity: 0.4;
+        cursor: not-allowed;
+}
