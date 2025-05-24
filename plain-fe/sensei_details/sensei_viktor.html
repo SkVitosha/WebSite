@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karate Instructor Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link rel="stylesheet" href="../css_page.css" />
+    <link rel="stylesheet" href="./sensei_det.css" />
+    <base href="../">
+</head>
+<body>
+
+
+    <div class="overlay" id="overlay"></div>
+
+    <header id="header"></header>
+
+    <main>
+        <section class="content-section">
+            <div class="container detail_content">
+                <div style="display: flex; flex-direction: column; align-items: flex-start; align-content: flex-start;">
+                    <img src="../images/viktor_svilenov_cover.jpg" width="250px" alt="Karate Master">
+                    <p class="location_data">Доджо<br><a href="../dojo_details/fenix_details.html"><b>Fenix Sport</b></a></p>
+                </div>
+                <div style="display: flex; flex-direction: column; margin-inline-start: 50px;">
+                    <div class="dojo-type-det">СЕНСЕЙ</div>
+                    <div class="dojo-name-det">Виктор Свиленов</div>
+                    <div class="profile-quote">"Каратето е сбъдната мечта, пътешествие без край"</div>
+
+                     <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">дан<br>степен в карате</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">26</div>
+                        <div class="stat-label">години<br>опит в сферата на карате</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">18</div>
+                        <div class="stat-label">години<br>треньорски опит</div>
+                    </div>
+                </div>
+
+                    <div class="section-title">ОБРАЗОВАНИЕ</div>
+                    <div class="education-item"><div class="year">2018</div><div class="description">НСА “Васил Левски”, София – бакалавър: треньор по карате</div></div>
+
+                    <div class="section-title">СТЕПЕН В КАРАТЕ</div>
+                    <div class="karate-grade-item"><div class="year">2021</div><div class="description">WSKF – защитен 3ти дан</div></div>
+                    <div class="karate-grade-item"><div class="year">2012</div><div class="description">WSKF – защитен 2ри дан</div></div>
+                    <div class="karate-grade-item"><div class="year">2007</div><div class="description">WSKF - защитен 1ви дан</div></div>
+
+                    <div class="section-title">ПОСТИЖЕНИЯ</div>
+                    <div class="achievement-item"><div class="description"><p>Треньор, който е изковал национални, европейски и световни шампиони
+                         и не спира да вдъхновява следващите поколения бойци. <br/><br/>С дългогодишен опит, отдаденост и индивидуален подход към всеки
+                         състезател, той знае, че всеки път е различен, но целта остава една – да дадеш най-доброто от себе си! 
+                         Не просто да печелиш медали, а да ставаш по-добра версия на себе си всеки ден. <br/><br/> Неговата мисия е да види как постигаш 
+                         мечтите си, да бъде до теб в най-тежките тренировки и най-великите победи. Да ти покаже, че граници няма – има само 
+                         нови предизвикателства, които ще преодолееш. <br/><br/>Той не просто тренира шампиони. Той ги създава.</p>
+                    </div>
+                </div>
+                   
+                    <div class="section-title">КАКВО Е КАРАТЕ ЗА ТЕБ?</div>
+                    <div class="philosophy-text">Каратето не е просто спорт – то е начин на мислене, път към по-добра версия на себе си. 
+                        То изгражда не само силно тяло, но и силен дух. Учиш се на дисциплина, концентрация и контрол – не само върху 
+                        движенията си, но и върху решенията, които взимаш всеки ден.</div>
+
+                    <div class="section-title">КАКВИ КАЧЕСТВА ВЪЗПИТАВА КАРАТЕ У ДЕЦАТА?</div>
+                    <div class="philosophy-text">Каратето прави децата по-добри – не само в залата, но и в живота. То ги учи да мислят
+                         преди да действат, да избягват грешки и да се стремят към постоянен растеж. Възпитава дисциплина, уважение и
+                          самоконтрол – качества, които ще им служат цял живот.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer"></footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("../common_elems/navbar.html");
+            $("#footer").load("../common_elems/footer.html");
+        });
+        AOS.init({
+            offset: 120,
+            delay: 100,
+            duration: 800,
+            easing: 'ease',
+            once: false,
+            mirror: false,
+            anchorPlacement: 'top-bottom'
+        });
+    </script>
+
+</body>
+
+
+</html>

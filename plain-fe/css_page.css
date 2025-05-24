@@ -608,7 +608,6 @@ td {
 
 .table-container {
   width: 100%;
-  overflow-x: auto; /* Enable horizontal scrolling for smaller screens */
 }
 
 .table-container table {
@@ -639,13 +638,14 @@ td {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  z-index: 2220;
+  z-index: 9999;
   transition: opacity 0.2s ease, transform 0.2s ease; /* Added transform */
   opacity: 0;
   pointer-events: none;
   transform: translateY(5px); /* Added initial slight downward shift */
   min-width: 200px; /* Adjust as needed */
-  top: 100%;
+  top: calc(100% + 10px); /* Add 5px gap below the cell */
+
   left: 50%;
   transform: translateX(-50%) translateY(5px); /* Adjusted initial position */
 }

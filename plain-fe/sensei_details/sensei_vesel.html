@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karate Instructor Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link rel="stylesheet" href="../css_page.css" />
+    <link rel="stylesheet" href="./sensei_det.css" />
+    <base href="../">
+</head>
+<body>
+
+
+    <div class="overlay" id="overlay"></div>
+
+    <header id="header"></header>
+
+    <main>
+        <section class="content-section">
+            <div class="container detail_content">
+                <div style="display: flex; flex-direction: column; align-items: flex-start; align-content: flex-start;">
+                    <img src="../images/vesel_chushkov_cover.jpg" width="250px" alt="Karate Master">
+                    <p class="location_data">Доджо<br><a href="../dojo_details/satori_details.html"><b>SHIROTORA</b></a></p>
+                </div>
+                <div style="display: flex; flex-direction: column; margin-inline-start: 50px;">
+                    <div class="dojo-type-det">СЕНСЕЙ</div>
+                    <div class="dojo-name-det">Весел Чушков</div>
+                    <div class="profile-quote">"Каратето е сбъдната мечта, пътешествие без край"</div>
+
+                     <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">дан<br>степен в карате</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">17</div>
+                        <div class="stat-label">години<br>опит в сферата на карате</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">7</div>
+                        <div class="stat-label">години<br>треньорски опит</div>
+                    </div>
+                </div>
+
+                    <div class="section-title">ОБРАЗОВАНИЕ</div>
+                    <div class="education-item"><div class="year">2024</div><div class="description">SKDUN – удостоверение за международен съдия</div></div>
+                    <div class="education-item"><div class="year">2023</div><div class="description">БФШК – удостоверение за съдия</div></div>
+                    <div class="education-item"><div class="year">2021</div><div class="description">Министерство на Младежта и Спорта – удостоверение за треньор</div></div>
+                    <div class="education-item"><div class="year">2021</div><div class="description">НСА "Васил Левски", София – свидетелство за професионална квалификация: треньор по карате</div></div>
+                    <div class="education-item"><div class="year">1996</div><div class="description">ВИАС – магистър: Строителен инженер</div></div>
+
+                    <div class="section-title">СТЕПЕН В КАРАТЕ</div>
+                    <div class="karate-grade-item"><div class="year">2017</div><div class="description">WSKF – защитен 1ви дан</div></div>
+                    <div class="karate-grade-item"><div class="year">2021</div><div class="description">WSKF – защитен 2ри дан</div></div>
+                    <div class="karate-grade-item"><div class="year">2024</div><div class="description">ЗКА – защитен 1ви, 2ри и 3ти дан</div></div>
+
+                    <div class="section-title">ПОСТИЖЕНИЯ</div>
+                    <div class="achievement-item"><div class="year">2024</div><div class="description">Вицешампион – 18то Национално Първенство</div></div>
+                    <div class="achievement-item"><div class="year">2024</div><div class="description">Вицешампион – SKDUN Европейско първенство</div></div>
+                    <div class="achievement-item"><div class="year">2024</div><div class="description">Бронзов медал – SKDUN Европейско първенство</div></div>
+                    <div class="achievement-item"><div class="year">2023</div><div class="description">Шампион – SKDUN Световно първенство</div></div>
+                    <div class="achievement-item"><div class="year">2023</div><div class="description">Бронзов медал – SKDUN Европейско първенство</div></div>
+                    <div class="achievement-item"><div class="year">2022</div><div class="description">Шампион – 17то Национално Първенство</div></div>
+                    <div class="achievement-item"><div class="year">2013-2019</div><div class="description">Множество медали от национални и международни състезания</div></div>
+
+                    <div class="section-title">КАКВО Е КАРАТЕ ЗА ТЕБ?</div>
+                    <div class="philosophy-text">Каратето е сбъдната мечта... цял живот.</div>
+
+                    <div class="section-title">КАКВИ КАЧЕСТВА ВЪЗПИТАВА КАРАТЕ У ДЕЦАТА?</div>
+                    <div class="philosophy-text">Каратето е много повече от удари и техники... духа на карате!</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer"></footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("../common_elems/navbar.html");
+            $("#footer").load("../common_elems/footer.html");
+        });
+        AOS.init({
+            offset: 120,
+            delay: 100,
+            duration: 800,
+            easing: 'ease',
+            once: false,
+            mirror: false,
+            anchorPlacement: 'top-bottom'
+        });
+    </script>
+
+</body>
+
+
+</html>
