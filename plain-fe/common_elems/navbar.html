@@ -22,16 +22,6 @@
             </ul>
         </nav>
 
-        <button id="contactBtn desktop-contact"  class="contact-btn" onclick="window.location.href='./contacts.html'">Контакти</button>
+        <button class="contact-btn desktop-contact" id="contact-btn">Контакти</button>
     </div>
 </div>
-
-<script>
-    const contactBtn = document.getElementById("contactBtn");
-    const currentPage = window.location.pathname;
-
-    if (currentPage.includes("contacts.html")) {
-        contactBtn.classList.add("disabled-contact");
-        contactBtn.disabled = true; // optional: disables the click
-    }
-</script>
