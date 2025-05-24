@@ -94,7 +94,34 @@
                 initMobileMenu();
             });
             $("#footer").load("./common_elems/footer.html");
-            $("#timetable-section").load("./common_elems/timetable_section.html");
+            $("#timetable-section").load("./common_elems/timetable_section.html", function() {
+                document.addEventListener("DOMContentLoaded", function () {
+    const triggers = document.querySelectorAll(".hover-trigger");
+
+    triggers.forEach(trigger => {
+        trigger.addEventListener("click", function (e) {
+            e.stopPropagation(); // prevent bubbling
+            closeAllPopups();
+
+            const popup = this.querySelector(".popup");
+            if (popup) {
+                popup.classList.toggle("active");
+            }
+        });
+    });
+
+    // Close popups when clicking outside
+    document.addEventListener("click", function () {
+        closeAllPopups();
+    });
+
+    function closeAllPopups() {
+        document.querySelectorAll(".popup.active").forEach(popup => {
+            popup.classList.remove("active");
+        });
+    }
+});
+            });
 
         });
         // Initialize AOS animation library

@@ -669,35 +669,53 @@ td {
   position: relative;
 }
 
-/* Further responsiveness using media queries (optional, adjust breakpoints as needed) */
+
 @media (max-width: 768px) {
+  .table-container table,
+  .table-container thead,
+  .table-container tbody,
   .table-container th,
-  .table-container td {
-    padding: 8px 5px; /* Reduce padding on smaller screens */
-    font-size: 0.9em; /* Slightly smaller font */
+  .table-container td,
+  .table-container tr {
+    display: block;
+    width: 100%;
   }
 
-  .time-slot span {
-    display: block; /* Make the time span take full width */
-    text-align: center; /* Center the time */
-  }
+    .popup {
+        pointer-events: none; /* optional to prevent accidental touches */
+    }
 
-  .time-slot .popup {
-    min-width: 150px; /* Adjust popup width for smaller screens */
-    font-size: 0.85em;
-  }
+    .popup.active {
+  display: block;
 }
 
-@media (max-width: 480px) {
-  .table-container th,
-  .table-container td {
-    padding: 6px 3px; /* Further reduce padding on very small screens */
-    font-size: 0.8em;
+  .table-container thead {
+    display: none; /* Hide the header */
   }
 
-  .time-slot .popup {
-    min-width: 120px; /* Adjust popup width for even smaller screens */
-    font-size: 0.75em;
+  .table-container tr {
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    border-radius: 8px;
+  }
+
+  .table-container td {
+    text-align: left;
+    padding-left: 50%;
+    position: relative;
+    border: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  .table-container td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 45%;
+    padding-left: 10px;
+    font-weight: bold;
+    white-space: nowrap;
   }
 }
 
