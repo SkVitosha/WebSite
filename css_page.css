@@ -668,6 +668,10 @@ td {
   border-bottom: 1px solid #ddd;
   position: relative;
 }
+.time-slot-text {
+  display: flex;
+  justify-content: space-between;
+}
 
 
 @media (max-width: 768px) {
