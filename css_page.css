@@ -668,6 +668,10 @@ td {
   border-bottom: 1px solid #ddd;
   position: relative;
 }
+.time-slot-text {
+  display: flex;
+  justify-content: space-between;
+}
 
 
 @media (max-width: 768px) {
@@ -908,3 +912,11 @@ footer {
   width: 10em;
   height: 15em;
 }
+
+
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: 0;
+            border-radius: 8px;
+        }
