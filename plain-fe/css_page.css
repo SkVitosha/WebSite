@@ -298,7 +298,7 @@ nav ul li a:hover {
 /* Content section */
 .content-section {
   background-color: var(--white);
-  padding: 100px 40px;
+  padding: 50px 40px;
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -893,10 +893,10 @@ td {
   color: #000;
 }
 
-.program-link::after {
+/* .program-link::after {
   content: "→";
   margin-left: 5px;
-}
+} */
 
 footer {
   background-color: var(--white);

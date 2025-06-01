@@ -1,0 +1,230 @@
+<style>
+    .dojo-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        border: 1px solid #e0e0e0;
+    }
+
+    .dojo-card {
+        padding: 30px 20px;
+        border-right: 1px solid #e0e0e0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Responsive styles for smaller screens */
+    @media (max-width: 1024px) {
+        .dojo-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .dojo-card:nth-child(2n) {
+            border-right: none;
+        }
+
+        .dojo-card:nth-child(1),
+        .dojo-card:nth-child(2) {
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 40px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .dojo-grid {
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+
+        .dojo-card {
+            border-right: none;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 30px 15px;
+        }
+
+        .dojo-card:last-child {
+            border-bottom: none;
+        }
+    }
+
+    .dojo-card:last-child {
+        border-right: none;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+        height: 80px;
+    }
+
+    .logo img {
+        max-height: 100%;
+        max-width: 100%;
+    }
+
+    .dojo-type {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+    }
+
+    .dojo-name {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+    }
+
+    .instructor-label {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+    }
+
+    .instructor-name {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .instructor-rank {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    .location {
+        font-size: 14px;
+        line-height: 1.4;
+        margin-bottom: 5px;
+    }
+
+    .arrow {
+        display: inline-block;
+        margin-top: 5px;
+        margin-bottom: 15px;
+    }
+
+    .program-link {
+        display: inline-flex;
+        align-items: center;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: bold;
+        margin-top: auto;
+        text-decoration: none;
+        color: #000;
+    }
+
+    .location-district {
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: bold;
+    }
+</style>
+<div class="container" data-aos="fade-right" data-aos-duration="800">
+    <div class="dojo-grid">
+        <!-- SATORI -->
+        <div class="dojo-card">
+            <a href="./dojo_details/satori_details.html" style="text-decoration: none; color: inherit;">
+                <div class="logo">
+                    <img src="./images/Logo_Satori.png" alt="SATORI Logo">
+                </div>
+                <div class="dojo-type">ДОДЖО</div>
+                <div class="dojo-name">SATORI</div>
+
+                <div class="instructor-label">СЕНСЕЙ</div>
+                <div class="instructor-name">Анджей Згжива</div>
+                <div class="instructor-rank">4 дан</div>
+
+                <div class="location">
+                    <div class="location-district">София, Лозенец </div>
+                    107. ОУ „Хан Крум"<br>
+                    ул. „Д. Димов" 13<br>
+                </div>
+                <div class="location">
+                    <br>
+                    <div class="location-district">София, Борово </div>
+                    Зала Spotlight<br>
+                    ул. "Родопски извор" 45В<br>
+                    <br>
+                </div>
+
+                <div class="program-link">ГРАФИК НА ТРЕНИРОВКИ</div>
+            </a>
+        </div>
+
+        <!-- SHIROTORA -->
+        <div class="dojo-card">
+            <a href="#" style="text-decoration: none; color: inherit;">
+
+                <div class="logo">
+                    <img src="./images/Logo_Shirotora.png" alt="SHIROTORA Logo">
+                </div>
+                <div class="dojo-type">ДОДЖО</div>
+                <div class="dojo-name">SHIROTORA</div>
+
+                <div class="instructor-label">СЕНСЕЙ</div>
+                <div class="instructor-name">Весел Чушков</div>
+                <div class="instructor-rank">3 дан</div>
+
+                <div class="location">
+
+                    <div class="location-district">София, Център </div>
+                    бул. "Васил Левски" 140
+                </div>
+
+                <a href="#" class="program-link">ПРОГРАМА</a>
+        </div>
+
+        <!-- FENIX SPORT -->
+        <div class="dojo-card">
+            <div class="logo">
+                <img src="./images/Logo_Fenix_Sport.png" alt="FENIX SPORT Logo">
+            </div>
+            <div class="dojo-type">ДОДЖО</div>
+            <div class="dojo-name">FENIX SPORT</div>
+
+            <div class="instructor-label">СЕНСЕЙ</div>
+            <div class="instructor-name">Виктор Свиленов</div>
+            <div class="instructor-rank">3 дан</div>
+
+            <div class="location">
+                <div class="location-district">София, Борово </div>
+                ул. „Ворино" 2
+            </div>
+
+            <div class="location">
+                <br>
+                <div class="location-district">София, Овча Купел 2 </div>
+                ул. „Феникс", бл 38
+            </div>
+
+            <a href="#" class="program-link">ПРОГРАМА</a>
+        </div>
+
+        <!-- UNDERGROUND -->
+        <div class="dojo-card">
+            <div class="logo">
+                <img src="./images/Logo_Polystudia.png" alt="Polystudia Logo">
+            </div>
+            <div class="dojo-type">ДОДЖО</div>
+            <div class="dojo-name">Polystudia</div>
+
+            <div class="instructor-label">СЕНСЕЙ</div>
+            <div class="instructor-name">Илиан Илиев</div>
+            <div class="instructor-rank">3 дан</div>
+
+            <div class="location">
+                <div class="location-district">София, Хаджи Димитър </div>
+
+                ул. „Цанко Дюстабанов"
+            </div>
+
+            <a href="#" class="program-link">ПРОГРАМА</a>
+        </div>
+    </div>
+</div>

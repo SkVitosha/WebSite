@@ -22,7 +22,7 @@
                 <h1 data-aos="fade-up" data-aos-duration="800">ДОДЖО</h1>
                 <h2 data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">Мястото, където се изграждат
                     умения и характер</h2>
-                <a href="./test.html" class="cta-button" data-aos="fade-up" data-aos-duration="800"
+                <a href="./dodjo_page.html#dojo_table" class="cta-button" data-aos="fade-up" data-aos-duration="800"
                     data-aos-delay="400">ЛОКАЦИИ
                     ›</a>
             </div>
@@ -77,9 +77,7 @@
             </div>
         </section>
 
-        <section class="content-section" id="dojo_table">
-
-        </section>
+        <section class="content-section" id="dojo_table"></section>
 
         <section class="content-section" id="timetable-section"></section>
 
@@ -94,33 +92,34 @@
                 initMobileMenu();
             });
             $("#footer").load("./common_elems/footer.html");
+            $("#dojo_table").load("./common_elems/test.html");
             $("#timetable-section").load("./common_elems/timetable_section.html", function() {
-                document.addEventListener("DOMContentLoaded", function () {
-    const triggers = document.querySelectorAll(".hover-trigger");
+//                 document.addEventListener("DOMContentLoaded", function () {
+//     const triggers = document.querySelectorAll(".hover-trigger");
 
-    triggers.forEach(trigger => {
-        trigger.addEventListener("click", function (e) {
-            e.stopPropagation(); // prevent bubbling
-            closeAllPopups();
+//     triggers.forEach(trigger => {
+//         trigger.addEventListener("click", function (e) {
+//             e.stopPropagation(); // prevent bubbling
+//             closeAllPopups();
 
-            const popup = this.querySelector(".popup");
-            if (popup) {
-                popup.classList.toggle("active");
-            }
-        });
-    });
+//             const popup = this.querySelector(".popup");
+//             if (popup) {
+//                 popup.classList.toggle("active");
+//             }
+//         });
+//     });
 
-    // Close popups when clicking outside
-    document.addEventListener("click", function () {
-        closeAllPopups();
-    });
+//     // Close popups when clicking outside
+//     document.addEventListener("click", function () {
+//         closeAllPopups();
+//     });
 
-    function closeAllPopups() {
-        document.querySelectorAll(".popup.active").forEach(popup => {
-            popup.classList.remove("active");
-        });
-    }
-});
+//     function closeAllPopups() {
+//         document.querySelectorAll(".popup.active").forEach(popup => {
+//             popup.classList.remove("active");
+//         });
+//     }
+// });
             });
 
         });
