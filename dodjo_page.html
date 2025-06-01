@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карате клуб "Витоша"</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link rel="stylesheet" href="./css_page.css" />
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+</head>
+
+<body>
+    <div class="overlay" id="overlay"></div>
+
+    <header id="header"></header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1 data-aos="fade-up" data-aos-duration="800">ДОДЖО</h1>
+                <h2 data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">Мястото, където се изграждат
+                    умения и характер</h2>
+                <a href="./dodjo_page.html#dojo_table" class="cta-button" data-aos="fade-up" data-aos-duration="800"
+                    data-aos-delay="400">ЛОКАЦИИ
+                    ›</a>
+            </div>
+        </section>
+
+        <section class="content-section grid-section">
+            <div class="container">
+                <div class="grid-item" data-aos="fade-left" data-aos-duration="800">
+                    <h3>Зали</h3>
+                    <p>Залите на СК „Витоша“ са местата, където се срещат
+                        отдадеността на сенсеите и желанието на трениращите да
+                        учат и да се развиват. Ние вярваме, че истинската стойност
+                        на тренировките се крие в знанията, които предаваме, и в
+                        грижата, с която подхождаме към всеки ученик.
+                    </p>
+                </div>
+
+                <div class="grid-item" data-aos="fade-right" data-aos-duration="800">
+                    <h3>Треньори</h3>
+                    <p>Нашите сенсеи са вдъхновяващи лидери и компетентни
+                        наставници, които притежават дълбоки познания в
+                        традиционното Шотокан Карате-До и богат опит в
+                        обучението. Те се стремят да създадат среда, в която всеки
+                        трениращ – независимо от възрастта или нивото на
+                        подготовка – да се чувства подкрепен, мотивиран и насърчен
+                        да даде най-доброто от себе си.</p>
+                </div>
+
+                <div class="grid-item" data-aos="fade-up-left" data-aos-duration="800" data-aos-delay="200">
+                    <h3>Тренировки</h3>
+                    <p>
+                        Тренировките в СК „Витоша“ са насочени към изграждането
+                        на умения, които остават за цял живот. Чрез работа с нашите
+                        сенсеи, трениращите не само усвояват техниките на карате,
+                        но и развиват дисциплина, устойчивост, уважение и
+                        увереност – качества, които надхвърлят пределите на
+                        тренировъчната зала.
+                    </p>
+                </div>
+
+                <div class="grid-item" data-aos="fade-up-right" data-aos-duration="800" data-aos-delay="200">
+                    <h3>Ученици</h3>
+                    <p>
+                        В нашите зали всеки трениращ е важен. Сенсеите на СК
+                        „Витоша“ подхождат индивидуално към нуждите и целите на
+                        всеки ученик, като същевременно насърчават взаимното
+                        уважение и подкрепа между трениращите. Тук изграждаме
+                        не само умения, но и общност, в която всеки се чувства
+                        ценен и част от нещо по-голямо.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" id="dojo_table"></section>
+
+        <section class="content-section" id="timetable-section"></section>
+
+    </main>
+    <footer id="footer"></footer>
+
+
+    <script src="./static/common.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("./common_elems/navbar.html", function () {
+                initMobileMenu();
+            });
+            $("#footer").load("./common_elems/footer.html");
+            $("#dojo_table").load("./common_elems/test.html");
+            $("#timetable-section").load("./common_elems/timetable_section.html", function() {
+//                 document.addEventListener("DOMContentLoaded", function () {
+//     const triggers = document.querySelectorAll(".hover-trigger");
+
+//     triggers.forEach(trigger => {
+//         trigger.addEventListener("click", function (e) {
+//             e.stopPropagation(); // prevent bubbling
+//             closeAllPopups();
+
+//             const popup = this.querySelector(".popup");
+//             if (popup) {
+//                 popup.classList.toggle("active");
+//             }
+//         });
+//     });
+
+//     // Close popups when clicking outside
+//     document.addEventListener("click", function () {
+//         closeAllPopups();
+//     });
+
+//     function closeAllPopups() {
+//         document.querySelectorAll(".popup.active").forEach(popup => {
+//             popup.classList.remove("active");
+//         });
+//     }
+// });
+            });
+
+        });
+        // Initialize AOS animation library
+        AOS.init({
+            offset: 120,
+            delay: 100,
+            duration: 800,
+            easing: 'ease',
+            once: false,
+            mirror: false,
+            anchorPlacement: 'top-bottom'
+        });
+
+        initStickyHeader();
+    </script>
+</body>
+
+</html>
