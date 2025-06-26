@@ -1,4 +1,6 @@
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -217,7 +219,7 @@ nav ul li a:hover {
 /* Hero section */
 .hero {
   background-color: var(--off-white);
-  padding: 0px 40px;
+  padding: 0px 0px;
   position: relative;
   overflow: hidden;
   min-height: 80vh;
@@ -231,22 +233,20 @@ nav ul li a:hover {
   justify-content: space-between;
   align-items: center;
   padding: 0 0;
+  flex-wrap: wrap;
 }
 .hero > .container .content-left {
   flex: 1 1 0%;
-  padding-right: 20px;
 }
 
 .hero > .container .content-right {
   flex: 1 1 0%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .hero > .container .content-right img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
+  display: block;
 }
 
 /* .hero::before {
@@ -338,26 +338,23 @@ nav ul li a:hover {
 .content-section > .container {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 40px;
 }
 
-.content-section > .container .content-left {
-  width: 50%;
-}
-
+.content-section > .container .content-left,
 .content-section > .container .content-right {
-  width: 50%;
+  flex: 1 1 45%;
+  max-width: 45%;
+  box-sizing: border-box;
 }
 
-.content-left {
-  flex: 1 1 400px;
-}
-
+.content-left,
 .content-right {
-  flex: 1 1 500px;
+  flex: 1 1 45%;
+  max-width: 45%;
+  box-sizing: border-box;
 }
 
 .content-section h2 {
@@ -372,8 +369,26 @@ nav ul li a:hover {
   color: var(--text-color);
   margin-bottom: 20px;
   margin-top: 60px;
-
   position: relative;
+}
+
+.kanji-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.kanji-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.kanji-h3 {
+  color: var(--primary-color) !important;
+  margin-bottom: 10px !important;
+  margin-top: 20px !important;
 }
 
 .content-section h2::after {
@@ -436,20 +451,60 @@ nav ul li a:hover {
 /* Responsive design */
 @media screen and (max-width: 992px) {
   .hero {
-    padding: 100px 30px;
+    padding: 80px 30px;
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero > .container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero .content-left,
+  .hero .content-right {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .hero .content-right img {
+    width: 100%;
+    max-width: 400px;
   }
 
   .hero h1 {
-    font-size: 2.8em;
+    font-size: 2.5em;
   }
 
   .hero h2 {
-    font-size: 1.7em;
+    font-size: 1.6em;
   }
 
   .content-section {
-    padding: 80px 30px;
-    flex-direction: row;
+    padding: 70px 30px;
+  }
+
+  .content-section > .container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .content-section > .container .content-left {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+  .content-section > .container .content-right {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .content-left {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .content-right {
+    text-align: center;
   }
 
   .content-section h2 {
@@ -502,31 +557,53 @@ nav ul li a:hover {
   }
 
   .hero {
-    padding: 80px 20px;
+    padding: 60px 20px;
     min-height: 70vh;
+    text-align: center;
+  }
+  .hero > .container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero .content-left,
+  .hero .content-right {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .hero .content-right img {
+    width: 100%;
+    max-width: 400px;
   }
 
   .hero h1 {
-    font-size: 2.3em;
+    font-size: 2.2em;
   }
 
   .hero h2 {
-    font-size: 1.5em;
-    margin-bottom: 40px;
+    font-size: 1.4em;
+    margin-bottom: 30px;
   }
 
   .content-section {
     padding: 60px 20px;
-    flex-direction: row;
   }
 
   .content-left,
   .content-right {
     flex: 1 1 100%;
+    max-width: 100%;
   }
 
   .content-left {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .content-right {
+    text-align: center;
   }
 
   .content-section h2 {
@@ -539,17 +616,28 @@ nav ul li a:hover {
     padding: 0 15px;
   }
 
-  .hero {
-    padding: 60px 15px;
+  .hero > .container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
+  .hero .content-left,
+  .hero .content-right {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .hero .content-right img {
+    width: 100%;
+    max-width: 400px;
+  }
   .hero h1 {
     font-size: 2em;
   }
 
   .hero h2 {
     font-size: 1.3em;
-    margin-bottom: 30px;
   }
 
   .cta-button,
@@ -559,17 +647,39 @@ nav ul li a:hover {
   }
 
   .content-section {
-    flex-direction: column;
     padding: 50px 15px;
   }
 
+  .content-left,
+  .content-right {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .content-left {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .content-right {
+    text-align: center;
+  }
   .content-section h2 {
-    font-size: 1.8em;
-    margin-bottom: 30px;
+    font-size: 1.7em;
+    margin-bottom: 25px;
   }
 
   .content-section p {
     font-size: 1em;
+  }
+
+  .kanji-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .kanji-text {
+    text-align: center;
   }
 }
 
