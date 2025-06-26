@@ -32,6 +32,8 @@ body {
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;
+  z-index: 30;
+  position: relative; /* <--- This is the missing piece */
 }
 
 header {
@@ -218,11 +220,13 @@ nav ul li a:hover {
 
 /* Hero section */
 .hero {
-  background-color: var(--off-white);
-  padding: 0px 0px;
   position: relative;
-  overflow: hidden;
+  background-image: url("./images/your-image.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   min-height: 80vh;
+  color: var(--white);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -355,6 +359,11 @@ nav ul li a:hover {
   flex: 1 1 45%;
   max-width: 45%;
   box-sizing: border-box;
+}
+
+.content-section.single-column > .container .content-left {
+  max-width: 100%;
+  flex: 1 1 100%;
 }
 
 .content-section h2 {
@@ -1110,4 +1119,49 @@ iframe {
   height: 600px;
   border: 0;
   border-radius: 8px;
+}
+
+/* .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust darkness (0.3–0.7) 
+  z-index: 1;
+} */
+
+/* Dark background image section */
+.content-section.dark-bg {
+  position: relative;
+  background-image: url("./images/bg-picture-index-bottom.jpg");
+  background-size: cover; /* scales the image inside */
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 80vh; /* section height shows 80% of the viewport */
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  overflow: hidden; /* Prevents scrollbars caused by overlay */
+}
+
+.content-section.dark-bg .overlay-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Adjust for more/less darkness */
+  z-index: 2;
+}
+
+.content-section.dark-bg .container {
+  position: relative;
+  z-index: 3;
+}
+
+/* Optional: adjust text styles for better contrast */
+.content-section.dark-bg h2,
+.content-section.dark-bg p {
+  color: white;
 }
