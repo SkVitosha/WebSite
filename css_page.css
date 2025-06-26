@@ -1,4 +1,6 @@
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -7,9 +9,12 @@
 
 :root {
   --primary-color: #2d7a4f;
+  --secondary-color: #244231;
   --text-color: #111;
   --bg-color: #f8f8f8;
   --white: #ffffff;
+  --off-white: #f6f6f6;
+  --dirty-white: rgba(45, 122, 79, 0.05);
   --border-color: #e0e0e0;
   --transition: all 0.3s ease;
 }
@@ -27,6 +32,8 @@ body {
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;
+  z-index: 30;
+  position: relative; /* <--- This is the missing piece */
 }
 
 header {
@@ -213,17 +220,40 @@ nav ul li a:hover {
 
 /* Hero section */
 .hero {
-  background-color: var(--white);
-  padding: 120px 40px;
   position: relative;
-  overflow: hidden;
+  background-image: url("./images/your-image.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   min-height: 80vh;
+  color: var(--white);
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+.hero > .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0;
+  flex-wrap: wrap;
+}
+.hero > .container .content-left {
+  flex: 1 1 0%;
+}
 
-.hero::before {
+.hero > .container .content-right {
+  flex: 1 1 0%;
+}
+
+.hero > .container .content-right img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* .hero::before {
   content: "";
   position: absolute;
   top: 0;
@@ -233,7 +263,7 @@ nav ul li a:hover {
   background-color: rgba(45, 122, 79, 0.05);
   clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%);
   z-index: 1;
-}
+} */
 
 .hero h1 {
   font-size: 3.5em;
@@ -306,14 +336,34 @@ nav ul li a:hover {
   align-items: center;
   gap: 40px;
   z-index: 1; /* Ensure it's above the default */
+  flex-direction: row;
 }
 
-.content-left {
-  flex: 1 1 400px;
+.content-section > .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
 }
 
+.content-section > .container .content-left,
+.content-section > .container .content-right {
+  flex: 1 1 45%;
+  max-width: 45%;
+  box-sizing: border-box;
+}
+
+.content-left,
 .content-right {
-  flex: 1 1 500px;
+  flex: 1 1 45%;
+  max-width: 45%;
+  box-sizing: border-box;
+}
+
+.content-section.single-column > .container .content-left {
+  max-width: 100%;
+  flex: 1 1 100%;
 }
 
 .content-section h2 {
@@ -328,8 +378,26 @@ nav ul li a:hover {
   color: var(--text-color);
   margin-bottom: 20px;
   margin-top: 60px;
-
   position: relative;
+}
+
+.kanji-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.kanji-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.kanji-h3 {
+  color: var(--primary-color) !important;
+  margin-bottom: 10px !important;
+  margin-top: 20px !important;
 }
 
 .content-section h2::after {
@@ -392,19 +460,60 @@ nav ul li a:hover {
 /* Responsive design */
 @media screen and (max-width: 992px) {
   .hero {
-    padding: 100px 30px;
+    padding: 80px 30px;
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero > .container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero .content-left,
+  .hero .content-right {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .hero .content-right img {
+    width: 100%;
+    max-width: 400px;
   }
 
   .hero h1 {
-    font-size: 2.8em;
+    font-size: 2.5em;
   }
 
   .hero h2 {
-    font-size: 1.7em;
+    font-size: 1.6em;
   }
 
   .content-section {
-    padding: 80px 30px;
+    padding: 70px 30px;
+  }
+
+  .content-section > .container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .content-section > .container .content-left {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+  .content-section > .container .content-right {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .content-left {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .content-right {
+    text-align: center;
   }
 
   .content-section h2 {
@@ -457,31 +566,53 @@ nav ul li a:hover {
   }
 
   .hero {
-    padding: 80px 20px;
+    padding: 60px 20px;
     min-height: 70vh;
+    text-align: center;
+  }
+  .hero > .container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero .content-left,
+  .hero .content-right {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .hero .content-right img {
+    width: 100%;
+    max-width: 400px;
   }
 
   .hero h1 {
-    font-size: 2.3em;
+    font-size: 2.2em;
   }
 
   .hero h2 {
-    font-size: 1.5em;
-    margin-bottom: 40px;
+    font-size: 1.4em;
+    margin-bottom: 30px;
   }
 
   .content-section {
     padding: 60px 20px;
-    flex-direction: column;
   }
 
   .content-left,
   .content-right {
     flex: 1 1 100%;
+    max-width: 100%;
   }
 
   .content-left {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .content-right {
+    text-align: center;
   }
 
   .content-section h2 {
@@ -494,17 +625,28 @@ nav ul li a:hover {
     padding: 0 15px;
   }
 
-  .hero {
-    padding: 60px 15px;
+  .hero > .container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
+  .hero .content-left,
+  .hero .content-right {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .hero .content-right img {
+    width: 100%;
+    max-width: 400px;
+  }
   .hero h1 {
     font-size: 2em;
   }
 
   .hero h2 {
     font-size: 1.3em;
-    margin-bottom: 30px;
   }
 
   .cta-button,
@@ -517,13 +659,36 @@ nav ul li a:hover {
     padding: 50px 15px;
   }
 
+  .content-left,
+  .content-right {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .content-left {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .content-right {
+    text-align: center;
+  }
   .content-section h2 {
-    font-size: 1.8em;
-    margin-bottom: 30px;
+    font-size: 1.7em;
+    margin-bottom: 25px;
   }
 
   .content-section p {
     font-size: 1em;
+  }
+
+  .kanji-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .kanji-text {
+    text-align: center;
   }
 }
 
@@ -595,7 +760,6 @@ nav ul li a:hover {
   gap: 40px;
 }
 
-
 th,
 td {
   border: 1px solid black;
@@ -623,17 +787,14 @@ td {
 .table-container td {
   padding: 10px;
   white-space: nowrap; /* Prevent text from wrapping to keep columns narrow */
-}
-
-.table-container thead {
-  background: #f0f0f0;
+  border: 1px solid var(--border-color);
 }
 
 /* Popup styles */
 .popup {
   display: none;
   position: absolute;
-  background-color: #fff;
+  background-color: var(--primary-color);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 10px;
   border: 1px solid #ddd;
@@ -649,9 +810,50 @@ td {
   left: 50%;
   transform: translateX(-50%) translateY(5px); /* Adjusted initial position */
 }
+.popup p {
+  color: var(--white);
+  border-bottom: 1px solid;
+  border-color: var(--secondary-color); /* or any color you like */
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+
+.popup p:last-child {
+  border-bottom: none; /* remove line from the last one */
+}
 
 .hover-trigger {
   position: relative;
+}
+
+/* Style the link inside the <th> */
+td .th-link {
+  color: var(--text-color);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* Add arrow on hover and change color */
+td .th-link:hover {
+  color: var(--primary-color); /* New color on hover */
+}
+
+td .th-link::after {
+  content: "";
+  position: absolute;
+  right: -1.2em;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease, right 0.3s ease;
+}
+
+/* Show arrow on hover */
+td .th-link:hover::after {
+  content: ">";
+  opacity: 1;
+  right: -1.5em;
 }
 
 .hover-trigger:hover .popup,
@@ -673,7 +875,6 @@ td {
   justify-content: space-between;
 }
 
-
 @media (max-width: 768px) {
   .table-container table,
   .table-container thead,
@@ -685,13 +886,13 @@ td {
     width: 100%;
   }
 
-    .popup {
-        pointer-events: none; /* optional to prevent accidental touches */
-    }
+  .popup {
+    pointer-events: none; /* optional to prevent accidental touches */
+  }
 
-    .popup.active {
-  display: block;
-}
+  .popup.active {
+    display: block;
+  }
 
   .table-container thead {
     display: none; /* Hide the header */
@@ -913,10 +1114,55 @@ footer {
   height: 15em;
 }
 
-
 iframe {
-    width: 100%;
-    height: 600px;
-    border: 0;
-    border-radius: 8px;
+  width: 100%;
+  height: 600px;
+  border: 0;
+  border-radius: 8px;
 }
+
+/* .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust darkness (0.3–0.7) 
+  z-index: 1;
+} */
+
+/* Dark background image section */
+.content-section.dark-bg {
+  position: relative;
+  background-image: url("./images/bg-picture-index-bottom.jpg");
+  background-size: cover; /* scales the image inside */
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 80vh; /* section height shows 80% of the viewport */
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  overflow: hidden; /* Prevents scrollbars caused by overlay */
+}
+
+.content-section.dark-bg .overlay-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Adjust for more/less darkness */
+  z-index: 2;
+}
+
+.content-section.dark-bg .container {
+  position: relative;
+  z-index: 3;
+}
+
+/* Optional: adjust text styles for better contrast */
+.content-section.dark-bg h2,
+.content-section.dark-bg p {
+  color: white;
+}
+
