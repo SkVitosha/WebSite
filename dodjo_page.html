@@ -17,14 +17,19 @@
     <header id="header"></header>
 
     <main>
-        <section class="hero">
+        <section class="hero dark-bg single-column">
+            <div class="overlay-bg"></div>
+
             <div class="container">
-                <h1 data-aos="fade-up" data-aos-duration="800">ДОДЖО</h1>
-                <h2 data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">Мястото, където се изграждат
-                    умения и характер</h2>
-                <a href="./dodjo_page.html#dojo_table" class="cta-button" data-aos="fade-up" data-aos-duration="800"
-                    data-aos-delay="400">ЛОКАЦИИ
-                    ›</a>
+                <div class="content-left">
+                    <h1 data-aos="fade-up" data-aos-duration="800">ДОДЖО</h1>
+                    <h2 data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">Мястото, където се изграждат
+                        умения и характер</h2>
+                    <a href="./dodjo_page.html#dojo_table" class="cta-button" data-aos="fade-up" data-aos-duration="800"
+                        data-aos-delay="400">ЛОКАЦИИ
+                        ›</a>
+                </div>
+
             </div>
         </section>
 
@@ -38,6 +43,8 @@
                         на тренировките се крие в знанията, които предаваме, и в
                         грижата, с която подхождаме към всеки ученик.
                     </p>
+                    <a href="./dodjo_page.html#locations"
+                        style="text-decoration: none; color: #2d7a4f; font-weight: bolder;">Виж локации ›</a>
                 </div>
 
                 <div class="grid-item" data-aos="fade-right" data-aos-duration="800">
@@ -49,6 +56,8 @@
                         трениращ – независимо от възрастта или нивото на
                         подготовка – да се чувства подкрепен, мотивиран и насърчен
                         да даде най-доброто от себе си.</p>
+                    <a href="./sensei_page.html#sensei"
+                        style="text-decoration: none; color: #2d7a4f; font-weight: bolder;">Нашите сенсеи ›</a>
                 </div>
 
                 <div class="grid-item" data-aos="fade-up-left" data-aos-duration="800" data-aos-delay="200">
@@ -61,6 +70,8 @@
                         увереност – качества, които надхвърлят пределите на
                         тренировъчната зала.
                     </p>
+                    <a href="./dodjo_page.html#timetable-section"
+                        style="text-decoration: none; color: #2d7a4f; font-weight: bolder;">Виж график ›</a>
                 </div>
 
                 <div class="grid-item" data-aos="fade-up-right" data-aos-duration="800" data-aos-delay="200">
@@ -73,13 +84,27 @@
                         не само умения, но и общност, в която всеки се чувства
                         ценен и част от нещо по-голямо.
                     </p>
+                    <!-- <a href="./gallery.html" style="text-decoration: none; color: #2d7a4f; font-weight: bolder;">Галерия
+                        ›</a> -->
                 </div>
             </div>
         </section>
 
-        <section class="content-section" id="dojo_table"></section>
+        <section class="content-section">
+            <div class="container" id="dojo_table">
+
+            </div>
+        </section>
 
         <section class="content-section" id="timetable-section"></section>
+
+        <section class="content-section" style="z-index: 0;" id="locations">
+            <div class="container" data-aos="fade-up">
+                <h2>Локации</h2>
+                <iframe
+                    src="https://www.google.com/maps/d/u/6/embed?mid=1el59Sg4yMOJ9vBBD_NmfiETjVC5R9i4&ehbc=2E312F&noprof=1"></iframe>
+            </div>
+        </section>
 
     </main>
     <footer id="footer"></footer>
@@ -92,34 +117,34 @@
                 initMobileMenu();
             });
             $("#footer").load("./common_elems/footer.html");
-            $("#dojo_table").load("./common_elems/test.html");
-            $("#timetable-section").load("./common_elems/timetable_section.html", function() {
-//                 document.addEventListener("DOMContentLoaded", function () {
-//     const triggers = document.querySelectorAll(".hover-trigger");
+            $("#dojo_table").load("./common_elems/dojos_table.html");
+            $("#timetable-section").load("./common_elems/timetable_section.html", function () {
+                //                 document.addEventListener("DOMContentLoaded", function () {
+                //     const triggers = document.querySelectorAll(".hover-trigger");
 
-//     triggers.forEach(trigger => {
-//         trigger.addEventListener("click", function (e) {
-//             e.stopPropagation(); // prevent bubbling
-//             closeAllPopups();
+                //     triggers.forEach(trigger => {
+                //         trigger.addEventListener("click", function (e) {
+                //             e.stopPropagation(); // prevent bubbling
+                //             closeAllPopups();
 
-//             const popup = this.querySelector(".popup");
-//             if (popup) {
-//                 popup.classList.toggle("active");
-//             }
-//         });
-//     });
+                //             const popup = this.querySelector(".popup");
+                //             if (popup) {
+                //                 popup.classList.toggle("active");
+                //             }
+                //         });
+                //     });
 
-//     // Close popups when clicking outside
-//     document.addEventListener("click", function () {
-//         closeAllPopups();
-//     });
+                //     // Close popups when clicking outside
+                //     document.addEventListener("click", function () {
+                //         closeAllPopups();
+                //     });
 
-//     function closeAllPopups() {
-//         document.querySelectorAll(".popup.active").forEach(popup => {
-//             popup.classList.remove("active");
-//         });
-//     }
-// });
+                //     function closeAllPopups() {
+                //         document.querySelectorAll(".popup.active").forEach(popup => {
+                //             popup.classList.remove("active");
+                //         });
+                //     }
+                // });
             });
 
         });
