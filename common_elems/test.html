@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Selection Layout</title>
+    <style>
+        .photo-selection-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        .photo-card {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            width: 250px;
+            overflow: visible;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            background-color: #f8fff9;
+        }
+
+        .photo-wrapper {
+            width: 100%;
+            height: 290px;
+            position: relative;
+        }
+
+        .photo-background {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: black;
+            transition: background-color 0.3s ease;
+        }
+
+        .photo-card:hover .photo-background {
+            background-color: #28a745;
+        }
+
+        .person-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 5;
+            transition: transform 0.4s ease;
+            will-change: transform;
+        }
+
+        .person-info {
+            padding-left: 10px;
+        }
+
+        .photo-card:hover .person-name {
+            color: #28a745;
+        }
+
+        h4 {
+            padding: 30px 0px 10px;
+        }
+
+        /* Fixed placeholder styling */
+        .person-placeholder {
+            width: 80%;
+            height: 110%;
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            overflow: visible;
+
+        }
+
+        /* Different placeholders for different photos */
+        .photo-card:nth-child(1) .person-placeholder {
+            background-image: url('./images/Andjei.png');
+        }
+
+        .photo-card:nth-child(2) .person-placeholder {
+            background-image: url('./images/Viki.png');
+        }
+
+        .photo-card:nth-child(3) .person-placeholder {
+            background-image: url('./images/Vessel.png');
+        }
+
+        .photo-card:nth-child(4) .person-placeholder {
+            background-image: url('./images/Ilian.png');
+        }
+
+        .photo-card:nth-child(5) .person-placeholder {
+            background-image: url('./images/Krisi.png');
+        }
+
+        .photo-card:nth-child(6) .person-placeholder {
+            background-image: url('./images/Ady.png');
+        }
+
+        .photo-card:nth-child(8) .person-placeholder {
+            background-image: url('./images/Toni.png');
+        }
+
+        .photo-card:nth-child(9) .person-placeholder {
+            background-image: url('./images/Svetlio.png');
+        }
+
+        .photo-card:nth-child(10) .person-placeholder {
+            background-image: url('./images/Marty.png');
+        }
+
+        .photo-card:nth-child(11) .person-placeholder {
+            background-image: url('./images/Dany.png');
+        }
+
+        .photo-card:nth-child(12) .person-placeholder {
+            background-image: url('./images/Yoni.png');
+        }
+
+        .photo-card:nth-child(13) .person-placeholder {
+            background-image: url('./images/Zlati.png');
+        }
+
+        .photo-card:nth-child(7) .person-placeholder {
+            background-image: url('./images/Ivo.png');
+        }
+    </style>
+</head>
+
+<body>
+    <div class="photo-selection-container">
+        <!-- Photo 1 -->
+        <div class="photo-card" data-aos="fade-right" data-aos-duration="800">
+            <a style="text-decoration: none; color: black;" href="./sensei_details/sensei_andjei.html">
+                <div class="photo-wrapper">
+                    <div class="photo-background"></div>
+                    <div class="person-placeholder"></div>
+                </div>
+                <div class="person-info">
+                    <h4>Анджей Згжива</h4>
+                    <p style="margin: 0;">4-ти дан</p>
+                    <p>Satori Dojo</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Photo 2 -->
+        <div class="photo-card" data-aos="fade-right" data-aos-duration="800">
+            <a style="text-decoration: none; color: black;" href="./sensei_details/sensei_viktor.html">
+                <div class="photo-wrapper">
+                    <div class="photo-background"></div>
+                    <div class="person-placeholder"></div>
+                </div>
+                <div class="person-info">
+                    <h4>Виктор Свиленов</h4>
+                    <p style="margin: 0;">3-ти дан</p>
+                    <p>Fenix sport</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Photo 3 -->
+        <div class="photo-card" data-aos="fade-right" data-aos-duration="800">
+            <a style="text-decoration: none; color: black;" href="./sensei_details/sensei_vesel.html">
+                <div class="photo-wrapper">
+                    <div class="photo-background"></div>
+                    <div class="person-placeholder"></div>
+                </div>
+                <div class="person-info">
+                    <h4>Весел Чушков</h4>
+                    <p style="margin: 0;">3-ти дан</p>
+                    <p>Shirotoro Dojo</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Photo 4 -->
+        <div class="photo-card" data-aos="fade-right" data-aos-duration="800">
+            <a style="text-decoration: none; color: black;" href="./sensei_details/sensei_ilian.html">
+                <div class="photo-wrapper">
+                    <div class="photo-background"></div>
+                    <div class="person-placeholder"></div>
+                </div>
+                <div class="person-info">
+                    <h4>Илиян Илиев</h4>
+                    <p style="margin: 0;">3-ти дан</p>
+                    <p>Polystudia</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Photo 5 -->
+        <div class="photo-card" data-aos="fade-right" data-aos-duration="800">
+            <a style="text-decoration: none; color: black;" href="./sensei_details/sensei_krisi.html">
+                <div class="photo-wrapper">
+                    <div class="photo-background"></div>
+                    <div class="person-placeholder"></div>
+                </div>
+                <div class="person-info">
+                    <h4>Кристина Свиленова</h4>
+                    <p style="margin: 0;">3-ти дан</p>
+                    <p>Fenix Sport</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Photo 6 -->
+        <div class="photo-card" data-aos="fade-right" data-aos-duration="800">
+            <a style="text-decoration: none; color: black;" href="./sensei_details/sensei_ady.html">
+                <div class="photo-wrapper">
+                    <div class="photo-background"></div>
+                    <div class="person-placeholder"></div>
+                </div>
+                <div class="person-info">
+                    <h4>Адриана Илиева</h4>
+                    <p style="margin: 0;">2-ри дан</p>
+                    <p>Satori Dojo</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="photo-card" data-aos="fade-right" data-aos-duration="800">
+            <a style="text-decoration: none; color: black;" href="./sensei_details/sensei_ivo.html">
+                <div class="photo-wrapper">
+                    <div class="photo-background"></div>
+                    <div class="person-placeholder"></div>
+                </div>
+                <div class="person-info">
+                    <h4>Иво Николов</h4>
+                    <p style="margin: 0;">2-ри дан</p>
+                    <p>Satori Dojo</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="photo-card" data-aos="fade-right" data-aos-duration="800">
+            <a style="text-decoration: none; color: black;" href="./sensei_details/sensei_toni.html">
+                <div class="photo-wrapper">
+                    <div class="photo-background"></div>
+                    <div class="person-placeholder"></div>
+                </div>
+                <div class="person-info">
+                    <h4>Антоан Теофилов</h4>
+                    <p style="margin: 0;">2-ри дан</p>
+                    <p>Fenix Sport</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="photo-card" data-aos="fade-right" data-aos-duration="800">
+            <a style="text-decoration: none; color: black;" href="./sensei_details/sensei_svetlio.html">
+                <div class="photo-wrapper">
+                    <div class="photo-background"></div>
+                    <div class="person-placeholder"></div>
+                </div>
+                <div class="person-info">
+                    <h4>Светислав Тодоров</h4>
+                    <p style="margin: 0;">2-ри дан</p>
+                    <p>Fenix Sport</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="photo-card" data-aos="fade-right" data-aos-duration="800">
+            <a style="text-decoration: none; color: black;" href="./sensei_details/sensei_marty.html">
+                <div class="photo-wrapper">
+                    <div class="photo-background"></div>
+                    <div class="person-placeholder"></div>
+                </div>
+                <div class="person-info">
+                    <h4>Мартин Илиев</h4>
+                    <p style="margin: 0;">1-ви дан</p>
+                    <p>Satori Dojo</p>
+                </div>
+            </a>
+        </div>
+
+
+        <div class="photo-card" data-aos="fade-right" data-aos-duration="800">
+            <a style="text-decoration: none; color: black;" href="./sensei_details/sensei_dany.html">
+                <div class="photo-wrapper">
+                    <div class="photo-background"></div>
+                    <div class="person-placeholder"></div>
+                </div>
+                <div class="person-info">
+                    <h4>Даниел Кръстев</h4>
+                    <p style="margin: 0;">1-ви дан</p>
+                    <p>Satori Dojo</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="photo-card" data-aos="fade-right" data-aos-duration="800">
+            <a style="text-decoration: none; color: black;" href="./sensei_details/sensei_yoni.html">
+                <div class="photo-wrapper">
+                    <div class="photo-background"></div>
+                    <div class="person-placeholder"></div>
+                </div>
+                <div class="person-info">
+                    <h4>Йоана Николова</h4>
+                    <p style="margin: 0;">1-ви дан</p>
+                    <p>Satori Dojo</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="photo-card" data-aos="fade-right" data-aos-duration="800">
+            <a style="text-decoration: none; color: black;" href="./sensei_details/sensei_zlati.html">
+                <div class="photo-wrapper">
+                    <div class="photo-background"></div>
+                    <div class="person-placeholder"></div>
+                </div>
+                <div class="person-info">
+                    <h4>Златина Лилова</h4>
+                    <p style="margin: 0;">1-ви дан</p>
+                    <p>Fenix Sport</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
