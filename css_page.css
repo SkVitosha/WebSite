@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: "Rubik", sans-serif;
 }
 
 :root {
@@ -28,6 +28,14 @@ body {
 }
 
 .container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  z-index: 30;
+  position: relative; /* <--- This is the missing piece */
+}
+.container-heading {
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
@@ -267,7 +275,7 @@ nav ul li a:hover {
 
 .hero h1 {
   font-size: 3.5em;
-  color: var(--text-color);
+  color: var(--primary-color);
   margin-bottom: 20px;
   max-width: 800px;
   position: relative;
@@ -362,8 +370,13 @@ nav ul li a:hover {
 }
 
 .content-section.single-column > .container .content-left {
-  max-width: 60%;
-  flex: 1 1 60%;
+  max-width: 100%;
+  flex: 1 1 100%;
+}
+
+.content-section > .single-column .container .content-left {
+  max-width: 100%;
+  flex: 1 1 100%;
 }
 
 .hero.single-column > .container .content-left {
@@ -726,13 +739,31 @@ nav ul li a:hover {
 }
 
 .grid-item {
-  /* The grid-item class now applies to each of the 4 divs
-                inside the section, but you can add specific styling here
-                if needed.  For example: */
-  /* background-color: #f0f0f0;  */
   padding: 20px;
-  /* border: 1px solid #ddd; */
   border-radius: 5px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* .card img {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+} */
+
+.name {
+  font-weight: bold;
+  color: #1b3b2c;
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
 .grid-section .container {
@@ -761,7 +792,7 @@ nav ul li a:hover {
 
 .grid-section-five .container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 40px;
 }
 
@@ -1115,8 +1146,10 @@ footer {
 }
 
 .sensei-img {
-  width: 10em;
-  height: 15em;
+  background-color: rgba(0, 0, 0, 1); /* Adjust darkness (0.3–0.7) */
+
+  width: 15em;
+  height: 23em;
 }
 
 iframe {
