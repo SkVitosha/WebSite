@@ -229,7 +229,6 @@ nav ul li a:hover {
 /* Hero section */
 .hero {
   position: relative;
-  background-image: url("./images/your-image.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -359,6 +358,17 @@ nav ul li a:hover {
 .content-section > .container .content-right {
   flex: 1 1 45%;
   max-width: 45%;
+  box-sizing: border-box;
+}
+.content-section > .container .content-left-size-30 {
+  flex: 1 1 30%;
+  max-width: 30%;
+  box-sizing: border-box;
+}
+
+.content-section > .container .content-right-size-70 {
+  flex: 1 1 70%;
+  max-width: 70%;
   box-sizing: border-box;
 }
 
@@ -1159,16 +1169,6 @@ iframe {
   border-radius: 8px;
 }
 
-/* .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Adjust darkness (0.3–0.7) 
-  z-index: 1;
-} */
-
 /* Dark background image section */
 .content-section.dark-bg {
   position: relative;
@@ -1191,6 +1191,20 @@ iframe {
   height: 80vh; /* section height shows 80% of the viewport */
   background-position: center;
   background-repeat: no-repeat;
+  color: white;
+  overflow: hidden; /* Prevents scrollbars caused by overlay */
+}
+
+.hero.andjei {
+  background-image: url("./images/bg-picture-index-bottom.jpg");
+  position: relative;
+  background-size: cover; /* scales the image inside */
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 90vh; /* section height shows 80% of the viewport */
+  background-position: center;
+  background-repeat: no-repeat;
+  justify-content: space-around;
   color: white;
   overflow: hidden; /* Prevents scrollbars caused by overlay */
 }

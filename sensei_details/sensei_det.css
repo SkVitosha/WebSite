@@ -1,146 +1,201 @@
 .profile-quote {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .profile-name {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
 }
 
 .stats {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
 }
 
 .stat-item {
-    text-align: center;
-    flex: 1;
+  text-align: center;
+  flex: 1;
 }
 
 .stat-number {
-    font-size: 36px;
-    font-weight: bold;
+  font-size: 36px;
+  font-weight: bold;
 }
 
 .stat-label {
-    font-size: 14px;
-    text-transform: uppercase;
+  font-size: 14px;
+  text-transform: uppercase;
 }
 
 .section-title {
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin: 30px 0 15px 0;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .education-item,
 .karate-grade-item,
 .achievement-item {
-    margin-bottom: 10px;
-    display: flex;
+  margin-bottom: 10px;
+  display: flex;
 }
 
 .year {
-    width: 70px;
-    font-weight: bold;
+  width: 70px;
+  font-weight: bold;
 }
 
 .description {
-    flex: 1;
+  flex: 1;
 }
 
 .philosophy-text {
-    margin-bottom: 30px;
-    line-height: 1.8;
+  margin-bottom: 30px;
+  line-height: 1.8;
 }
 
 .detail_content {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .content-section .location_data {
-    font-size: 20px;
-    margin-top: 25px;
+  font-size: 20px;
+  margin-top: 25px;
 }
 
 .content-section .dojo-type-det {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 5px;
-    margin-top: 30px;
-    text-transform: uppercase;
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 5px;
+  margin-top: 30px;
+  text-transform: uppercase;
 }
 
 .content-section .dojo-name-det {
-    font-size: 70px;
-    font-weight: bold;
-    margin-bottom: 50px;
-    text-transform: uppercase;
+  font-size: 70px;
+  font-weight: bold;
+  margin-bottom: 50px;
+  text-transform: uppercase;
 }
 
 .content-section .profile-quote {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .content-section .profile-name {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
 }
 
 .section-title {
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin: 30px 0 15px 0;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 30px 0 15px 0;
 }
 
 .education-item,
 .karate-grade-item,
 .achievement-item {
-    margin-bottom: 10px;
-    display: flex;
+  margin-bottom: 10px;
+  display: flex;
 }
 
 .year {
-    width: 70px;
-    font-weight: bold;
+  width: 70px;
+  font-weight: bold;
 }
 
 .description {
-    flex: 1;
+  flex: 1;
 }
 
 .philosophy-text {
-    margin-bottom: 30px;
-    line-height: 1.8;
+  margin-bottom: 30px;
+  line-height: 1.8;
 }
 
-.stats {
-    display: flex;
-    justify-content: space-between;
-    margin: 40px;
+/* .stats {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px;
 }
 
 .stat-item {
-    text-align: center;
-    flex: 1;
+  text-align: center;
+  flex: 1;
 }
 
 .stat-number {
-    font-size: 36px;
-    font-weight: bold;
+  font-size: 36px;
+  font-weight: bold;
 }
 
 .stat-label {
-    font-size: 14px;
-    text-transform: uppercase;
+  font-size: 14px;
+  text-transform: uppercase;
+} */
+.stats-container {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.stat-box {
+  border: 1px solid white;
+  display: flex;
+  align-items: stretch;
+  width: 450px;
+  max-width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.stat-number {
+  flex-basis: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: black;
+  border-right: 1px solid white;
+}
+
+.stat-text {
+  flex-basis: 80%;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  background-color: white;
+}
+
+.stat-number p {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+/* .stat-text p:first-of-type {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+} */
+
+.stat-text p {
+  color: black;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  line-height: 1.4;
 }
