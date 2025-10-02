@@ -46,6 +46,9 @@ function initMobileMenu() {
     overlay.classList.remove("active");
     hamburger.style.display = "block";
   });
+  console.log("1");
+
+  runNavLogic();
 }
 
 function initStickyHeader() {
@@ -66,4 +69,31 @@ function initStickyHeader() {
       }
     }
   });
+}
+
+function runNavLogic() {
+  const $nav = $("#nav");
+
+  if ($nav.length) {
+    const $ul = $nav.find("ul");
+    const $btn = $("#contact-btn");
+    const $lastLi = $ul.find("li:last-child");
+
+    const path = window.location.pathname;
+    const isSenseiPage = path.includes("/sensei_details/");
+
+    if (isSenseiPage) {
+      // Use jQuery hide/show for consistency
+      $ul.find("li").hide();
+      $lastLi.show();
+      $btn.hide();
+    } else {
+      $lastLi.hide();
+      $ul.find("li").not($lastLi).show();
+    }
+  } else {
+    console.warn(
+      "Navigation element with ID '#nav' not found. Check insertion order."
+    );
+  }
 }
