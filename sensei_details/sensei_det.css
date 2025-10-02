@@ -1,146 +1,332 @@
 .profile-quote {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .profile-name {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
 }
 
 .stats {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
 }
 
 .stat-item {
-    text-align: center;
-    flex: 1;
+  text-align: center;
+  flex: 1;
 }
 
 .stat-number {
-    font-size: 36px;
-    font-weight: bold;
+  font-size: 36px;
+  font-weight: bold;
 }
 
 .stat-label {
-    font-size: 14px;
-    text-transform: uppercase;
+  font-size: 14px;
+  text-transform: uppercase;
 }
 
 .section-title {
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin: 30px 0 15px 0;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .education-item,
 .karate-grade-item,
 .achievement-item {
-    margin-bottom: 10px;
-    display: flex;
+  margin-bottom: 10px;
+  display: flex;
 }
 
 .year {
-    width: 70px;
-    font-weight: bold;
+  width: 70px;
+  font-weight: bold;
 }
 
 .description {
-    flex: 1;
+  flex: 1;
 }
 
 .philosophy-text {
-    margin-bottom: 30px;
-    line-height: 1.8;
+  margin-bottom: 30px;
+  line-height: 1.8;
 }
 
 .detail_content {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .content-section .location_data {
-    font-size: 20px;
-    margin-top: 25px;
+  font-size: 20px;
+  margin-top: 25px;
 }
 
 .content-section .dojo-type-det {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 5px;
-    margin-top: 30px;
-    text-transform: uppercase;
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 5px;
+  margin-top: 30px;
+  text-transform: uppercase;
 }
 
 .content-section .dojo-name-det {
-    font-size: 70px;
-    font-weight: bold;
-    margin-bottom: 50px;
-    text-transform: uppercase;
+  font-size: 70px;
+  font-weight: bold;
+  margin-bottom: 50px;
+  text-transform: uppercase;
 }
 
 .content-section .profile-quote {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .content-section .profile-name {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
 }
 
 .section-title {
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin: 30px 0 15px 0;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 30px 0 15px 0;
 }
 
 .education-item,
 .karate-grade-item,
 .achievement-item {
-    margin-bottom: 10px;
-    display: flex;
+  margin-bottom: 10px;
+  display: flex;
 }
 
 .year {
-    width: 70px;
-    font-weight: bold;
+  width: 70px;
+  font-weight: bold;
 }
 
 .description {
-    flex: 1;
+  flex: 1;
 }
 
 .philosophy-text {
-    margin-bottom: 30px;
-    line-height: 1.8;
+  margin-bottom: 30px;
+  line-height: 1.8;
 }
 
-.stats {
-    display: flex;
-    justify-content: space-between;
-    margin: 40px;
+/* .stats {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px;
 }
 
 .stat-item {
-    text-align: center;
-    flex: 1;
+  text-align: center;
+  flex: 1;
 }
 
 .stat-number {
-    font-size: 36px;
-    font-weight: bold;
+  font-size: 36px;
+  font-weight: bold;
 }
 
 .stat-label {
-    font-size: 14px;
-    text-transform: uppercase;
+  font-size: 14px;
+  text-transform: uppercase;
+} */
+.stats-container {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.stat-box {
+  border: 1px solid white;
+  display: flex;
+  align-items: stretch;
+  width: 450px;
+  max-width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.stat-number {
+  flex-basis: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: black;
+  border-right: 1px solid white;
+}
+
+.stat-text {
+  flex-basis: 80%;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  background-color: white;
+}
+
+.stat-number p {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+/* .stat-text p:first-of-type {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+} */
+
+.stat-text p {
+  color: black;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  line-height: 1.4;
+}
+
+.photo-wrapper {
+  width: 100%;
+  padding-top: 120%; /* Keep this */
+  position: relative; /* Keep this */
+
+  /* === INSERT CHOSEN BACKGROUND CSS HERE === */
+  /* background: radial-gradient(
+    circle at center,
+    #444444 0%,
+     #111111 70%
+  ); ======================================= */
+}
+
+.photo-background {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: black;
+  transition: background-color 0.3s ease;
+}
+
+.person-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 5;
+  transition: transform 0.4s ease;
+  will-change: transform;
+}
+
+.person-info {
+  padding-left: 10px;
+}
+
+.photo-card:hover .person-info {
+  color: #2d7a4f;
+}
+
+h4 {
+  padding: 30px 0px 10px;
+}
+
+/* Fixed placeholder styling */
+.person-placeholder {
+  /* position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  width: 80%;
+  height: 110%;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  overflow: visible; */
+
+  position: absolute;
+  top: 0;
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust to true center */
+  width: 60%; /* Make the image slightly smaller than the wrapper width */
+  height: 80%;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  z-index: 3; /* Ensure it's above other potential elements */
+}
+
+/* Different placeholders for different photos */
+.person-placeholder .andjei {
+  background-image: url("../images/Andjei.png");
+}
+
+.photo-card:nth-child(2) .person-placeholder {
+  background-image: url("./images/Viki.png");
+}
+
+.photo-card:nth-child(3) .person-placeholder {
+  background-image: url("./images/Vessel.png");
+}
+
+.photo-card:nth-child(4) .person-placeholder {
+  background-image: url("./images/Ilian.png");
+}
+
+.photo-card:nth-child(5) .person-placeholder {
+  background-image: url("./images/Krisi.png");
+}
+
+.photo-card:nth-child(6) .person-placeholder {
+  background-image: url("./images/Ady.png");
+}
+
+.photo-card:nth-child(8) .person-placeholder {
+  background-image: url("./images/Toni.png");
+}
+
+.photo-card:nth-child(9) .person-placeholder {
+  background-image: url("./images/Svetlio.png");
+}
+
+.photo-card:nth-child(10) .person-placeholder {
+  background-image: url("./images/Marty.png");
+}
+
+.photo-card:nth-child(11) .person-placeholder {
+  background-image: url("./images/Dany.png");
+}
+
+.photo-card:nth-child(12) .person-placeholder {
+  background-image: url("./images/Yoni.png");
+}
+
+.photo-card:nth-child(13) .person-placeholder {
+  background-image: url("./images/Zlati.png");
+}
+
+.photo-card:nth-child(7) .person-placeholder {
+  background-image: url("./images/Ivo.png");
 }
