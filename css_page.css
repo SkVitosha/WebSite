@@ -361,15 +361,48 @@ nav ul li a:hover {
   box-sizing: border-box;
 }
 .content-section > .container .content-left-size-30 {
-  flex: 1 1 30%;
+  position: relative;
+  z-index: 1;
+  background-color: transparent !important;
+  flex: 0 0 30%; /* Used flex: 0 0 to prevent shrinking/growing */
   max-width: 30%;
   box-sizing: border-box;
+  padding-left: 20px;
 }
 
-.content-section > .container .content-right-size-70 {
-  flex: 1 1 70%;
-  max-width: 70%;
+/* .content-section > .container .content-left-size-30::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: #000;
+  left: calc(50% - 50vw);
+  width: calc(100% + 50vw - 50%);
+
+  z-index: -1;
+} */
+
+.content-section > .container .content-left-size-30::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  /* CRITICAL: FINAL BACKGROUND COLOR */
+  background-color: #000; /* Use your final desired color here */
+
+  /* Stretch to the left edge by canceling the container's 20px padding */
+  left: -20px;
+  width: calc(100% + 20px);
+
+  z-index: -1; /* Must be behind the content */
+}
+
+.content-section > .container .content-right-size-60 {
+  flex: 1 1 65%;
+  max-width: 65%;
   box-sizing: border-box;
+  padding: 60px;
 }
 
 .content-left,
@@ -487,6 +520,16 @@ nav ul li a:hover {
 
 /* Responsive design */
 @media screen and (max-width: 992px) {
+  .content-section > .container .content-left-size-30,
+  .content-section > .container .content-right-size-60 {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Add space below the image column */
+  .content-section > .container .content-left-size-30 {
+    margin-bottom: 30px;
+  }
   .hero {
     padding: 80px 30px;
     flex-direction: column;
@@ -649,6 +692,14 @@ nav ul li a:hover {
 }
 
 @media screen and (max-width: 480px) {
+  .content-section > .container .content-left-size-30::before {
+    left: -15px; /* Adjust for 15px container padding */
+    width: calc(100% + 15px);
+  }
+  .content-section > .container .content-left-size-30 .photo-wrapper {
+    padding-left: 15px; /* Adjust content alignment for 15px */
+  }
+
   .container {
     padding: 0 15px;
   }
