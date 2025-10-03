@@ -1247,7 +1247,7 @@ iframe {
 }
 
 .hero.andjei {
-  background-image: url("./images/bg-picture-index-bottom.jpg");
+  background-image: url("./images/hero_andjei.jpg");
   position: relative;
   background-size: cover; /* scales the image inside */
   background-repeat: no-repeat;
