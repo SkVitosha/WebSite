@@ -1246,19 +1246,6 @@ iframe {
   overflow: hidden; /* Prevents scrollbars caused by overlay */
 }
 
-.hero.andjei {
-  background-image: url("./images/hero_andjei.jpg");
-  position: relative;
-  background-size: cover; /* scales the image inside */
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 90vh; /* section height shows 80% of the viewport */
-  background-position: center;
-  background-repeat: no-repeat;
-  justify-content: space-around;
-  color: white;
-  overflow: hidden; /* Prevents scrollbars caused by overlay */
-}
 
 .content-section.dark-bg .overlay-bg {
   position: absolute;
