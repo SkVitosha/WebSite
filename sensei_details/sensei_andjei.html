@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    <div class="overlay" id="overlay"></div>
 
     <header id="header"></header>
 
@@ -186,11 +187,14 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="../static/common.js"></script>
+    <script src="static/common.js"></script>
 
     <script>
         $(function () {
-            $("#header").load("common_elems/navbar.html");
+            $("#header").load("./common_elems/navbar.html", function () {
+                runNavLogic();
+                initMobileMenu();
+            });
             $("#sensei-personal").load("sensei_details/sensei_personal.html");
             $("#footer").load("common_elems/footer.html");
         });
