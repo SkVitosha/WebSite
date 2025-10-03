@@ -123,26 +123,6 @@
   line-height: 1.8;
 }
 
-/* .stats {
-  display: flex;
-  justify-content: space-between;
-  margin: 40px;
-}
-
-.stat-item {
-  text-align: center;
-  flex: 1;
-}
-
-.stat-number {
-  font-size: 36px;
-  font-weight: bold;
-}
-
-.stat-label {
-  font-size: 14px;
-  text-transform: uppercase;
-} */
 .stats-container {
   display: flex;
   justify-content: center;
@@ -186,13 +166,6 @@
   color: white;
 }
 
-/* .stat-text p:first-of-type {
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  font-weight: bold;
-  margin-bottom: 0.25rem;
-} */
-
 .stat-text p {
   color: black;
   font-size: 0.85rem;
@@ -204,13 +177,6 @@
   width: 100%;
   padding-top: 120%; /* Keep this */
   position: relative; /* Keep this */
-
-  /* === INSERT CHOSEN BACKGROUND CSS HERE === */
-  /* background: radial-gradient(
-    circle at center,
-    #444444 0%,
-     #111111 70%
-  ); ======================================= */
 }
 
 .photo-background {
@@ -247,25 +213,6 @@ h4 {
 
 /* Fixed placeholder styling */
 .person-placeholder {
-  /* position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-  width: 80%;
-  height: 110%;
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  overflow: visible; */
-
   position: absolute;
   top: 0;
   left: 50%; /* Center horizontally */
@@ -329,4 +276,23 @@ h4 {
 
 .photo-card:nth-child(7) .person-placeholder {
   background-image: url("./images/Ivo.png");
+}
+
+.hero.andjei {
+  background-image: url("../images/hero_andjei.jpg");
+  position: relative;
+  background-size: cover; /* scales the image inside */
+  background-repeat: no-repeat;
+  background-position: right center;
+  height: 90vh; /* section height shows 80% of the viewport */
+  background-repeat: no-repeat;
+  justify-content: space-around;
+  color: white;
+  overflow: hidden; /* Prevents scrollbars caused by overlay */
+}
+
+@media (max-width: 768px) {
+  .hero.andjei {
+    background-position: 70% center;
+  }
 }
