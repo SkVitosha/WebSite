@@ -1,75 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karate Instructor Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="../css_page.css" />
     <link rel="stylesheet" href="./sensei_det.css" />
     <base href="../">
 </head>
+
 <body>
-
-
     <div class="overlay" id="overlay"></div>
 
     <header id="header"></header>
 
     <main>
-        <section class="content-section">
-            <div class="container detail_content">
-                <div style="display: flex; flex-direction: column; align-items: flex-start; align-content: flex-start;">
-                    <img src="../images/viktor_svilenov_cover.jpg" width="250px" alt="Karate Master">
-                    <p class="location_data">Доджо<br><a href="../dojo_details/fenix_details.html"><b>Fenix Sport</b></a></p>
+        <section class="hero sensei viktor">
+            <div class="container">
+                <div class="content-left">
+                    <h1 data-aos="fade-up" data-aos-duration="800" style="color: white !important;">Виктор Свиленов</h1>
+                    <h2 data-aos="fade-up" data-aos-duration="800" data-aos-delay="200"
+                        style="color: white !important;">Треньорът, който създава шампиони</h2>
                 </div>
-                <div style="display: flex; flex-direction: column; margin-inline-start: 50px;">
-                    <div class="dojo-type-det">СЕНСЕЙ</div>
-                    <div class="dojo-name-det">Виктор Свиленов</div>
-                    <div class="profile-quote">"Каратето е сбъдната мечта, пътешествие без край"</div>
-
-                     <div class="stats">
-                    <div class="stat-item">
-                        <div class="stat-number">3</div>
-                        <div class="stat-label">дан<br>степен в карате</div>
+                <div class="content-right"></div>
+            </div>
+            <div class="stats-container">
+                <div class="stat-box" data-aos="fade-right" data-aos-delay="200">
+                    <div class="stat-number">
+                        <p>4</p>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">26</div>
-                        <div class="stat-label">години<br>опит в сферата на карате</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">18</div>
-                        <div class="stat-label">години<br>треньорски опит</div>
+                    <div class="stat-text">
+                        <p>ДАН</p>
+                        <p>Шотокан Карате</p>
                     </div>
                 </div>
-
-                    <div class="section-title">ОБРАЗОВАНИЕ</div>
-                    <div class="education-item"><div class="year">2018</div><div class="description">НСА “Васил Левски”, София – бакалавър: треньор по карате</div></div>
-
-                    <div class="section-title">СТЕПЕН В КАРАТЕ</div>
-                    <div class="karate-grade-item"><div class="year">2021</div><div class="description">WSKF – защитен 3ти дан</div></div>
-                    <div class="karate-grade-item"><div class="year">2012</div><div class="description">WSKF – защитен 2ри дан</div></div>
-                    <div class="karate-grade-item"><div class="year">2007</div><div class="description">WSKF - защитен 1ви дан</div></div>
-
-                    <div class="section-title">ПОСТИЖЕНИЯ</div>
-                    <div class="achievement-item"><div class="description"><p>Треньор, който е изковал национални, европейски и световни шампиони
-                         и не спира да вдъхновява следващите поколения бойци. <br/><br/>С дългогодишен опит, отдаденост и индивидуален подход към всеки
-                         състезател, той знае, че всеки път е различен, но целта остава една – да дадеш най-доброто от себе си! 
-                         Не просто да печелиш медали, а да ставаш по-добра версия на себе си всеки ден. <br/><br/> Неговата мисия е да види как постигаш 
-                         мечтите си, да бъде до теб в най-тежките тренировки и най-великите победи. Да ти покаже, че граници няма – има само 
-                         нови предизвикателства, които ще преодолееш. <br/><br/>Той не просто тренира шампиони. Той ги създава.</p>
+                <div class="stat-box" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-number">
+                        <p>26</p>
+                    </div>
+                    <div class="stat-text">
+                        <p>ГОДИНИ опит в сферата на карате</p>
                     </div>
                 </div>
-                   
-                    <div class="section-title">КАКВО Е КАРАТЕ ЗА ТЕБ?</div>
-                    <div class="philosophy-text">Каратето не е просто спорт – то е начин на мислене, път към по-добра версия на себе си. 
-                        То изгражда не само силно тяло, но и силен дух. Учиш се на дисциплина, концентрация и контрол – не само върху 
-                        движенията си, но и върху решенията, които взимаш всеки ден.</div>
+                <div class="stat-box" data-aos="fade-left" data-aos-delay="600">
+                    <div class="stat-number">
+                        <p>18</p>
+                    </div>
+                    <div class="stat-text">
+                        <p>ГОДИНИ опит като треньор</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content-section single-column">
+            <div class="container">
+                <div class="content-left" style="padding-left: 10%;">
+                    <h3 class="section-title" style="margin-top: 0;">СТЕПЕН В КАРАТЕ</h3>
+                    <div class="karate-grade-item">
+                        <div class="year">2025</div>
+                        <div class="description">WSKF – защитен 4ти дан</div>
+                    </div>
+                    <div class="karate-grade-item">
+                        <div class="year">2021</div>
+                        <div class="description">WSKF – защитен 3ти дан</div>
+                    </div>
+                    <div class="karate-grade-item">
+                        <div class="year">2012</div>
+                        <div class="description">WSKF – защитен 2ри дан</div>
+                    </div>
+                    <div class="karate-grade-item">
+                        <div class="year">2007</div>
+                        <div class="description">WSKF – защитен 1ви дан</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content-section single-column" style="padding-top: 0;">
+            <div class="container">
+                <div class="content-left" style="padding-left: 10%;">
+                    <h3 class="section-title" style="margin-top: 0;">ПОСТИЖЕНИЯ</h3>
+                    <div class="achievement-item">
+                        <div class="description">Треньор, който е изковал национални, европейски и световни шампиони
+                            и не спира да вдъхновява следващите поколения бойци.
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="description">С дългогодишен опит, отдаденост и индивидуален
+                            подход към всеки състезател, той знае, че всеки път е различен,
+                            но целта остава една – да дадеш най-доброто от себе си! Не просто
+                            да печелиш медали, а да ставаш по-добра версия на себе си всеки ден.
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="description">Неговата мисия е да види как постигаш мечтите си,
+                            да бъде до теб в най-тежките тренировки и най-великите победи. Да ти покаже,
+                            че граници няма – има само нови предизвикателства, които ще преодолееш.
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="description">Той не просто тренира шампиони. Той ги създава.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- <section class="content-section single-column" style="padding-top: 0;">
+            <div class="container">
+                <div class="content-left" style="padding-left: 10%;">
+                    <h3 class="section-title" style="margin-top: 0;">ОБРАЗОВАНИЕ</h3>
+                    <div class="education-item">
+                        <div class="year">2024</div>
+                        <div class="description">Основава и става председател на СК Витоша</div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
 
-                    <div class="section-title">КАКВИ КАЧЕСТВА ВЪЗПИТАВА КАРАТЕ У ДЕЦАТА?</div>
-                    <div class="philosophy-text">Каратето прави децата по-добри – не само в залата, но и в живота. То ги учи да мислят
-                         преди да действат, да избягват грешки и да се стремят към постоянен растеж. Възпитава дисциплина, уважение и
-                          самоконтрол – качества, които ще им служат цял живот.</div>
+        <section class="content-section content-section-spec" id="sensei-personal" style="padding-top: 0;">
+            <div class="container">
+                <div class="content-left-size-30">
+                    <div class="image-wrapper">
+                        <div class="kanji">松涛館</div>
+                        <div class="sensei-placeholder viktor"></div>
+                    </div>
+                </div>
+
+                <div class="content-right-size-60">
+                    <div class="text-block">
+                        <h3>Какво е карате за теб? </h3>
+                        <p>Каратето не е просто спорт – то е начин на мислене, път към по-добра версия на себе си.
+                            То изгражда не само силно тяло, но и силен дух. Учиш се на дисциплина, концентрация и
+                            контрол – не само върху движенията си, но и върху решенията, които взимаш всеки ден.
+                        </p>
+                    </div>
+
+                    <div class="text-block">
+                        <h3>Какви качества възпитава карате у децата?</h3>
+                        <p>Каратето прави децата по-добри – не само в залата, но и в живота.
+                            То ги учи да мислят преди да действат, да избягват грешки и да се стремят
+                            към постоянен растеж. Възпитава дисциплина, уважение и самоконтрол – качества,
+                            които ще им служат цял живот.
+                        </p>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -79,10 +156,15 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="static/common.js"></script>
+
     <script>
         $(function () {
-            $("#header").load("../common_elems/navbar.html");
-            $("#footer").load("../common_elems/footer.html");
+            $("#header").load("./common_elems/navbar.html", function () {
+                runNavLogic();
+                initMobileMenu();
+            });
+            $("#footer").load("common_elems/footer.html");
         });
         AOS.init({
             offset: 120,

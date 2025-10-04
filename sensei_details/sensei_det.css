@@ -1,40 +1,6 @@
-.profile-quote {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.profile-name {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 30px;
-}
-
-.stats {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 40px;
-}
-
-.stat-item {
-  text-align: center;
-  flex: 1;
-}
-
 .stat-number {
   font-size: 36px;
   font-weight: bold;
-}
-
-.stat-label {
-  font-size: 14px;
-  text-transform: uppercase;
-}
-
-.section-title {
-  font-size: 18px;
-  font-weight: bold;
-  text-transform: uppercase;
 }
 
 .education-item,
@@ -278,8 +244,7 @@ h4 {
   background-image: url("./images/Ivo.png");
 }
 
-.hero.andjei {
-  background-image: url("../images/hero_andjei_3.jpg");
+.hero.sensei {
   position: relative;
   background-size: cover; /* scales the image inside */
   background-repeat: no-repeat;
@@ -291,8 +256,23 @@ h4 {
   overflow: hidden; /* Prevents scrollbars caused by overlay */
 }
 
+.hero.sensei.andjei {
+  background-image: url("../images/hero_andjei_3.jpg");
+}
+
+.hero.sensei.viktor {
+  background-image: url("../images/hero_andjei.jpg");
+}
+
+.hero.sensei.vesel {
+  background-image: url("../images/hero_andjei.jpg");
+}
+.hero.sensei.ilian {
+  background-image: url("../images/hero_andjei.jpg");
+}
+
 @media (max-width: 768px) {
-  .hero.andjei {
+  .hero.sensei.andjei {
     background-position: 70% center;
   }
 }
@@ -396,6 +376,16 @@ h4 {
 
 .sensei-placeholder.andjei {
   background-image: url("../images/Andjei.png");
+}
+
+.sensei-placeholder.viktor {
+  background-image: url("../images/Viki.png");
+}
+.sensei-placeholder.vesel {
+  background-image: url("../images/Vessel.png");
+}
+.sensei-placeholder.ilian {
+  background-image: url("../images/Ilian.png");
 }
 
 .text-block {
