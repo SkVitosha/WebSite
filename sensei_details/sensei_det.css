@@ -264,6 +264,13 @@ h4 {
   background-image: url("../images/hero_andjei.jpg");
 }
 
+.hero.sensei.vesel {
+  background-image: url("../images/hero_andjei.jpg");
+}
+.hero.sensei.ilian {
+  background-image: url("../images/hero_andjei.jpg");
+}
+
 @media (max-width: 768px) {
   .hero.sensei.andjei {
     background-position: 70% center;
@@ -373,6 +380,12 @@ h4 {
 
 .sensei-placeholder.viktor {
   background-image: url("../images/Viki.png");
+}
+.sensei-placeholder.vesel {
+  background-image: url("../images/Vessel.png");
+}
+.sensei-placeholder.ilian {
+  background-image: url("../images/Ilian.png");
 }
 
 .text-block {
