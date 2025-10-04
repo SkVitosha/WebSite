@@ -276,6 +276,9 @@ h4 {
 .hero.sensei.ivo {
   background-image: url("../images/hero_andjei.jpg");
 }
+.hero.sensei.svetlio {
+  background-image: url("../images/hero_andjei.jpg");
+}
 
 @media (max-width: 768px) {
   .hero.sensei.andjei {
@@ -398,6 +401,9 @@ h4 {
 }
 .sensei-placeholder.ivo {
   background-image: url("../images/Ivo.png");
+}
+.sensei-placeholder.svetlio {
+  background-image: url("../images/Svetlio.png");
 }
 
 .text-block {
