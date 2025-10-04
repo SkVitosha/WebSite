@@ -273,6 +273,9 @@ h4 {
 .hero.sensei.ady {
   background-image: url("../images/hero_andjei.jpg");
 }
+.hero.sensei.ivo {
+  background-image: url("../images/hero_andjei.jpg");
+}
 
 @media (max-width: 768px) {
   .hero.sensei.andjei {
@@ -392,6 +395,9 @@ h4 {
 }
 .sensei-placeholder.ady {
   background-image: url("../images/Ady.png");
+}
+.sensei-placeholder.ivo {
+  background-image: url("../images/Ivo.png");
 }
 
 .text-block {
