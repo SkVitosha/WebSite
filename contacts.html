@@ -31,12 +31,6 @@
         .contact-info {
             font-size: 18px;
             line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .map-container {
-            text-align: center;
-            margin-top: 30px;
         }
 
         .contact-form {
@@ -71,7 +65,8 @@
                         в нашия клуб!</p>
                 </div>
                 <div class="grid-item" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
-                    <form class="contact-form">
+                    <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="a9b8d911-0a82-4383-a044-1ab163dbd861">
                         <input type="text" name="name" placeholder="Вашето име" required />
                         <input type="email" name="email" placeholder="Вашият имейл" required />
                         <textarea name="message" rows="5" placeholder="Вашето съобщение" required></textarea>
@@ -82,18 +77,14 @@
             </div>
         </section>
         <section class="content-section" data-aos="fade-up">
-            <div class="container">
-
+            <div class="container" style="flex-direction: column;">
                 <h2>Свържете се с нас</h2>
                 <div class="contact-info">
                     <p><strong>Телефон:</strong> +359 888 123 456</p>
-                    <p><strong>Имейл:</strong> contact@karate.bg</p>
+                    <p><strong>Имейл:</strong> vitoshask@gmail.com</p>
                 </div>
-                <div class="map-container">
-                    <iframe
-                        src="https://www.google.com/maps/d/u/6/embed?mid=1el59Sg4yMOJ9vBBD_NmfiETjVC5R9i4&ehbc=2E312F&noprof=1"></iframe>
-
-                </div>
+                <iframe
+                    src="https://www.google.com/maps/d/u/6/embed?mid=1el59Sg4yMOJ9vBBD_NmfiETjVC5R9i4&ehbc=2E312F&noprof=1"></iframe>
             </div>
         </section>
     </main>
@@ -103,7 +94,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
         $(function () {
-            $("#header").load("./common_elems/navbar.html");
+            $("#header").load("./common_elems/navbar.html", function () {
+                initMobileMenu();
+            });
             $("#footer").load("./common_elems/footer.html");
         });
         AOS.init({
