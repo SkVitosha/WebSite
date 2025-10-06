@@ -294,6 +294,9 @@ h4 {
 .hero.sensei.zlati {
   background-image: url("../images/hero_andjei.jpg");
 }
+.hero.sensei.krisi {
+  background-image: url("../images/hero_andjei.jpg");
+}
 
 @media (max-width: 768px) {
   .hero.sensei.andjei {
@@ -434,6 +437,9 @@ h4 {
 }
 .sensei-placeholder.zlati {
   background-image: url("../images/Zlati.png");
+}
+.sensei-placeholder.krisi {
+  background-image: url("../images/Krisi.png");
 }
 
 .text-block {
