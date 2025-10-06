@@ -285,6 +285,9 @@ h4 {
 .hero.sensei.marti {
   background-image: url("../images/hero_andjei.jpg");
 }
+.hero.sensei.dany {
+  background-image: url("../images/hero_andjei.jpg");
+}
 
 @media (max-width: 768px) {
   .hero.sensei.andjei {
@@ -416,6 +419,9 @@ h4 {
 }
 .sensei-placeholder.marti {
   background-image: url("../images/Marty.png");
+}
+.sensei-placeholder.dany {
+  background-image: url("../images/Dany.png");
 }
 
 .text-block {
