@@ -270,6 +270,33 @@ h4 {
 .hero.sensei.ilian {
   background-image: url("../images/hero_andjei.jpg");
 }
+.hero.sensei.ady {
+  background-image: url("../images/hero_andjei.jpg");
+}
+.hero.sensei.ivo {
+  background-image: url("../images/hero_andjei.jpg");
+}
+.hero.sensei.svetlio {
+  background-image: url("../images/hero_andjei.jpg");
+}
+.hero.sensei.toni {
+  background-image: url("../images/hero_andjei.jpg");
+}
+.hero.sensei.marti {
+  background-image: url("../images/hero_andjei.jpg");
+}
+.hero.sensei.dany {
+  background-image: url("../images/hero_andjei.jpg");
+}
+.hero.sensei.yoana {
+  background-image: url("../images/hero_andjei.jpg");
+}
+.hero.sensei.zlati {
+  background-image: url("../images/hero_andjei.jpg");
+}
+.hero.sensei.krisi {
+  background-image: url("../images/hero_andjei.jpg");
+}
 
 @media (max-width: 768px) {
   .hero.sensei.andjei {
@@ -386,6 +413,33 @@ h4 {
 }
 .sensei-placeholder.ilian {
   background-image: url("../images/Ilian.png");
+}
+.sensei-placeholder.ady {
+  background-image: url("../images/Ady.png");
+}
+.sensei-placeholder.ivo {
+  background-image: url("../images/Ivo.png");
+}
+.sensei-placeholder.svetlio {
+  background-image: url("../images/Svetlio.png");
+}
+.sensei-placeholder.toni {
+  background-image: url("../images/Toni.png");
+}
+.sensei-placeholder.marti {
+  background-image: url("../images/Marty.png");
+}
+.sensei-placeholder.dany {
+  background-image: url("../images/Dany.png");
+}
+.sensei-placeholder.yoana {
+  background-image: url("../images/Yoni.png");
+}
+.sensei-placeholder.zlati {
+  background-image: url("../images/Zlati.png");
+}
+.sensei-placeholder.krisi {
+  background-image: url("../images/Krisi.png");
 }
 
 .text-block {
