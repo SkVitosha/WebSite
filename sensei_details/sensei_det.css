@@ -257,7 +257,7 @@ h4 {
 }
 
 .hero.sensei.andjei {
-  background-image: url("../images/hero_andjei_5.jpg");
+  background-image: url("../images/hero_andjei.jpg");
 }
 
 .hero.sensei.viktor {
@@ -311,7 +311,7 @@ h4 {
 
 @media (max-width: 768px) {
   .hero.sensei.andjei {
-    background-position: 70% center;
+    background-position: 72% center;
   }
   .hero.sensei.ady {
     background-position: 82% center;
