@@ -1245,7 +1245,7 @@ iframe {
 }
 
 .hero.dark-bg.shotokan {
-  background-image: url("./images/hero-shotokan.jpg");
+  background-image: url("./images/hero-shotokan-2.jpg");
 }
 
 .hero.dark-bg.sensei {
@@ -1273,6 +1273,11 @@ iframe {
   background-color: rgba(0, 0, 0, 0.7); /* Adjust for more/less darkness */
   z-index: 2;
 }
+
+.hero.hero.dark-bg.dodjo .overlay-bg {
+  background-color: rgba(0, 0, 0, 0.83); /* Adjust for more/less darkness */
+}
+
 .content-section.dark-bg .container {
   position: relative;
   z-index: 3;
