@@ -280,7 +280,7 @@ h4 {
   background-image: url("../images/hero_ivo.jpg");
 }
 .hero.sensei.svetlio {
-  background-image: url("../images/hero_andjei.jpg");
+  background-image: url("../images/hero_svetlio.jpg");
 }
 .hero.sensei.toni {
   background-image: url("../images/hero_andjei.jpg");
@@ -325,6 +325,9 @@ h4 {
   }
   .hero.sensei.marti {
     background-position: 82% center;
+  }
+  .hero.sensei.svetlio {
+    background-position: 75% center;
   }
 }
 
