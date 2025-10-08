@@ -1228,7 +1228,6 @@ iframe {
   background-repeat: no-repeat;
   background-position: center;
   height: 80vh; /* section height shows 80% of the viewport */
-  background-position: center;
   background-repeat: no-repeat;
   color: white;
   overflow: hidden; /* Prevents scrollbars caused by overlay */
@@ -1240,13 +1239,21 @@ iframe {
   background-repeat: no-repeat;
   background-position: center;
   height: 80vh; /* section height shows 80% of the viewport */
-  background-position: center;
   background-repeat: no-repeat;
   color: white;
   overflow: hidden; /* Prevents scrollbars caused by overlay */
 }
 
+.hero.dark-bg.shotokan {
+  background-image: url("./images/hero-shotokan.jpg");
+}
 
+.hero.dark-bg.sensei {
+  background-image: url("./images/hero-sensei.jpg");
+}
+.hero.dark-bg.dodjo {
+  background-image: url("./images/hero-dojo.jpg");
+}
 .content-section.dark-bg .overlay-bg {
   position: absolute;
   top: 0;
