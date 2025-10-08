@@ -301,7 +301,8 @@ h4 {
   background-image: url("../images/hero_yoni.jpg");
 }
 .hero.sensei.zlati {
-  background-image: url("../images/hero_andjei.jpg");
+  background-position: 70% center;
+  background-image: url("../images/hero_zlati.jpg");
 }
 .hero.sensei.krisi {
   background-position: 60% center;
