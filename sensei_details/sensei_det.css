@@ -265,13 +265,15 @@ h4 {
 }
 
 .hero.sensei.vesel {
-  background-image: url("../images/hero_andjei.jpg");
+  background-position: 90% center;
+  background-image: url("../images/hero_vesel.jpg");
 }
 .hero.sensei.ilian {
   background-position: 70% center;
   background-image: url("../images/hero_ilian.jpg");
 }
 .hero.sensei.ady {
+  background-position: 70% center;
   background-image: url("../images/hero_ady_2.jpg");
 }
 .hero.sensei.ivo {
@@ -279,13 +281,15 @@ h4 {
   background-image: url("../images/hero_ivo.jpg");
 }
 .hero.sensei.svetlio {
-  background-image: url("../images/hero_andjei.jpg");
+  background-image: url("../images/hero_svetlio.jpg");
 }
 .hero.sensei.toni {
-  background-image: url("../images/hero_andjei.jpg");
+  background-position: 85% center;
+  background-image: url("../images/hero_toni.jpg");
 }
 .hero.sensei.marti {
-  background-image: url("../images/hero_andjei.jpg");
+  background-position: 80% center;
+  background-image: url("../images/hero_marti.jpg");
 }
 .hero.sensei.dany {
   background-position: 70% center;
@@ -298,7 +302,8 @@ h4 {
   background-image: url("../images/hero_andjei.jpg");
 }
 .hero.sensei.krisi {
-  background-image: url("../images/hero_andjei.jpg");
+  background-position: 60% center;
+  background-image: url("../images/hero_krisi_1.jpg");
 }
 
 @media (max-width: 768px) {
@@ -316,6 +321,18 @@ h4 {
   }
   .hero.sensei.ivo {
     background-position: 80% center;
+  }
+  .hero.sensei.krisi {
+    background-position: 80% center;
+  }
+  .hero.sensei.marti {
+    background-position: 82% center;
+  }
+  .hero.sensei.svetlio {
+    background-position: 75% center;
+  }
+  .hero.sensei.vesel {
+    background-position: 85% center;
   }
 }
 
