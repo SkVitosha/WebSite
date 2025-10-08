@@ -306,7 +306,7 @@ h4 {
 }
 .hero.sensei.krisi {
   background-position: 60% center;
-  background-image: url("../images/hero_krisi_1.jpg");
+  background-image: url("../images/hero_krisi.jpg");
 }
 
 @media (max-width: 768px) {
