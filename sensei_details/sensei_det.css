@@ -257,7 +257,7 @@ h4 {
 }
 
 .hero.sensei.andjei {
-  background-image: url("../images/hero_andjei_3.jpg");
+  background-image: url("../images/hero_andjei_5.jpg");
 }
 
 .hero.sensei.viktor {
@@ -286,7 +286,8 @@ h4 {
   background-image: url("../images/hero_andjei.jpg");
 }
 .hero.sensei.dany {
-  background-image: url("../images/hero_andjei.jpg");
+  background-position: 70% center;
+  background-image: url("../images/hero_dani.jpg");
 }
 .hero.sensei.yoana {
   background-image: url("../images/hero_andjei.jpg");
@@ -304,6 +305,9 @@ h4 {
   }
   .hero.sensei.ady {
     background-position: 82% center;
+  }
+  .hero.sensei.dany {
+    background-position: 80% center;
   }
 }
 
