@@ -265,7 +265,8 @@ h4 {
 }
 
 .hero.sensei.vesel {
-  background-image: url("../images/hero_andjei.jpg");
+  background-position: 90% center;
+  background-image: url("../images/hero_vesel.jpg");
 }
 .hero.sensei.ilian {
   background-position: 70% center;
@@ -329,6 +330,9 @@ h4 {
   }
   .hero.sensei.svetlio {
     background-position: 75% center;
+  }
+  .hero.sensei.vesel {
+    background-position: 85% center;
   }
 }
 
