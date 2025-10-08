@@ -448,6 +448,56 @@ nav ul li a:hover {
   align-items: center;
   justify-content: space-between;
   gap: 30px;
+  overflow: hidden; /* Prevent overflow */
+}
+
+.kanji-container img {
+  max-width: 50%; /* Limit image width on desktop */
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 1; /* Allow image to shrink */
+}
+
+.dojo-kun-text {
+  text-align: center;
+  font-size: large;
+  font-style: italic;
+  flex-shrink: 0; /* Prevent text from shrinking too much */
+  min-width: 0; /* Allow flex item to shrink below content size */
+}
+
+.dojo-kun-title {
+  text-decoration: underline;
+  margin-bottom: 1em;
+}
+
+.dojo-kun-principles {
+  line-height: 1.6;
+}
+
+@media screen and (max-width: 992px) {
+  .kanji-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .kanji-container img {
+    max-width: 80%; /* Larger on mobile when stacked */
+  }
+
+  .dojo-kun-text {
+    font-size: large;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .kanji-container img {
+    max-width: 100%;
+  }
+
+  .dojo-kun-text {
+    font-size: medium;
+  }
 }
 
 .kanji-text {
@@ -1245,7 +1295,7 @@ iframe {
 }
 
 .hero.dark-bg.shotokan {
-  background-image: url("./images/hero-shotokan.jpg");
+  background-image: url("./images/hero-shotokan-2.jpg");
 }
 
 .hero.dark-bg.sensei {
@@ -1273,6 +1323,11 @@ iframe {
   background-color: rgba(0, 0, 0, 0.7); /* Adjust for more/less darkness */
   z-index: 2;
 }
+
+.hero.hero.dark-bg.dodjo .overlay-bg {
+  background-color: rgba(0, 0, 0, 0.83); /* Adjust for more/less darkness */
+}
+
 .content-section.dark-bg .container {
   position: relative;
   z-index: 3;

@@ -317,7 +317,7 @@ h4 {
     background-position: 82% center;
   }
   .hero.sensei.dany {
-    background-position: 80% center;
+    background-position: 75% center;
   }
   .hero.sensei.ilian {
     background-position: 80% center;
@@ -336,6 +336,9 @@ h4 {
   }
   .hero.sensei.vesel {
     background-position: 85% center;
+  }
+  .hero.sensei.yoana {
+    background-position: 77% center;
   }
 }
 
