@@ -297,7 +297,8 @@ h4 {
   background-image: url("../images/hero_dani.jpg");
 }
 .hero.sensei.yoana {
-  background-image: url("../images/hero_andjei.jpg");
+  background-position: 80% center;
+  background-image: url("../images/hero_yoni.jpg");
 }
 .hero.sensei.zlati {
   background-image: url("../images/hero_andjei.jpg");
