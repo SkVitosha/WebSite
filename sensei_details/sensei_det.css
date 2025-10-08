@@ -261,7 +261,8 @@ h4 {
 }
 
 .hero.sensei.viktor {
-  background-image: url("../images/hero_andjei.jpg");
+  background-position: 80% center;
+  background-image: url("../images/hero_viktor.jpg");
 }
 
 .hero.sensei.vesel {
