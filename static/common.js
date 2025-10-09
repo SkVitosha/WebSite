@@ -83,13 +83,11 @@ function runNavLogic() {
     const isSenseiPage = path.includes("/sensei_details/");
 
     if (isSenseiPage) {
-      // Use jQuery hide/show for consistency
       $ul.find("li").hide();
       $lastLi.show();
       $btn.hide();
     } else {
       $lastLi.hide();
-      $ul.find("li").not($lastLi).show();
     }
   } else {
     console.warn(
