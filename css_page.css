@@ -887,6 +887,9 @@ nav ul li a:hover {
   .grid-section .container {
     grid-template-columns: 1fr;
   }
+  .content-section h3 {
+    margin-top: 0px;
+  }
 }
 
 .grid-section-triple .container {
@@ -1325,7 +1328,7 @@ iframe {
 }
 
 .hero.hero.dark-bg.dodjo .overlay-bg {
-  background-color: rgba(0, 0, 0, 0.83); /* Adjust for more/less darkness */
+  background-color: rgba(0, 0, 0, 0.78); /* Adjust for more/less darkness */
 }
 
 .content-section.dark-bg .container {
