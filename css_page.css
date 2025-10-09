@@ -617,6 +617,7 @@ nav ul li a:hover {
   .content-section > .container {
     flex-direction: column;
     align-items: stretch;
+    gap: 0px;
   }
 
   .content-section > .container .content-left {
@@ -629,7 +630,6 @@ nav ul li a:hover {
   }
 
   .content-left {
-    margin-bottom: 40px;
     text-align: center;
   }
 
@@ -718,7 +718,7 @@ nav ul li a:hover {
   }
 
   .content-section {
-    padding: 60px 20px;
+    padding: 20px 20px;
   }
 
   .content-left,
@@ -728,7 +728,6 @@ nav ul li a:hover {
   }
 
   .content-left {
-    margin-bottom: 40px;
     text-align: center;
   }
 
@@ -795,7 +794,6 @@ nav ul li a:hover {
   }
 
   .content-left {
-    margin-bottom: 40px;
     text-align: center;
   }
 
