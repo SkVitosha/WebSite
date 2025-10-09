@@ -751,6 +751,7 @@ nav ul li a:hover {
 
   .container {
     padding: 0 15px;
+    flex-direction: column;
   }
 
   .hero > .container {
@@ -1079,6 +1080,9 @@ td .th-link:hover::after {
 
   .container {
     padding: 10px;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
   }
 }
 
