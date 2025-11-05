@@ -1306,7 +1306,7 @@ iframe {
   background-image: url("./images/hero-shotokan-2.jpg");
 }
 .hero.dark-bg.index {
-  background-position: left;
+  background-position: 70% left;
   background-image: url("./images/HeroImage_Home01.jpg");
 }
 
@@ -1367,6 +1367,9 @@ iframe {
 
 /* Or only on phones */
 @media (max-width: 576px) {
+  .hero.dark-bg.index {
+    background-position: left;
+  }
   .content-right.mobile {
     display: block;
   }
