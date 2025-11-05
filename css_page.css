@@ -491,6 +491,9 @@ nav ul li a:hover {
 }
 
 @media screen and (max-width: 480px) {
+  .content-right.mobile {
+    display: block;
+  }
   .kanji-container img {
     max-width: 100%;
   }
@@ -1302,6 +1305,10 @@ iframe {
 .hero.dark-bg.shotokan {
   background-image: url("./images/hero-shotokan-2.jpg");
 }
+.hero.dark-bg.index {
+  background-position: left;
+  background-image: url("./images/HeroImage_Home01.jpg");
+}
 
 .hero.dark-bg.sensei {
   background-image: url("./images/hero-sensei.jpg");
@@ -1352,4 +1359,15 @@ iframe {
 .hero.dark-bg h2,
 .hero.dark-bg h1 {
   color: white;
+}
+
+.content-right.mobile {
+  display: none;
+}
+
+/* Or only on phones */
+@media (max-width: 576px) {
+  .content-right.mobile {
+    display: block;
+  }
 }
