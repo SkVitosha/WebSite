@@ -8,14 +8,11 @@
 }
 
 :root {
-  --primary-color: #2d7a4f;
-  --secondary-color: #244231;
-  --text-color: #111;
-  --bg-color: #f8f8f8;
-  --white: #ffffff;
-  --off-white: #f6f6f6;
-  --dirty-white: rgba(45, 122, 79, 0.05);
-  --border-color: #e0e0e0;
+  --primary-color: #0a7852;
+  --secondary-color: #45bb70;
+  --text-color: #161a19;
+  --white: #f6f6f6;
+  --off-white: #ccc;
   --transition: all 0.3s ease;
 }
 
@@ -221,7 +218,7 @@ nav ul li a:hover {
 }
 
 .contact-btn:hover {
-  background-color: #236a41;
+  background-color: var(--secondary-color);
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(45, 122, 79, 0.2);
 }
@@ -313,17 +310,17 @@ nav ul li a:hover {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
+  /* background: linear-gradient(
     90deg,
     transparent,
     rgba(255, 255, 255, 0.2),
     transparent
-  );
-  transition: 0.5s;
+  ); */
+  /* transition: 0.5s; */
 }
 
 .cta-button:hover {
-  background-color: #236a41;
+  background-color: var(--secondary-color);
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(45, 122, 79, 0.3);
 }
@@ -370,28 +367,14 @@ nav ul li a:hover {
   padding-left: 20px;
 }
 
-/* .content-section > .container .content-left-size-30::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  background-color: #000;
-  left: calc(50% - 50vw);
-  width: calc(100% + 50vw - 50%);
-
-  z-index: -1;
-} */
-
 .content-section > .container .content-left-size-30::before {
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
 
-  /* CRITICAL: FINAL BACKGROUND COLOR */
-  background-color: #000; /* Use your final desired color here */
+  background-color: var(--text-color);
 
-  /* Stretch to the left edge by canceling the container's 20px padding */
   left: -20px;
   width: calc(100% + 20px);
 
@@ -562,7 +545,7 @@ nav ul li a:hover {
 }
 
 .more-btn:hover {
-  background-color: #236a41;
+  background-color: var(--secondary-color);
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(45, 122, 79, 0.3);
 }
@@ -864,21 +847,6 @@ nav ul li a:hover {
   overflow: hidden;
 }
 
-/* .card img {
-  position: absolute;
-  top: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-} */
-
-.name {
-  font-weight: bold;
-  color: #1b3b2c;
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
 .grid-section .container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -942,30 +910,28 @@ td {
   border: 1px solid var(--border-color);
 }
 
-/* Popup styles */
 .popup {
   display: none;
   position: absolute;
   background-color: var(--primary-color);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 10px;
-  border: 1px solid #ddd;
   border-radius: 4px;
   z-index: 9999;
-  transition: opacity 0.2s ease, transform 0.2s ease; /* Added transform */
+  transition: opacity 0.2s ease, transform 0.2s ease;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(5px); /* Added initial slight downward shift */
-  min-width: 200px; /* Adjust as needed */
-  top: calc(100% + 10px); /* Add 5px gap below the cell */
+  transform: translateY(5px);
+  min-width: 200px;
+  top: calc(100% + 10px);
 
   left: 50%;
-  transform: translateX(-50%) translateY(5px); /* Adjusted initial position */
+  transform: translateX(-50%) translateY(5px);
 }
 .popup p {
   color: var(--white);
   border-bottom: 1px solid;
-  border-color: var(--secondary-color); /* or any color you like */
+  border-color: var(--secondary-color);
   padding-bottom: 8px;
   margin-bottom: 8px;
 }
@@ -1019,7 +985,7 @@ td .th-link:hover::after {
 
 .time-slot {
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--white);
   position: relative;
 }
 .time-slot-text {
@@ -1052,7 +1018,7 @@ td .th-link:hover::after {
 
   .table-container tr {
     margin-bottom: 1rem;
-    border: 1px solid #ccc;
+    border: 1px solid var(--off-white);
     padding: 0.5rem;
     border-radius: 8px;
   }
@@ -1062,7 +1028,7 @@ td .th-link:hover::after {
     padding-left: 50%;
     position: relative;
     border: none;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--off-white);
   }
 
   .table-container td::before {
@@ -1114,7 +1080,7 @@ td .th-link:hover::after {
 }
 
 .dojo-card:hover {
-  background-color: #f9f9f9;
+  background-color: var(--white);
   transition: background-color 0.2s ease;
   cursor: pointer;
 }
@@ -1253,11 +1219,6 @@ td .th-link:hover::after {
   color: #000;
 }
 
-/* .program-link::after {
-  content: "→";
-  margin-left: 5px;
-} */
-
 footer {
   background-color: var(--white);
   border-top: 1px solid var(--border-color);
@@ -1265,7 +1226,7 @@ footer {
 }
 
 .sensei-img {
-  background-color: rgba(0, 0, 0, 1); /* Adjust darkness (0.3–0.7) */
+  background-color: var(--text-color); /* Adjust darkness (0.3–0.7) */
 
   width: 15em;
   height: 23em;

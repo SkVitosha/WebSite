@@ -98,7 +98,6 @@
 }
 
 .stat-box {
-  border: 1px solid white;
   display: flex;
   align-items: stretch;
   width: 450px;
