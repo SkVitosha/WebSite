@@ -442,16 +442,12 @@ nav ul li a:hover {
 }
 
 .dojo-kun-text {
-  text-align: center;
+  text-align: left;
   font-size: large;
   font-style: italic;
+  font-weight: 700;
   flex-shrink: 0; /* Prevent text from shrinking too much */
   min-width: 0; /* Allow flex item to shrink below content size */
-}
-
-.dojo-kun-title {
-  text-decoration: underline;
-  margin-bottom: 1em;
 }
 
 .dojo-kun-principles {
