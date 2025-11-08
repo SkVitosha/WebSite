@@ -1270,18 +1270,18 @@ iframe {
 }
 
 .hero.dark-bg.shotokan {
-  background-image: url("./images/hero-shotokan-2.jpg");
+  background-image: url("./images/gichin-karate-hero.jpg");
 }
 .hero.dark-bg.index {
   background-position: 70% left;
-  background-image: url("./images/HeroImage_Home01.jpg");
+  background-image: url("./images/index-hero.jpg");
 }
 
 .hero.dark-bg.sensei {
-  background-image: url("./images/hero-sensei.jpg");
+  background-image: url("./images/sensei-seiza-hero.jpg");
 }
 .hero.dark-bg.dodjo {
-  background-image: url("./images/hero-dojo.jpg");
+  background-image: url("./images/drone-hero.jpg");
 }
 .content-section.dark-bg .overlay-bg {
   position: absolute;
@@ -1339,5 +1339,8 @@ iframe {
   }
   .content-right.mobile {
     display: block;
+  }
+  .hero.dark-bg.shotokan {
+    background-position: 68% center;
   }
 }
