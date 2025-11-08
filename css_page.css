@@ -13,6 +13,7 @@
   --hover-color: #279961;
   --text-color: #161a19;
   --white: #f6f6f6;
+  --background: #ffffff;
   --off-white: #ccc;
   --transition: all 0.3s ease;
 }
@@ -43,7 +44,7 @@ body {
 }
 
 header {
-  background-color: var(--white);
+  background-color: var(--background);
   padding: 20px 0;
   position: sticky;
   top: 0;
@@ -338,7 +339,7 @@ nav ul li a:hover {
 
 /* Content section */
 .content-section {
-  background-color: var(--white);
+  background-color: var(--background);
   padding: 50px 40px;
   position: relative;
   display: flex;
@@ -641,7 +642,7 @@ nav ul li a:hover {
     width: 80%;
     max-width: 300px;
     height: 100vh;
-    background-color: var(--white);
+    background-color: var(--background);
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
     transition: 0.4s;
     padding: 80px 20px 20px;
@@ -1083,7 +1084,7 @@ td .th-link:hover::after {
 }
 
 .dojo-card:hover {
-  background-color: var(--white);
+  background-color: var(--background);
   transition: background-color 0.2s ease;
   cursor: pointer;
 }
@@ -1223,7 +1224,7 @@ td .th-link:hover::after {
 }
 
 footer {
-  background-color: var(--white);
+  background-color: var(--background);
   border-top: 1px solid var(--border-color);
   z-index: 0;
 }
