@@ -25,14 +25,13 @@
         <section class="hero dark-bg index">
             <div class="overlay-bg"></div>
             <div class="container">
-                <div class="content-left">
-                    <h1 style="color: #45BB70;" data-aos="fade-up" data-aos-duration="800">КАРАТЕ
+                <div class="content-left" data-aos="fade-up" data-aos-duration="800">
+                    <h1 style="color: #45BB70;">КАРАТЕ
                         КЛУБ "ВИТОША"</h1>
-                    <h2 data-aos="fade-up" data-aos-duration="800" data-aos-delay="200" style="color: white;">Традиция,
+                    <h2 data-aos="fade-up" style="color: white;">Традиция,
                         развитие и път към
                         съвършенство</h2>
-                    <a href="./dodjo_page.html#dojo_table" class="cta-button" data-aos="fade-up" data-aos-duration="800"
-                        data-aos-delay="400">НАШИТЕ
+                    <a href="./dodjo_page.html#dojo_table" class="more-btn">НАШИТЕ
                         ДОДЖОТА ›</a>
                 </div>
                 <div class="content-right mobile">
@@ -155,7 +154,7 @@
                         започнете
                         още днес!
                     </p>
-                    <a href="./contacts.html" class="cta-button">ЗАПОЧНИ СЕГА ›</a>
+                    <a href="./contacts.html" class="more-btn">ЗАПОЧНИ СЕГА ›</a>
                 </div>
 
             </div>
@@ -186,7 +185,15 @@
             easing: 'ease',
             once: false,
             mirror: false,
-            anchorPlacement: 'top-bottom'
+            anchorPlacement: 'top-bottom',
+
+            useClassNames: true,
+            initClassName: false,
+            animatedClassName: 'aos-animate'
+        });
+
+        document.addEventListener('aos:in', (e) => {
+            e.target.style.transform = 'none';
         });
 
         initStickyHeader();
