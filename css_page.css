@@ -247,6 +247,7 @@ nav ul li a:hover {
 }
 .hero > .container .content-left {
   flex: 1 1 0%;
+  margin-left: 3%;
 }
 
 .hero > .container .content-right {
@@ -582,6 +583,7 @@ nav ul li a:hover {
   .hero .content-right {
     max-width: 100%;
     flex: 1 1 100%;
+    margin-left: 5%;
   }
 
   .hero .content-right img {
