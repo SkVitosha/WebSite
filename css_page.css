@@ -276,6 +276,7 @@ nav ul li a:hover {
   max-width: 800px;
   position: relative;
   z-index: 2;
+  white-space: nowrap;
 }
 
 .hero h2 {
@@ -586,6 +587,7 @@ nav ul li a:hover {
 
   .hero h1 {
     font-size: 2.5em;
+    white-space: nowrap;
   }
 
   .hero h2 {
@@ -692,6 +694,7 @@ nav ul li a:hover {
 
   .hero h1 {
     font-size: 2.2em;
+    white-space: wrap;
   }
 
   .hero h2 {
@@ -754,6 +757,7 @@ nav ul li a:hover {
   }
   .hero h1 {
     font-size: 2em;
+    white-space: wrap;
   }
 
   .hero h2 {
