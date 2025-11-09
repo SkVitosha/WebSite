@@ -677,7 +677,7 @@ nav ul li a:hover {
   }
 
   .hero {
-    padding: 60px 20px;
+    padding: 60px 20px 0px;
     min-height: 70vh;
     text-align: center;
   }
@@ -1274,11 +1274,11 @@ iframe {
 }
 .hero.dark-bg.index {
   background-position: 70% left;
-  background-image: url("./images/index-hero.jpg");
+  background-image: url("./images/header\ group\ seiza\ -\ home\ tab.jpg");
 }
 
 .hero.dark-bg.sensei {
-  background-image: url("./images/sensei-seiza-hero.jpg");
+  background-image: url("./images/header\ group\ seiza\ -\ ekip\ tab\ \(1\).jpg");
 }
 .hero.dark-bg.dodjo {
   background-image: url("./images/drone-hero.jpg");
@@ -1342,5 +1342,8 @@ iframe {
   }
   .hero.dark-bg.shotokan {
     background-position: 68% center;
+  }
+  .hero.dark-bg.sensei {
+    background-position: left;
   }
 }
