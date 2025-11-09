@@ -70,6 +70,12 @@
             </div>
         </section> -->
 
+        <section class="content-section">
+            <div class="container" id="dojo_table">
+
+            </div>
+        </section>
+
         <section class="content-section" id="timetable-section"></section>
 
 
@@ -174,6 +180,8 @@
             $("#header").load("./common_elems/navbar.html", function () {
                 initMobileMenu();
             });
+            $("#dojo_table").load("./common_elems/dojos_table.html");
+
             $("#footer").load("./common_elems/footer.html");
             $("#timetable-section").load("./common_elems/timetable_section.html");
 
