@@ -18,7 +18,7 @@
 <body>
     <div class="overlay" id="overlay"></div>
 
-    <header id="header"></header>
+    <header id="header" data-nosnippet></header>
 
     <main>
         <section class="hero dark-bg single-column shotokan">
@@ -212,7 +212,7 @@
         </section>
 
     </main>
-    <footer id="footer"></footer>
+    <footer id="footer" data-nosnippet></footer>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
@@ -224,8 +224,6 @@
                 runNavLogic();
             });
             $("#footer").load("./common_elems/footer.html");
-            $("#timetable-section").load("./common_elems/timetable_section.html");
-
         });
         // Initialize AOS animation library
         AOS.init({
