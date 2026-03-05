@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KK "Витоша"</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link rel="stylesheet" href="./css_page.css" />
+    <link rel="stylesheet" href="./calendar_css.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+</head>
+
+<body>
+    <div class="overlay" id="overlay"></div>
+
+    <header id="header" data-nosnippet></header>
+
+    <main>
+        <section class="hero dark-bg single-column dodjo">
+            <div class="overlay-bg"></div>
+            <div class="container">
+                <div class="content-left" data-aos="fade-up" data-aos-duration="800">
+                    <h1 style="color: #45BB70;">Пътешествие в света
+                        на карате</h1>
+                    <h2 data-aos="fade-up">В СК „Витоша“ вярваме, че карате е повече от
+                        тренировки – то е общност, предизвикателства
+                        и възможности за израстване.</h2>
+                    <a href="./dodjo_page.html#dojo_table" class="more-btn">СПОРТЕН КАЛЕНДАР</a>
+                </div>
+
+            </div>
+        </section>
+        <section class="content-section single-column">
+            <div class="container" data-aos="fade-up">
+                <div class="content-left">
+                    <h2>Предстоящи събития</h2>
+                    <div class="event-container">
+                        <div class="event-item">
+                            <img src="images/klipartz.com.png" alt="Event Icon" class="event-image">
+                            <div class="event-content">
+                                <h3 class="event-title-expanded">15-16.03 SKDUN – Национално първенство</h3>
+                                <p class="event-subtitle">Сини колани – Пловдив, България</p>
+                            </div>
+                        </div>
+
+                        <div class="event-item">
+                            <img src="images/klipartz.com.png" alt="Event Icon" class="event-image">
+                            <div class="event-content">
+                                <h3 class="event-title-expanded">15-16.03 SKDUN – Национално първенство</h3>
+                                <p class="event-subtitle">Сини колани – Пловдив, България</p>
+                            </div>
+                        </div>
+
+                        <div class="event-item">
+                            <img src="images/klipartz.com.png" alt="Event Icon" class="event-image">
+                            <div class="event-content">
+                                <h3 class="event-title-expanded">15-16.03 SKDUN – Национално първенство</h3>
+                                <p class="event-subtitle">Сини колани – Пловдив, България</p>
+                            </div>
+                        </div>
+                        <div class="event-item">
+                            <img src="images/klipartz.com.png" alt="Event Icon" class="event-image">
+                            <div class="event-content">
+                                <h3 class="event-title-expanded">15-16.03 SKDUN – Национално първенство</h3>
+                                <p class="event-subtitle">Сини колани – Пловдив, България</p>
+                            </div>
+                        </div>
+                        <div class="event-item">
+                            <img src="images/klipartz.com.png" alt="Event Icon" class="event-image">
+                            <div class="event-content">
+                                <h3 class="event-title-expanded">15-16.03 SKDUN – Национално първенство</h3>
+                                <p class="event-subtitle">Сини колани – Пловдив, България</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="content-section" style="z-index: 0;" id="locations">
+            <div class="container" data-aos="fade-right">
+                <h2>КАЛЕНДАР</h2>
+                <iframe
+                    src="https://calendar.google.com/calendar/embed?src=2f131ecf61fdcb1c5e68cab1b5621dddf10b8864279f2a9f9e0c7e8280ccb78f%40group.calendar.google.com&ctz=Europe%2FSofia"
+                    style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+            </div>
+        </section>
+
+    </main>
+    <footer id="footer" data-nosnippet></footer>
+
+
+    <script src="./static/common.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("./common_elems/navbar.html", function () {
+                initMobileMenu();
+            });
+            $("#footer").load("./common_elems/footer.html");
+            $("#dojo_table").load("./common_elems/dojos_table.html");
+            $("#timetable-section").load("./common_elems/timetable_section.html", function () {
+            });
+
+        });
+        // Initialize AOS animation library
+        AOS.init({
+            offset: 120,
+            delay: 100,
+            duration: 800,
+            easing: 'ease',
+            once: false,
+            mirror: false,
+            anchorPlacement: 'top-bottom'
+        });
+
+        initStickyHeader();
+    </script>
+</body>
+
+</html>

@@ -1,6 +1,5 @@
 .event-container {
   width: 100%;
-  max-width: 600px;
   border: 2px solid #b0b0b0;
   background-color: white;
 }
@@ -39,7 +38,6 @@
 }
 
 .event-title {
-  font-size: 1.2rem;
   font-weight: 800; /* Bold as per image */
   color: #000;
   margin-top: 0px !important;
@@ -52,4 +50,16 @@
   color: #333;
   margin: 0 !important;
   padding: 0px !important;
+}
+
+.event-title-expanded {
+  font-weight: 800; /* Bold as per image */
+  color: #000;
+  margin-top: 10px !important;
+  margin-bottom: 15px !important;
+}
+
+.event-subtitle-expanded {
+  font-size: 1rem;
+  color: #333;
 }
