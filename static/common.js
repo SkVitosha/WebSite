@@ -81,10 +81,16 @@ function runNavLogic() {
 
     const path = window.location.pathname;
     const isSenseiPage = path.includes("/sensei_details/");
+    const isBlogPost = path.includes("blog_post.html");
 
-    if (isSenseiPage) {
+    if (isSenseiPage || isBlogPost) {
       $ul.find("li").hide();
       $lastLi.show();
+      // The shared back button defaults to the sensei page; point it at the
+      // blog listing when we're on a blog post detail page instead.
+      if (isBlogPost) {
+        $lastLi.find("a").attr("href", "./blog.html");
+      }
       $btn.hide();
     } else {
       $lastLi.hide();
