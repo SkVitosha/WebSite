@@ -3,13 +3,18 @@
    via the GitHub Contents API. The GitHub token IS the credential:
    it lives only in sessionStorage (this tab), never in the code.
 
-   Target repo + deploy branch are fixed below: the digital-ocean
-   branch auto-deploys the live site.
+   Target repo is fixed below. Every write is committed to BOTH
+   branches in REPO_BRANCHES so they stay in sync: digital-ocean
+   (auto-deploys the live site) and main-without-cal (staging).
+   Reads for the admin UI come from PRIMARY_BRANCH.
    ============================================================ */
 
 const REPO_OWNER = "SkVitosha";
 const REPO_NAME = "WebSite";
-const REPO_BRANCH = "digital-ocean";
+// Every publish/edit is committed to all of these branches.
+const REPO_BRANCHES = ["digital-ocean", "main-without-cal"];
+// The admin UI reads the post list / posts from this one (they stay in sync).
+const PRIMARY_BRANCH = REPO_BRANCHES[0];
 const GH_API = "https://api.github.com";
 
 /* ---------------- Session / config ---------------- */
@@ -97,17 +102,26 @@ async function gh(method, path, body) {
   return res;
 }
 async function getFile(path) {
+  return await getFileFrom(path, PRIMARY_BRANCH);
+}
+async function getFileFrom(path, branch) {
   const res = await gh(
     "GET",
     "/repos/" + REPO_OWNER + "/" + REPO_NAME + "/contents/" +
-      encodePath(path) + "?ref=" + encodeURIComponent(REPO_BRANCH)
+      encodePath(path) + "?ref=" + encodeURIComponent(branch)
   );
   if (res.status === 404) return null;
-  if (!res.ok) throw new Error("GET " + path + " → " + res.status);
+  if (!res.ok) throw new Error("GET " + path + "@" + branch + " → " + res.status);
   return await res.json();
 }
-async function putFile(path, base64, message, sha) {
-  const body = { message: message, content: base64, branch: REPO_BRANCH };
+// Current blob sha of a file on a branch, or null if it doesn't exist there.
+async function getSha(path, branch) {
+  const f = await getFileFrom(path, branch);
+  return f ? f.sha : null;
+}
+// Commit one file to a single branch (sha required only when updating).
+async function putFileToBranch(path, base64, message, branch, sha) {
+  const body = { message: message, content: base64, branch: branch };
   if (sha) body.sha = sha;
   const res = await gh(
     "PUT",
@@ -117,9 +131,17 @@ async function putFile(path, base64, message, sha) {
   if (!res.ok) {
     let detail = "";
     try { detail = (await res.json()).message || ""; } catch (e) {}
-    throw new Error("Записът в " + path + " се провали (" + res.status + "). " + detail);
+    throw new Error("Записът в " + path + " (" + branch + ") се провали (" + res.status + "). " + detail);
   }
   return await res.json();
+}
+// Commit the same content to every target branch, resolving each branch's sha.
+async function putFileEverywhere(path, base64, message) {
+  for (let i = 0; i < REPO_BRANCHES.length; i++) {
+    const branch = REPO_BRANCHES[i];
+    const sha = await getSha(path, branch);
+    await putFileToBranch(path, base64, message, branch, sha);
+  }
 }
 
 /* Verify the token can push to the repo. */
@@ -158,7 +180,11 @@ async function uploadImage(file, slug, tag) {
   const path =
     "blog/images/" + slug + "-" + tag + "-" + Date.now().toString(36) + "." + ext;
   const buf = await file.arrayBuffer();
-  await putFile(path, arrayBufferToBase64(buf), "Add blog image: " + path + authorSuffix());
+  const b64 = arrayBufferToBase64(buf);
+  // New unique filename → doesn't exist on either branch, so no sha needed.
+  for (let i = 0; i < REPO_BRANCHES.length; i++) {
+    await putFileToBranch(path, b64, "Add blog image: " + path + authorSuffix(), REPO_BRANCHES[i], null);
+  }
   return path;
 }
 
@@ -191,13 +217,7 @@ async function publishPost(data, onProgress) {
   const say = onProgress || function () {};
 
   say("Проверка на съществуващите публикации…");
-  const indexFile = await getFile("blog/index.json");
-  let index = [];
-  let indexSha;
-  if (indexFile) {
-    index = JSON.parse(base64ToUtf8(indexFile.content));
-    indexSha = indexFile.sha;
-  }
+  let index = await fetchIndex();
   const existing = {};
   index.forEach(function (p) { existing[p.slug] = true; });
 
@@ -213,7 +233,7 @@ async function publishPost(data, onProgress) {
 
   say("Записване на публикацията…");
   const postObj = { title: data.title, date: data.date, cover: coverPath, blocks: blocks };
-  await putFile(
+  await putFileEverywhere(
     "blog/posts/" + slug + ".json",
     utf8ToBase64(JSON.stringify(postObj, null, 4)),
     "Add blog post: " + data.title + authorSuffix()
@@ -221,11 +241,10 @@ async function publishPost(data, onProgress) {
 
   say("Обновяване на списъка с новини…");
   index.push({ slug: slug, title: data.title, date: data.date, cover: coverPath });
-  await putFile(
+  await putFileEverywhere(
     "blog/index.json",
     utf8ToBase64(JSON.stringify(index, null, 4)),
-    "Index blog post: " + data.title + authorSuffix(),
-    indexSha
+    "Index blog post: " + data.title + authorSuffix()
   );
 
   return slug;
@@ -247,18 +266,15 @@ async function updatePost(slug, data, onProgress) {
   const blocks = await buildBlocks(data.blocks, slug, say);
 
   say("Записване на промените…");
-  const existing = await getFile("blog/posts/" + slug + ".json");
   const postObj = { title: data.title, date: data.date, cover: coverPath, blocks: blocks };
-  await putFile(
+  await putFileEverywhere(
     "blog/posts/" + slug + ".json",
     utf8ToBase64(JSON.stringify(postObj, null, 4)),
-    "Edit blog post: " + data.title + authorSuffix(),
-    existing ? existing.sha : undefined
+    "Edit blog post: " + data.title + authorSuffix()
   );
 
   say("Обновяване на списъка с новини…");
-  const indexFile = await getFile("blog/index.json");
-  let index = indexFile ? JSON.parse(base64ToUtf8(indexFile.content)) : [];
+  let index = await fetchIndex();
   let found = false;
   index = index.map(function (p) {
     if (p.slug === slug) {
@@ -270,11 +286,10 @@ async function updatePost(slug, data, onProgress) {
   if (!found) {
     index.push({ slug: slug, title: data.title, date: data.date, cover: coverPath });
   }
-  await putFile(
+  await putFileEverywhere(
     "blog/index.json",
     utf8ToBase64(JSON.stringify(index, null, 4)),
-    "Update index: " + data.title + authorSuffix(),
-    indexFile ? indexFile.sha : undefined
+    "Update index: " + data.title + authorSuffix()
   );
 
   return slug;
