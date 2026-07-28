@@ -1,14 +1,8 @@
 [
     {
-        "slug": "2026-06-15-nacionalno-parvenstvo",
-        "title": "СК „Витоша\" с призови места на Националното първенство",
-        "date": "2026-06-15",
-        "cover": "images/header group seiza - home tab.jpg"
-    },
-    {
-        "slug": "2026-05-10-otvoreni-vrati",
-        "title": "Ден на отворените врати за нови каратеки",
-        "date": "2026-05-10",
-        "cover": "images/hero-dojo.jpg"
+        "slug": "2026-07-28-testova-novina",
+        "title": "Тестова новина",
+        "date": "2026-07-28",
+        "cover": "blog/images/2026-07-28-testova-novina-cover-ms53ca79.png"
     }
 ]
