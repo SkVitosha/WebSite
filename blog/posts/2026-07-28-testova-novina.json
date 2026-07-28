@@ -1,0 +1,16 @@
+{
+    "title": "Тестова новина",
+    "date": "2026-07-28",
+    "cover": "blog/images/2026-07-28-testova-novina-cover-ms53adcc.png",
+    "blocks": [
+        {
+            "type": "paragraph",
+            "text": "Това е тестови параграф"
+        },
+        {
+            "type": "image",
+            "src": "blog/images/2026-07-28-testova-novina-1-ms53aeog.png",
+            "alt": ""
+        }
+    ]
+}
