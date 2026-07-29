@@ -12,7 +12,7 @@
 const REPO_OWNER = "SkVitosha";
 const REPO_NAME = "WebSite";
 // Every publish/edit is committed to all of these branches.
-const REPO_BRANCHES = ["digital-ocean", "main-without-cal"];
+const REPO_BRANCHES = ["main-without-cal"]; //"digital-ocean"
 // The admin UI reads the post list / posts from this one (they stay in sync).
 const PRIMARY_BRANCH = REPO_BRANCHES[0];
 const GH_API = "https://api.github.com";
@@ -64,10 +64,36 @@ function arrayBufferToBase64(buffer) {
 
 /* ---------------- Slug (Cyrillic -> latin) ---------------- */
 const TRANSLIT = {
-  а: "a", б: "b", в: "v", г: "g", д: "d", е: "e", ж: "zh", з: "z",
-  и: "i", й: "y", к: "k", л: "l", м: "m", н: "n", о: "o", п: "p",
-  р: "r", с: "s", т: "t", у: "u", ф: "f", х: "h", ц: "ts", ч: "ch",
-  ш: "sh", щ: "sht", ъ: "a", ь: "y", ю: "yu", я: "ya",
+  а: "a",
+  б: "b",
+  в: "v",
+  г: "g",
+  д: "d",
+  е: "e",
+  ж: "zh",
+  з: "z",
+  и: "i",
+  й: "y",
+  к: "k",
+  л: "l",
+  м: "m",
+  н: "n",
+  о: "o",
+  п: "p",
+  р: "r",
+  с: "s",
+  т: "t",
+  у: "u",
+  ф: "f",
+  х: "h",
+  ц: "ts",
+  ч: "ch",
+  ш: "sh",
+  щ: "sht",
+  ъ: "a",
+  ь: "y",
+  ю: "yu",
+  я: "ya",
 };
 function slugify(text) {
   return (
@@ -75,7 +101,9 @@ function slugify(text) {
       .toLowerCase()
       .split("")
       .map(function (ch) {
-        return Object.prototype.hasOwnProperty.call(TRANSLIT, ch) ? TRANSLIT[ch] : ch;
+        return Object.prototype.hasOwnProperty.call(TRANSLIT, ch)
+          ? TRANSLIT[ch]
+          : ch;
       })
       .join("")
       .replace(/[^a-z0-9]+/g, "-")
@@ -107,11 +135,18 @@ async function getFile(path) {
 async function getFileFrom(path, branch) {
   const res = await gh(
     "GET",
-    "/repos/" + REPO_OWNER + "/" + REPO_NAME + "/contents/" +
-      encodePath(path) + "?ref=" + encodeURIComponent(branch)
+    "/repos/" +
+      REPO_OWNER +
+      "/" +
+      REPO_NAME +
+      "/contents/" +
+      encodePath(path) +
+      "?ref=" +
+      encodeURIComponent(branch),
   );
   if (res.status === 404) return null;
-  if (!res.ok) throw new Error("GET " + path + "@" + branch + " → " + res.status);
+  if (!res.ok)
+    throw new Error("GET " + path + "@" + branch + " → " + res.status);
   return await res.json();
 }
 // Current blob sha of a file on a branch, or null if it doesn't exist there.
@@ -126,12 +161,23 @@ async function putFileToBranch(path, base64, message, branch, sha) {
   const res = await gh(
     "PUT",
     "/repos/" + REPO_OWNER + "/" + REPO_NAME + "/contents/" + encodePath(path),
-    body
+    body,
   );
   if (!res.ok) {
     let detail = "";
-    try { detail = (await res.json()).message || ""; } catch (e) {}
-    throw new Error("Записът в " + path + " (" + branch + ") се провали (" + res.status + "). " + detail);
+    try {
+      detail = (await res.json()).message || "";
+    } catch (e) {}
+    throw new Error(
+      "Записът в " +
+        path +
+        " (" +
+        branch +
+        ") се провали (" +
+        res.status +
+        "). " +
+        detail,
+    );
   }
   return await res.json();
 }
@@ -150,12 +196,23 @@ async function deleteFileFromBranch(path, message, branch) {
   const res = await gh(
     "DELETE",
     "/repos/" + REPO_OWNER + "/" + REPO_NAME + "/contents/" + encodePath(path),
-    { message: message, sha: sha, branch: branch }
+    { message: message, sha: sha, branch: branch },
   );
   if (!res.ok) {
     let detail = "";
-    try { detail = (await res.json()).message || ""; } catch (e) {}
-    throw new Error("Изтриването на " + path + " (" + branch + ") се провали (" + res.status + "). " + detail);
+    try {
+      detail = (await res.json()).message || "";
+    } catch (e) {}
+    throw new Error(
+      "Изтриването на " +
+        path +
+        " (" +
+        branch +
+        ") се провали (" +
+        res.status +
+        "). " +
+        detail,
+    );
   }
   return await res.json();
 }
@@ -173,7 +230,13 @@ async function verifyLogin() {
     throw new Error(
       res.status === 401
         ? "Невалиден токен."
-        : "Няма достъп до " + REPO_OWNER + "/" + REPO_NAME + " (" + res.status + ")."
+        : "Няма достъп до " +
+            REPO_OWNER +
+            "/" +
+            REPO_NAME +
+            " (" +
+            res.status +
+            ").",
     );
   }
   const data = await res.json();
@@ -200,12 +263,25 @@ async function uploadImage(file, slug, tag) {
   const ext = rawExt.replace(/[^a-z0-9]/g, "") || "jpg";
   // Timestamp keeps names unique, so re-uploads on edit never collide.
   const path =
-    "blog/images/" + slug + "-" + tag + "-" + Date.now().toString(36) + "." + ext;
+    "blog/images/" +
+    slug +
+    "-" +
+    tag +
+    "-" +
+    Date.now().toString(36) +
+    "." +
+    ext;
   const buf = await file.arrayBuffer();
   const b64 = arrayBufferToBase64(buf);
   // New unique filename → doesn't exist on either branch, so no sha needed.
   for (let i = 0; i < REPO_BRANCHES.length; i++) {
-    await putFileToBranch(path, b64, "Add blog image: " + path + authorSuffix(), REPO_BRANCHES[i], null);
+    await putFileToBranch(
+      path,
+      b64,
+      "Add blog image: " + path + authorSuffix(),
+      REPO_BRANCHES[i],
+      null,
+    );
   }
   return path;
 }
@@ -241,12 +317,17 @@ async function publishPost(data, onProgress) {
   say("Проверка на съществуващите публикации…");
   let index = await fetchIndex();
   const existing = {};
-  index.forEach(function (p) { existing[p.slug] = true; });
+  index.forEach(function (p) {
+    existing[p.slug] = true;
+  });
 
   const base = data.date + "-" + slugify(data.title);
   let slug = base;
   let n = 2;
-  while (existing[slug]) { slug = base + "-" + n; n++; }
+  while (existing[slug]) {
+    slug = base + "-" + n;
+    n++;
+  }
 
   say("Качване на заглавната снимка…");
   const coverPath = await uploadImage(data.coverFile, slug, "cover");
@@ -254,19 +335,29 @@ async function publishPost(data, onProgress) {
   const blocks = await buildBlocks(data.blocks, slug, say);
 
   say("Записване на публикацията…");
-  const postObj = { title: data.title, date: data.date, cover: coverPath, blocks: blocks };
+  const postObj = {
+    title: data.title,
+    date: data.date,
+    cover: coverPath,
+    blocks: blocks,
+  };
   await putFileEverywhere(
     "blog/posts/" + slug + ".json",
     utf8ToBase64(JSON.stringify(postObj, null, 4)),
-    "Add blog post: " + data.title + authorSuffix()
+    "Add blog post: " + data.title + authorSuffix(),
   );
 
   say("Обновяване на списъка с новини…");
-  index.push({ slug: slug, title: data.title, date: data.date, cover: coverPath });
+  index.push({
+    slug: slug,
+    title: data.title,
+    date: data.date,
+    cover: coverPath,
+  });
   await putFileEverywhere(
     "blog/index.json",
     utf8ToBase64(JSON.stringify(index, null, 4)),
-    "Index blog post: " + data.title + authorSuffix()
+    "Index blog post: " + data.title + authorSuffix(),
   );
 
   return slug;
@@ -288,11 +379,16 @@ async function updatePost(slug, data, onProgress) {
   const blocks = await buildBlocks(data.blocks, slug, say);
 
   say("Записване на промените…");
-  const postObj = { title: data.title, date: data.date, cover: coverPath, blocks: blocks };
+  const postObj = {
+    title: data.title,
+    date: data.date,
+    cover: coverPath,
+    blocks: blocks,
+  };
   await putFileEverywhere(
     "blog/posts/" + slug + ".json",
     utf8ToBase64(JSON.stringify(postObj, null, 4)),
-    "Edit blog post: " + data.title + authorSuffix()
+    "Edit blog post: " + data.title + authorSuffix(),
   );
 
   say("Обновяване на списъка с новини…");
@@ -301,17 +397,27 @@ async function updatePost(slug, data, onProgress) {
   index = index.map(function (p) {
     if (p.slug === slug) {
       found = true;
-      return { slug: slug, title: data.title, date: data.date, cover: coverPath };
+      return {
+        slug: slug,
+        title: data.title,
+        date: data.date,
+        cover: coverPath,
+      };
     }
     return p;
   });
   if (!found) {
-    index.push({ slug: slug, title: data.title, date: data.date, cover: coverPath });
+    index.push({
+      slug: slug,
+      title: data.title,
+      date: data.date,
+      cover: coverPath,
+    });
   }
   await putFileEverywhere(
     "blog/index.json",
     utf8ToBase64(JSON.stringify(index, null, 4)),
-    "Update index: " + data.title + authorSuffix()
+    "Update index: " + data.title + authorSuffix(),
   );
 
   return slug;
@@ -326,9 +432,11 @@ async function deletePost(slug, onProgress) {
   let imagePaths = [];
   try {
     const post = await fetchPost(slug);
-    if (post.cover && post.cover.indexOf("blog/images/") === 0) imagePaths.push(post.cover);
+    if (post.cover && post.cover.indexOf("blog/images/") === 0)
+      imagePaths.push(post.cover);
     (post.blocks || []).forEach(function (b) {
-      if (b.type === "image" && b.src && b.src.indexOf("blog/images/") === 0) imagePaths.push(b.src);
+      if (b.type === "image" && b.src && b.src.indexOf("blog/images/") === 0)
+        imagePaths.push(b.src);
     });
   } catch (e) {
     // Post file missing already — still clean up the index below.
@@ -337,20 +445,28 @@ async function deletePost(slug, onProgress) {
   // 1. Remove it from the index first, so it disappears from the site immediately.
   say("Обновяване на списъка…");
   let index = await fetchIndex();
-  index = index.filter(function (p) { return p.slug !== slug; });
+  index = index.filter(function (p) {
+    return p.slug !== slug;
+  });
   await putFileEverywhere(
     "blog/index.json",
     utf8ToBase64(JSON.stringify(index, null, 4)),
-    "Delete blog post: " + slug + authorSuffix()
+    "Delete blog post: " + slug + authorSuffix(),
   );
 
   // 2. Delete the post file.
   say("Изтриване на публикацията…");
-  await deleteFileEverywhere("blog/posts/" + slug + ".json", "Delete blog post file: " + slug + authorSuffix());
+  await deleteFileEverywhere(
+    "blog/posts/" + slug + ".json",
+    "Delete blog post file: " + slug + authorSuffix(),
+  );
 
   // 3. Delete the post's images (only ones we uploaded under blog/images/).
   for (let i = 0; i < imagePaths.length; i++) {
     say("Изтриване на снимка " + (i + 1) + "…");
-    await deleteFileEverywhere(imagePaths[i], "Delete blog image: " + imagePaths[i] + authorSuffix());
+    await deleteFileEverywhere(
+      imagePaths[i],
+      "Delete blog image: " + imagePaths[i] + authorSuffix(),
+    );
   }
 }
