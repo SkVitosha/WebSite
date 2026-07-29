@@ -143,6 +143,28 @@ async function putFileEverywhere(path, base64, message) {
     await putFileToBranch(path, base64, message, branch, sha);
   }
 }
+// Delete a file on one branch (no-op if it's already gone there).
+async function deleteFileFromBranch(path, message, branch) {
+  const sha = await getSha(path, branch);
+  if (!sha) return;
+  const res = await gh(
+    "DELETE",
+    "/repos/" + REPO_OWNER + "/" + REPO_NAME + "/contents/" + encodePath(path),
+    { message: message, sha: sha, branch: branch }
+  );
+  if (!res.ok) {
+    let detail = "";
+    try { detail = (await res.json()).message || ""; } catch (e) {}
+    throw new Error("Изтриването на " + path + " (" + branch + ") се провали (" + res.status + "). " + detail);
+  }
+  return await res.json();
+}
+// Delete a file from every target branch.
+async function deleteFileEverywhere(path, message) {
+  for (let i = 0; i < REPO_BRANCHES.length; i++) {
+    await deleteFileFromBranch(path, message, REPO_BRANCHES[i]);
+  }
+}
 
 /* Verify the token can push to the repo. */
 async function verifyLogin() {
@@ -293,4 +315,42 @@ async function updatePost(slug, data, onProgress) {
   );
 
   return slug;
+}
+
+/* ---------------- Delete (post + its images, on every branch) ---------------- */
+async function deletePost(slug, onProgress) {
+  const say = onProgress || function () {};
+
+  // Read the post first to learn which images belong to it.
+  say("Зареждане на публикацията…");
+  let imagePaths = [];
+  try {
+    const post = await fetchPost(slug);
+    if (post.cover && post.cover.indexOf("blog/images/") === 0) imagePaths.push(post.cover);
+    (post.blocks || []).forEach(function (b) {
+      if (b.type === "image" && b.src && b.src.indexOf("blog/images/") === 0) imagePaths.push(b.src);
+    });
+  } catch (e) {
+    // Post file missing already — still clean up the index below.
+  }
+
+  // 1. Remove it from the index first, so it disappears from the site immediately.
+  say("Обновяване на списъка…");
+  let index = await fetchIndex();
+  index = index.filter(function (p) { return p.slug !== slug; });
+  await putFileEverywhere(
+    "blog/index.json",
+    utf8ToBase64(JSON.stringify(index, null, 4)),
+    "Delete blog post: " + slug + authorSuffix()
+  );
+
+  // 2. Delete the post file.
+  say("Изтриване на публикацията…");
+  await deleteFileEverywhere("blog/posts/" + slug + ".json", "Delete blog post file: " + slug + authorSuffix());
+
+  // 3. Delete the post's images (only ones we uploaded under blog/images/).
+  for (let i = 0; i < imagePaths.length; i++) {
+    say("Изтриване на снимка " + (i + 1) + "…");
+    await deleteFileEverywhere(imagePaths[i], "Delete blog image: " + imagePaths[i] + authorSuffix());
+  }
 }
