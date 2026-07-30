@@ -366,6 +366,83 @@
             color: #777;
             padding: 10px 0;
         }
+
+        /* ============ Mobile ============ */
+        @media (max-width: 600px) {
+            .admin-wrap {
+                padding: 24px 14px 60px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .card {
+                padding: 16px;
+            }
+
+            /* 16px keeps iOS from zooming in when a field is focused. */
+            input[type=text],
+            input[type=password],
+            input[type=date],
+            textarea,
+            input[type=file],
+            .rte-editor {
+                font-size: 16px;
+            }
+
+            /* Topbar: heading on one line, its buttons wrap full-width below. */
+            .topbar {
+                flex-wrap: wrap;
+            }
+
+            .topbar .topbar-actions {
+                flex: 1 1 100%;
+            }
+
+            .topbar .topbar-actions button {
+                flex: 1 1 auto;
+            }
+
+            /* Post rows: thumb + title first, actions on their own row. */
+            .post-row {
+                flex-wrap: wrap;
+            }
+
+            .post-meta {
+                flex: 1 1 0;
+            }
+
+            .post-row .row-actions {
+                flex: 1 1 100%;
+                margin-top: 4px;
+            }
+
+            .post-row .row-actions button,
+            .post-row .row-actions a {
+                flex: 1 1 auto;
+                text-align: center;
+            }
+
+            /* Let the two add-block buttons share the width evenly. */
+            .add-row {
+                flex-wrap: wrap;
+            }
+
+            .add-row button {
+                flex: 1 1 auto;
+            }
+
+            /* Roomier tap targets for the formatting toolbar. */
+            .rte-btn {
+                min-width: 34px;
+                height: 34px;
+            }
+
+            .rte-select {
+                height: 34px;
+            }
+        }
     </style>
 </head>
 
