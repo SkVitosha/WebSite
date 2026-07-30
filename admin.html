@@ -232,6 +232,19 @@
             border-color: #0A7852;
         }
 
+        /* Pressed/toggled state for format buttons active at the caret.
+           transition:none so it snaps on decisively (a toggle, not a fade). */
+        .rte-btn.active {
+            background: #0A7852;
+            border-color: #0A7852;
+            color: #fff;
+            transition: none;
+        }
+
+        .rte-btn.active:hover {
+            background: #086543;
+        }
+
         .rte-btn.bold {
             font-weight: 700;
         }
@@ -724,8 +737,20 @@
                         sel.addRange(savedRange);
                     }
                 }
-                editor.addEventListener("keyup", saveSel);
-                editor.addEventListener("mouseup", saveSel);
+                // Toggle buttons (bold/italic/…) stay lit while their format is
+                // active at the caret — refreshed on every caret move.
+                var stateButtons = [];
+                function refreshToolbarState() {
+                    for (var i = 0; i < stateButtons.length; i++) {
+                        var on = false;
+                        try { on = document.queryCommandState(stateButtons[i].cmd); } catch (e) {}
+                        stateButtons[i].el.classList.toggle("active", on);
+                    }
+                }
+                function syncSel() { saveSel(); refreshToolbarState(); }
+                editor.addEventListener("keyup", syncSel);
+                editor.addEventListener("mouseup", syncSel);
+                editor.addEventListener("focus", syncSel);
                 editor.addEventListener("blur", saveSel);
 
                 function exec(cmd, val) {
@@ -733,16 +758,20 @@
                     try { document.execCommand("styleWithCSS", false, false); } catch (e) {}
                     document.execCommand(cmd, false, val || null);
                     saveSel();
+                    refreshToolbarState();
                 }
                 function insertText(text) {
                     restoreSel();
                     document.execCommand("insertText", false, text);
                     saveSel();
+                    refreshToolbarState();
                 }
 
                 var toolbar = document.createElement("div");
                 toolbar.className = "rte-toolbar";
-                function tbtn(label, cls, title, onClick) {
+                // cmd (optional): a queryCommandState command whose on/off state
+                // drives this button's pressed (.active) look.
+                function tbtn(label, cls, title, onClick, cmd) {
                     var b = document.createElement("button");
                     b.type = "button";
                     b.className = "rte-btn" + (cls ? " " + cls : "");
@@ -750,6 +779,7 @@
                     b.title = title;
                     b.addEventListener("mousedown", function (e) { e.preventDefault(); });
                     b.addEventListener("click", onClick);
+                    if (cmd) stateButtons.push({ el: b, cmd: cmd });
                     toolbar.appendChild(b);
                 }
                 function sep() {
@@ -758,15 +788,15 @@
                     toolbar.appendChild(s);
                 }
 
-                tbtn("B", "bold", "Получер", function () { exec("bold"); });
-                tbtn("I", "italic", "Курсив", function () { exec("italic"); });
-                tbtn("U", "underline", "Подчертан", function () { exec("underline"); });
+                tbtn("B", "bold", "Получер", function () { exec("bold"); }, "bold");
+                tbtn("I", "italic", "Курсив", function () { exec("italic"); }, "italic");
+                tbtn("U", "underline", "Подчертан", function () { exec("underline"); }, "underline");
                 sep();
-                tbtn("&bull;&nbsp;Списък", "", "Списък с точки", function () { exec("insertUnorderedList"); });
-                tbtn("1.&nbsp;Списък", "", "Номериран списък", function () { exec("insertOrderedList"); });
+                tbtn("&bull;&nbsp;Списък", "", "Списък с точки", function () { exec("insertUnorderedList"); }, "insertUnorderedList");
+                tbtn("1.&nbsp;Списък", "", "Номериран списък", function () { exec("insertOrderedList"); }, "insertOrderedList");
                 sep();
-                tbtn("X<sup>2</sup>", "", "Горен индекс", function () { exec("superscript"); });
-                tbtn("X<sub>2</sub>", "", "Долен индекс", function () { exec("subscript"); });
+                tbtn("X<sup>2</sup>", "", "Горен индекс", function () { exec("superscript"); }, "superscript");
+                tbtn("X<sub>2</sub>", "", "Долен индекс", function () { exec("subscript"); }, "subscript");
                 sep();
                 tbtn("🥇", "", "Златен медал", function () { insertText("🥇"); });
                 tbtn("🥈", "", "Сребърен медал", function () { insertText("🥈"); });
