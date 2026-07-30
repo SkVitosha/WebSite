@@ -10,5 +10,11 @@
         "title": "Ади тества страницата и панела",
         "date": "2026-07-29",
         "cover": "blog/images/2026-07-29-adi-testva-stranitsata-i-panela-cover-ms6i0tkn.jpg"
+    },
+    {
+        "slug": "2026-07-30-test-2",
+        "title": "TEST #2",
+        "date": "2026-07-30",
+        "cover": "blog/images/2026-07-30-test-2-cover-ms7x9ygt.jpg"
     }
 ]
