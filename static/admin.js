@@ -194,77 +194,102 @@ async function getFileFrom(path, branch) {
     throw new Error("GET " + path + "@" + branch + " → " + res.status);
   return await res.json();
 }
-// Current blob sha of a file on a branch, or null if it doesn't exist there.
-async function getSha(path, branch) {
-  const f = await getFileFrom(path, branch);
-  return f ? f.sha : null;
-}
-// Commit one file to a single branch (sha required only when updating).
-async function putFileToBranch(path, base64, message, branch, sha) {
-  const body = { message: message, content: base64, branch: branch };
-  if (sha) body.sha = sha;
-  const res = await gh(
-    "PUT",
-    "/repos/" + REPO_OWNER + "/" + REPO_NAME + "/contents/" + encodePath(path),
-    body,
-  );
+// Parse a GitHub API response as JSON, throwing a readable error on failure.
+async function ghJson(method, path, body) {
+  const res = await gh(method, path, body);
   if (!res.ok) {
     let detail = "";
     try {
       detail = (await res.json()).message || "";
     } catch (e) {}
     throw new Error(
-      "Записът в " +
+      method +
+        " " +
         path +
-        " (" +
-        branch +
-        ") се провали (" +
+        " → " +
         res.status +
-        "). " +
-        detail,
+        (detail ? " (" + detail + ")" : ""),
     );
   }
   return await res.json();
 }
-// Commit the same content to every target branch, resolving each branch's sha.
-async function putFileEverywhere(path, base64, message) {
-  for (let i = 0; i < REPO_BRANCHES.length; i++) {
-    const branch = REPO_BRANCHES[i];
-    const sha = await getSha(path, branch);
-    await putFileToBranch(path, base64, message, branch, sha);
-  }
-}
-// Delete a file on one branch (no-op if it's already gone there).
-async function deleteFileFromBranch(path, message, branch) {
-  const sha = await getSha(path, branch);
-  if (!sha) return;
-  const res = await gh(
-    "DELETE",
-    "/repos/" + REPO_OWNER + "/" + REPO_NAME + "/contents/" + encodePath(path),
-    { message: message, sha: sha, branch: branch },
-  );
-  if (!res.ok) {
-    let detail = "";
-    try {
-      detail = (await res.json()).message || "";
-    } catch (e) {}
-    throw new Error(
-      "Изтриването на " +
-        path +
-        " (" +
-        branch +
-        ") се провали (" +
-        res.status +
-        "). " +
-        detail,
+
+/* ---- Single-commit writes (Git Data API) ----
+   Commit a whole set of file changes as ONE commit per branch: create a
+   blob per file, build a tree on top of the branch's current tree, then a
+   commit, then move the branch. A post's cover + block images + JSON +
+   index land together → exactly one redeploy, and never a half-written
+   state (the branch only moves once everything is staged).
+   ops entries: {path, contentBase64}  add / update
+              | {path, delete:true}    remove */
+async function commitAllToBranch(branch, ops, message) {
+  const repo = "/repos/" + REPO_OWNER + "/" + REPO_NAME;
+
+  // Current head of the branch and the tree it points at.
+  const ref = await ghJson("GET", repo + "/git/ref/heads/" + branch);
+  const headSha = ref.object.sha;
+  const headCommit = await ghJson("GET", repo + "/git/commits/" + headSha);
+  const baseTreeSha = headCommit.tree.sha;
+
+  // When deleting, learn which paths actually exist — asking Git to remove
+  // a path that isn't in the tree would fail the whole commit.
+  let existing = null;
+  if (
+    ops.some(function (o) {
+      return o.delete;
+    })
+  ) {
+    const full = await ghJson(
+      "GET",
+      repo + "/git/trees/" + baseTreeSha + "?recursive=1",
     );
+    existing = {};
+    (full.tree || []).forEach(function (t) {
+      if (t.type === "blob") existing[t.path] = true;
+    });
   }
-  return await res.json();
+
+  // Build the tree entries, uploading a blob for each add/update.
+  const tree = [];
+  for (let i = 0; i < ops.length; i++) {
+    const op = ops[i];
+    if (op.delete) {
+      if (existing && existing[op.path]) {
+        tree.push({ path: op.path, mode: "100644", type: "blob", sha: null });
+      }
+    } else {
+      const blob = await ghJson("POST", repo + "/git/blobs", {
+        content: op.contentBase64,
+        encoding: "base64",
+      });
+      tree.push({
+        path: op.path,
+        mode: "100644",
+        type: "blob",
+        sha: blob.sha,
+      });
+    }
+  }
+  if (tree.length === 0) return; // nothing to change on this branch
+
+  const newTree = await ghJson("POST", repo + "/git/trees", {
+    base_tree: baseTreeSha,
+    tree: tree,
+  });
+  const commit = await ghJson("POST", repo + "/git/commits", {
+    message: message,
+    tree: newTree.sha,
+    parents: [headSha],
+  });
+  await ghJson("PATCH", repo + "/git/refs/heads/" + branch, {
+    sha: commit.sha,
+  });
 }
-// Delete a file from every target branch.
-async function deleteFileEverywhere(path, message) {
+
+// Apply the same batched commit to every target branch.
+async function commitAllEverywhere(ops, message) {
   for (let i = 0; i < REPO_BRANCHES.length; i++) {
-    await deleteFileFromBranch(path, message, REPO_BRANCHES[i]);
+    await commitAllToBranch(REPO_BRANCHES[i], ops, message);
   }
 }
 
@@ -302,8 +327,10 @@ async function fetchPost(slug) {
   return JSON.parse(base64ToUtf8(f.content));
 }
 
-/* ---------------- Image upload ---------------- */
-async function uploadImage(file, slug, tag) {
+/* ---------------- Image prep (no network) ----------------
+   Read an image file into a base64 blob + its committed path. The actual
+   upload happens later, inside the single batched commit. */
+async function prepareImage(file, slug, tag) {
   const rawExt = (file.name.split(".").pop() || "jpg").toLowerCase();
   const ext = rawExt.replace(/[^a-z0-9]/g, "") || "jpg";
   // Timestamp keeps names unique, so re-uploads on edit never collide.
@@ -317,25 +344,17 @@ async function uploadImage(file, slug, tag) {
     "." +
     ext;
   const buf = await file.arrayBuffer();
-  const b64 = arrayBufferToBase64(buf);
-  // New unique filename → doesn't exist on either branch, so no sha needed.
-  for (let i = 0; i < REPO_BRANCHES.length; i++) {
-    await putFileToBranch(
-      path,
-      b64,
-      "Add blog image: " + path + authorSuffix(),
-      REPO_BRANCHES[i],
-      null,
-    );
-  }
-  return path;
+  return { path: path, contentBase64: arrayBufferToBase64(buf) };
 }
 
-/* Build the ordered blocks, uploading any newly-picked images.
+/* Build the ordered blocks, preparing (but not yet committing) any newly
+   picked images. Returns the blocks plus the image file ops to include in
+   the batched commit.
    Each raw block: {type:'paragraph', html}
                  | {type:'image', file?:File, existingSrc?:string, alt} */
 async function buildBlocks(rawBlocks, slug, say) {
   const blocks = [];
+  const imageOps = [];
   let imgN = 1;
   for (let i = 0; i < rawBlocks.length; i++) {
     const b = rawBlocks[i];
@@ -343,16 +362,17 @@ async function buildBlocks(rawBlocks, slug, say) {
       blocks.push({ type: "paragraph", html: sanitizeBlockHtml(b.html) });
     } else if (b.type === "image") {
       if (b.file) {
-        say("Качване на снимка " + imgN + "…");
-        const src = await uploadImage(b.file, slug, imgN);
-        blocks.push({ type: "image", src: src, alt: b.alt || "" });
+        say("Подготовка на снимка " + imgN + "…");
+        const op = await prepareImage(b.file, slug, imgN);
+        blocks.push({ type: "image", src: op.path, alt: b.alt || "" });
+        imageOps.push(op);
       } else if (b.existingSrc) {
         blocks.push({ type: "image", src: b.existingSrc, alt: b.alt || "" });
       }
       imgN++;
     }
   }
-  return blocks;
+  return { blocks: blocks, imageOps: imageOps };
 }
 
 /* ---------------- Create ---------------- */
@@ -374,36 +394,36 @@ async function publishPost(data, onProgress) {
     n++;
   }
 
-  say("Качване на заглавната снимка…");
-  const coverPath = await uploadImage(data.coverFile, slug, "cover");
+  say("Подготовка на файловете…");
+  const coverOp = await prepareImage(data.coverFile, slug, "cover");
+  const built = await buildBlocks(data.blocks, slug, say);
 
-  const blocks = await buildBlocks(data.blocks, slug, say);
-
-  say("Записване на публикацията…");
   const postObj = {
     title: data.title,
     date: data.date,
-    cover: coverPath,
-    blocks: blocks,
+    cover: coverOp.path,
+    blocks: built.blocks,
   };
-  await putFileEverywhere(
-    "blog/posts/" + slug + ".json",
-    utf8ToBase64(JSON.stringify(postObj, null, 4)),
-    "Add blog post: " + data.title + authorSuffix(),
-  );
-
-  say("Обновяване на списъка с новини…");
   index.push({
     slug: slug,
     title: data.title,
     date: data.date,
-    cover: coverPath,
+    cover: coverOp.path,
   });
-  await putFileEverywhere(
-    "blog/index.json",
-    utf8ToBase64(JSON.stringify(index, null, 4)),
-    "Index blog post: " + data.title + authorSuffix(),
-  );
+
+  // Cover + block images + post JSON + index — all in one commit.
+  const ops = [coverOp].concat(built.imageOps);
+  ops.push({
+    path: "blog/posts/" + slug + ".json",
+    contentBase64: utf8ToBase64(JSON.stringify(postObj, null, 4)),
+  });
+  ops.push({
+    path: "blog/index.json",
+    contentBase64: utf8ToBase64(JSON.stringify(index, null, 4)),
+  });
+
+  say("Публикуване…");
+  await commitAllEverywhere(ops, "Add blog post: " + data.title + authorSuffix());
 
   return slug;
 }
@@ -412,31 +432,33 @@ async function publishPost(data, onProgress) {
 async function updatePost(slug, data, onProgress) {
   const say = onProgress || function () {};
 
+  say("Подготовка на файловете…");
+  const ops = [];
+
   // Cover: upload a new one only if the user picked a file; else keep existing.
   let coverPath;
   if (data.coverFile) {
-    say("Качване на новата корица…");
-    coverPath = await uploadImage(data.coverFile, slug, "cover");
+    const coverOp = await prepareImage(data.coverFile, slug, "cover");
+    coverPath = coverOp.path;
+    ops.push(coverOp);
   } else {
     coverPath = data.existingCover;
   }
 
-  const blocks = await buildBlocks(data.blocks, slug, say);
+  const built = await buildBlocks(data.blocks, slug, say);
+  for (let i = 0; i < built.imageOps.length; i++) ops.push(built.imageOps[i]);
 
-  say("Записване на промените…");
   const postObj = {
     title: data.title,
     date: data.date,
     cover: coverPath,
-    blocks: blocks,
+    blocks: built.blocks,
   };
-  await putFileEverywhere(
-    "blog/posts/" + slug + ".json",
-    utf8ToBase64(JSON.stringify(postObj, null, 4)),
-    "Edit blog post: " + data.title + authorSuffix(),
-  );
+  ops.push({
+    path: "blog/posts/" + slug + ".json",
+    contentBase64: utf8ToBase64(JSON.stringify(postObj, null, 4)),
+  });
 
-  say("Обновяване на списъка с новини…");
   let index = await fetchIndex();
   let found = false;
   index = index.map(function (p) {
@@ -459,16 +481,18 @@ async function updatePost(slug, data, onProgress) {
       cover: coverPath,
     });
   }
-  await putFileEverywhere(
-    "blog/index.json",
-    utf8ToBase64(JSON.stringify(index, null, 4)),
-    "Update index: " + data.title + authorSuffix(),
-  );
+  ops.push({
+    path: "blog/index.json",
+    contentBase64: utf8ToBase64(JSON.stringify(index, null, 4)),
+  });
+
+  say("Записване на промените…");
+  await commitAllEverywhere(ops, "Edit blog post: " + data.title + authorSuffix());
 
   return slug;
 }
 
-/* ---------------- Delete (post + its images, on every branch) ---------------- */
+/* ---------------- Delete (post + its images, one commit per branch) ---------------- */
 async function deletePost(slug, onProgress) {
   const say = onProgress || function () {};
 
@@ -487,31 +511,24 @@ async function deletePost(slug, onProgress) {
     // Post file missing already — still clean up the index below.
   }
 
-  // 1. Remove it from the index first, so it disappears from the site immediately.
   say("Обновяване на списъка…");
   let index = await fetchIndex();
   index = index.filter(function (p) {
     return p.slug !== slug;
   });
-  await putFileEverywhere(
-    "blog/index.json",
-    utf8ToBase64(JSON.stringify(index, null, 4)),
-    "Delete blog post: " + slug + authorSuffix(),
-  );
 
-  // 2. Delete the post file.
-  say("Изтриване на публикацията…");
-  await deleteFileEverywhere(
-    "blog/posts/" + slug + ".json",
-    "Delete blog post file: " + slug + authorSuffix(),
-  );
-
-  // 3. Delete the post's images (only ones we uploaded under blog/images/).
+  // Rewrite the index + remove the post file and its images — all together.
+  const ops = [
+    {
+      path: "blog/index.json",
+      contentBase64: utf8ToBase64(JSON.stringify(index, null, 4)),
+    },
+    { path: "blog/posts/" + slug + ".json", delete: true },
+  ];
   for (let i = 0; i < imagePaths.length; i++) {
-    say("Изтриване на снимка " + (i + 1) + "…");
-    await deleteFileEverywhere(
-      imagePaths[i],
-      "Delete blog image: " + imagePaths[i] + authorSuffix(),
-    );
+    ops.push({ path: imagePaths[i], delete: true });
   }
+
+  say("Изтриване…");
+  await commitAllEverywhere(ops, "Delete blog post: " + slug + authorSuffix());
 }
