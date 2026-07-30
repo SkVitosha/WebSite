@@ -225,6 +225,8 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            /* No fade: the on/off (green/white) state switches instantly. */
+            transition: none;
         }
 
         .rte-btn:hover {
@@ -232,13 +234,11 @@
             border-color: #0A7852;
         }
 
-        /* Pressed/toggled state for format buttons active at the caret.
-           transition:none so it snaps on decisively (a toggle, not a fade). */
+        /* Toggled-on state: green while the caret is in this format. */
         .rte-btn.active {
             background: #0A7852;
             border-color: #0A7852;
             color: #fff;
-            transition: none;
         }
 
         .rte-btn.active:hover {

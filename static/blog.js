@@ -65,8 +65,9 @@ function formatDate(iso) {
   return d + " " + months[m] + " " + y;
 }
 
-/* ---------------- Listing page (blog.html) ---------------- */
-function renderBlogList(containerId) {
+/* ---------------- Listing page (blog.html) ----------------
+   limit (optional): show only the N most recent (used on the home page). */
+function renderBlogList(containerId, limit) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
@@ -86,6 +87,8 @@ function renderBlogList(containerId) {
       posts.sort(function (a, b) {
         return String(b.date).localeCompare(String(a.date));
       });
+
+      if (limit) posts = posts.slice(0, limit);
 
       container.innerHTML = posts.map(cardHtml).join("");
 
