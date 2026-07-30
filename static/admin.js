@@ -62,6 +62,51 @@ function arrayBufferToBase64(buffer) {
   return btoa(bin);
 }
 
+/* ---------------- Rich-text sanitising ----------------
+   Paragraphs are authored in a small WYSIWYG editor (bold/italic/underline,
+   lists, super/subscript). Keep only that whitelist of tags and drop every
+   attribute before the HTML is committed, so nothing unsafe is ever stored.
+   (Mirrors sanitizeBlockHtml in static/blog.js — keep the two in sync.) */
+function sanitizeBlockHtml(html) {
+  const ALLOWED = {
+    B: 1, STRONG: 1, I: 1, EM: 1, U: 1, SUP: 1, SUB: 1,
+    UL: 1, OL: 1, LI: 1, BR: 1, P: 1, DIV: 1,
+  };
+  const root = document.createElement("div");
+  root.innerHTML = String(html == null ? "" : html);
+  (function walk(node) {
+    const children = Array.prototype.slice.call(node.childNodes);
+    children.forEach(function (child) {
+      if (child.nodeType === 1) {
+        const tag = child.tagName;
+        if (tag === "SCRIPT" || tag === "STYLE") {
+          node.removeChild(child);
+          return;
+        }
+        walk(child);
+        if (ALLOWED[tag]) {
+          while (child.attributes.length) {
+            child.removeAttribute(child.attributes[0].name);
+          }
+        } else {
+          while (child.firstChild) node.insertBefore(child.firstChild, child);
+          node.removeChild(child);
+        }
+      } else if (child.nodeType === 8) {
+        node.removeChild(child);
+      }
+    });
+  })(root);
+  return root.innerHTML;
+}
+// Does the sanitised HTML actually carry any visible text/content?
+function richHtmlIsEmpty(html) {
+  const root = document.createElement("div");
+  root.innerHTML = String(html == null ? "" : html);
+  if (root.querySelector("img, ul, ol, li")) return false;
+  return root.textContent.replace(/ /g, " ").trim() === "";
+}
+
 /* ---------------- Slug (Cyrillic -> latin) ---------------- */
 const TRANSLIT = {
   а: "a",
@@ -287,7 +332,7 @@ async function uploadImage(file, slug, tag) {
 }
 
 /* Build the ordered blocks, uploading any newly-picked images.
-   Each raw block: {type:'paragraph', text}
+   Each raw block: {type:'paragraph', html}
                  | {type:'image', file?:File, existingSrc?:string, alt} */
 async function buildBlocks(rawBlocks, slug, say) {
   const blocks = [];
@@ -295,7 +340,7 @@ async function buildBlocks(rawBlocks, slug, say) {
   for (let i = 0; i < rawBlocks.length; i++) {
     const b = rawBlocks[i];
     if (b.type === "paragraph") {
-      blocks.push({ type: "paragraph", text: b.text });
+      blocks.push({ type: "paragraph", html: sanitizeBlockHtml(b.html) });
     } else if (b.type === "image") {
       if (b.file) {
         say("Качване на снимка " + imgN + "…");

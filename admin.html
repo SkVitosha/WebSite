@@ -198,6 +198,101 @@
             margin: 0 0 8px;
         }
 
+        /* ---- Rich-text paragraph editor ---- */
+        .rte-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            align-items: center;
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            border-radius: 6px 6px 0 0;
+            background: #f4f5f4;
+        }
+
+        .rte-btn {
+            min-width: 30px;
+            height: 30px;
+            padding: 0 7px;
+            font-size: 15px;
+            line-height: 1;
+            border: 1px solid #d5d8d6;
+            border-radius: 4px;
+            background: #fff;
+            color: #161A19;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rte-btn:hover {
+            background: #e7f4ee;
+            border-color: #0A7852;
+        }
+
+        .rte-btn.bold {
+            font-weight: 700;
+        }
+
+        .rte-btn.italic {
+            font-style: italic;
+        }
+
+        .rte-btn.underline {
+            text-decoration: underline;
+        }
+
+        .rte-sep {
+            width: 1px;
+            align-self: stretch;
+            background: #d5d8d6;
+            margin: 2px 3px;
+        }
+
+        .rte-select {
+            height: 30px;
+            border: 1px solid #d5d8d6;
+            border-radius: 4px;
+            background: #fff;
+            font-family: inherit;
+            font-size: 13px;
+            padding: 0 4px;
+            cursor: pointer;
+            margin: 0;
+            width: auto;
+        }
+
+        .rte-editor {
+            min-height: 110px;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 0 0 6px 6px;
+            background: #fff;
+            font-family: inherit;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+            overflow-wrap: break-word;
+        }
+
+        .rte-editor:focus {
+            outline: none;
+            border-color: #0A7852;
+        }
+
+        .rte-editor:empty::before {
+            content: attr(data-placeholder);
+            color: #999;
+        }
+
+        .rte-editor ul,
+        .rte-editor ol {
+            margin: 0 0 8px;
+            padding-left: 1.4em;
+        }
+
         .add-row {
             display: flex;
             gap: 10px;
@@ -520,6 +615,109 @@
                 }
             }
 
+            /* ---------- Rich-text paragraph editor ----------
+               A small contentEditable + toolbar. Uses document.execCommand:
+               deprecated, but universally supported and perfect for a no-build
+               static site. Output HTML is sanitised before it's stored. */
+            function makeRichEditor(data) {
+                var editor = document.createElement("div");
+                editor.className = "rte-editor block-text";
+                editor.contentEditable = "true";
+                editor.setAttribute("data-placeholder", "Текст на параграфа…");
+                if (data && data.html != null) {
+                    editor.innerHTML = sanitizeBlockHtml(data.html);
+                } else if (data && data.text) {
+                    editor.textContent = data.text; // migrate legacy plain text
+                }
+
+                // Remember the last caret/selection inside this editor, so a
+                // toolbar click (which briefly moves focus) acts on the right spot.
+                var savedRange = null;
+                function saveSel() {
+                    var sel = window.getSelection();
+                    if (sel && sel.rangeCount && editor.contains(sel.anchorNode)) {
+                        savedRange = sel.getRangeAt(0).cloneRange();
+                    }
+                }
+                function restoreSel() {
+                    editor.focus();
+                    if (savedRange) {
+                        var sel = window.getSelection();
+                        sel.removeAllRanges();
+                        sel.addRange(savedRange);
+                    }
+                }
+                editor.addEventListener("keyup", saveSel);
+                editor.addEventListener("mouseup", saveSel);
+                editor.addEventListener("blur", saveSel);
+
+                function exec(cmd, val) {
+                    restoreSel();
+                    try { document.execCommand("styleWithCSS", false, false); } catch (e) {}
+                    document.execCommand(cmd, false, val || null);
+                    saveSel();
+                }
+                function insertText(text) {
+                    restoreSel();
+                    document.execCommand("insertText", false, text);
+                    saveSel();
+                }
+
+                var toolbar = document.createElement("div");
+                toolbar.className = "rte-toolbar";
+                function tbtn(label, cls, title, onClick) {
+                    var b = document.createElement("button");
+                    b.type = "button";
+                    b.className = "rte-btn" + (cls ? " " + cls : "");
+                    b.innerHTML = label;
+                    b.title = title;
+                    b.addEventListener("mousedown", function (e) { e.preventDefault(); });
+                    b.addEventListener("click", onClick);
+                    toolbar.appendChild(b);
+                }
+                function sep() {
+                    var s = document.createElement("span");
+                    s.className = "rte-sep";
+                    toolbar.appendChild(s);
+                }
+
+                tbtn("B", "bold", "Получер", function () { exec("bold"); });
+                tbtn("I", "italic", "Курсив", function () { exec("italic"); });
+                tbtn("U", "underline", "Подчертан", function () { exec("underline"); });
+                sep();
+                tbtn("&bull;&nbsp;Списък", "", "Списък с точки", function () { exec("insertUnorderedList"); });
+                tbtn("1.&nbsp;Списък", "", "Номериран списък", function () { exec("insertOrderedList"); });
+                sep();
+                tbtn("X<sup>2</sup>", "", "Горен индекс", function () { exec("superscript"); });
+                tbtn("X<sub>2</sub>", "", "Долен индекс", function () { exec("subscript"); });
+                sep();
+                tbtn("🥇", "", "Златен медал", function () { insertText("🥇"); });
+                tbtn("🥈", "", "Сребърен медал", function () { insertText("🥈"); });
+                tbtn("🥉", "", "Бронзов медал", function () { insertText("🥉"); });
+                tbtn("🏆", "", "Купа", function () { insertText("🏆"); });
+                tbtn("€", "", "Евро", function () { insertText("€"); });
+
+                var roman = document.createElement("select");
+                roman.className = "rte-select";
+                roman.title = "Римски цифри";
+                var ph = document.createElement("option");
+                ph.value = "";
+                ph.textContent = "Римски №";
+                roman.appendChild(ph);
+                ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"]
+                    .forEach(function (n) {
+                        var o = document.createElement("option");
+                        o.value = n; o.textContent = n;
+                        roman.appendChild(o);
+                    });
+                roman.addEventListener("change", function () {
+                    if (roman.value) { insertText(roman.value); roman.value = ""; }
+                });
+                toolbar.appendChild(roman);
+
+                return { toolbar: toolbar, editor: editor };
+            }
+
             /* ---------- Block builder ---------- */
             function makeBlock(type, data) {
                 data = data || {};
@@ -546,11 +744,9 @@
                 wrap.appendChild(head);
 
                 if (type === "paragraph") {
-                    var ta = document.createElement("textarea");
-                    ta.placeholder = "Текст на параграфа…";
-                    ta.className = "block-text";
-                    if (data.text) ta.value = data.text;
-                    wrap.appendChild(ta);
+                    var rte = makeRichEditor(data);
+                    wrap.appendChild(rte.toolbar);
+                    wrap.appendChild(rte.editor);
                 } else {
                     if (data.src) {
                         var note = document.createElement("p");
@@ -595,8 +791,9 @@
                 for (var i = 0; i < nodes.length; i++) {
                     var node = nodes[i];
                     if (node.dataset.type === "paragraph") {
-                        var text = node.querySelector(".block-text").value.trim();
-                        if (text) out.push({ type: "paragraph", text: text });
+                        var editor = node.querySelector(".rte-editor");
+                        var html = sanitizeBlockHtml(editor.innerHTML);
+                        if (!richHtmlIsEmpty(html)) out.push({ type: "paragraph", html: html });
                     } else {
                         var f = node.querySelector(".block-file").files[0];
                         var alt = node.querySelector(".block-alt").value.trim();

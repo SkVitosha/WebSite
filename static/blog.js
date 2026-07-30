@@ -13,6 +13,43 @@ function escapeHtml(str) {
     .replace(/'/g, "&#39;");
 }
 
+// Paragraphs may carry limited rich formatting (bold/italic/underline,
+// lists, super/subscript) authored in the admin. Keep only that whitelist
+// and strip every attribute, so rendering committed HTML stays XSS-safe.
+// (Mirrors sanitizeBlockHtml in static/admin.js — keep the two in sync.)
+function sanitizeBlockHtml(html) {
+  const ALLOWED = {
+    B: 1, STRONG: 1, I: 1, EM: 1, U: 1, SUP: 1, SUB: 1,
+    UL: 1, OL: 1, LI: 1, BR: 1, P: 1, DIV: 1,
+  };
+  const root = document.createElement("div");
+  root.innerHTML = String(html == null ? "" : html);
+  (function walk(node) {
+    const children = Array.prototype.slice.call(node.childNodes);
+    children.forEach(function (child) {
+      if (child.nodeType === 1) {
+        const tag = child.tagName;
+        if (tag === "SCRIPT" || tag === "STYLE") {
+          node.removeChild(child);
+          return;
+        }
+        walk(child);
+        if (ALLOWED[tag]) {
+          while (child.attributes.length) {
+            child.removeAttribute(child.attributes[0].name);
+          }
+        } else {
+          while (child.firstChild) node.insertBefore(child.firstChild, child);
+          node.removeChild(child);
+        }
+      } else if (child.nodeType === 8) {
+        node.removeChild(child); // drop comments
+      }
+    });
+  })(root);
+  return root.innerHTML;
+}
+
 // "2026-06-15" -> "15 юни 2026"
 function formatDate(iso) {
   const months = [
@@ -96,8 +133,8 @@ function renderBlogPost(containerId) {
       document.title = post.title + ' | KK "Витоша"';
 
       let html = "";
-      html += '<div class="blog-post-date">' + escapeHtml(formatDate(post.date)) + "</div>";
       html += '<h1 class="blog-post-title">' + escapeHtml(post.title) + "</h1>";
+      html += '<div class="blog-post-date">' + escapeHtml(formatDate(post.date)) + "</div>";
       if (post.cover) {
         html +=
           '<img class="blog-post-cover" src="' + encodeURI(post.cover) +
@@ -106,7 +143,12 @@ function renderBlogPost(containerId) {
       html += '<div class="blog-post-body">';
       (post.blocks || []).forEach(function (block) {
         if (block.type === "paragraph") {
-          html += '<p class="block-paragraph">' + escapeHtml(block.text) + "</p>";
+          // New posts store rich `html`; older ones store plain `text`.
+          const inner =
+            block.html != null
+              ? sanitizeBlockHtml(block.html)
+              : escapeHtml(block.text);
+          html += '<div class="block-paragraph">' + inner + "</div>";
         } else if (block.type === "image") {
           html +=
             '<img class="block-image" src="' + encodeURI(block.src) +
