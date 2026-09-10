@@ -12,7 +12,7 @@
 const REPO_OWNER = "SkVitosha";
 const REPO_NAME = "WebSite";
 // Every publish/edit is committed to all of these branches.
-const REPO_BRANCHES = ["main-without-cal"]; //"digital-ocean"
+const REPO_BRANCHES = ["digital-ocean", "main-without-cal"]; //"digital-ocean"
 // The admin UI reads the post list / posts from this one (they stay in sync).
 const PRIMARY_BRANCH = REPO_BRANCHES[0];
 const GH_API = "https://api.github.com";
@@ -69,8 +69,19 @@ function arrayBufferToBase64(buffer) {
    (Mirrors sanitizeBlockHtml in static/blog.js — keep the two in sync.) */
 function sanitizeBlockHtml(html) {
   const ALLOWED = {
-    B: 1, STRONG: 1, I: 1, EM: 1, U: 1, SUP: 1, SUB: 1,
-    UL: 1, OL: 1, LI: 1, BR: 1, P: 1, DIV: 1,
+    B: 1,
+    STRONG: 1,
+    I: 1,
+    EM: 1,
+    U: 1,
+    SUP: 1,
+    SUB: 1,
+    UL: 1,
+    OL: 1,
+    LI: 1,
+    BR: 1,
+    P: 1,
+    DIV: 1,
   };
   const root = document.createElement("div");
   root.innerHTML = String(html == null ? "" : html);
@@ -423,7 +434,10 @@ async function publishPost(data, onProgress) {
   });
 
   say("Публикуване…");
-  await commitAllEverywhere(ops, "Add blog post: " + data.title + authorSuffix());
+  await commitAllEverywhere(
+    ops,
+    "Add blog post: " + data.title + authorSuffix(),
+  );
 
   return slug;
 }
@@ -487,7 +501,10 @@ async function updatePost(slug, data, onProgress) {
   });
 
   say("Записване на промените…");
-  await commitAllEverywhere(ops, "Edit blog post: " + data.title + authorSuffix());
+  await commitAllEverywhere(
+    ops,
+    "Edit blog post: " + data.title + authorSuffix(),
+  );
 
   return slug;
 }
