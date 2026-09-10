@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новини | KK "Витоша"</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <link rel="stylesheet" href="./css_page.css" />
+    <link rel="stylesheet" href="./blog.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="overlay" id="overlay"></div>
+
+    <header id="header" data-nosnippet></header>
+
+    <main>
+        <section class="content-section">
+            <div class="container-heading" data-aos="fade-up" data-aos-duration="800">
+                <h1 style="color: #0A7852;">НОВИНИ</h1>
+                <h2>Актуално от СК „Витоша“</h2>
+            </div>
+        </section>
+
+        <section class="content-section" style="padding-top: 0;">
+            <div class="blog-grid" id="blog-grid" data-nosnippet></div>
+        </section>
+    </main>
+
+    <footer id="footer" data-nosnippet></footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="./static/common.js"></script>
+    <script src="./static/blog.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("./common_elems/navbar.html", function () {
+                initMobileMenu();
+            });
+            $("#footer").load("./common_elems/footer.html");
+            renderBlogList("blog-grid");
+        });
+        AOS.init({
+            offset: 120,
+            delay: 100,
+            duration: 800,
+            easing: 'ease',
+            once: false,
+            mirror: false,
+            anchorPlacement: 'top-bottom'
+        });
+        initStickyHeader();
+    </script>
+</body>
+
+</html>

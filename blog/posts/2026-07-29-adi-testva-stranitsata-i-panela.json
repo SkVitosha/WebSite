@@ -1,0 +1,21 @@
+{
+    "title": "Ади тества страницата и панела",
+    "date": "2026-07-29",
+    "cover": "blog/images/2026-07-29-adi-testva-stranitsata-i-panela-cover-ms6i0tkn.jpg",
+    "blocks": [
+        {
+            "type": "paragraph",
+            "html": "жах<b><u><i>жфhj</i></u></b>bk&nbsp; VI&nbsp; &nbsp;🥇🏆€"
+        },
+        {
+            "type": "image",
+            "src": "blog/images/2026-07-29-adi-testva-stranitsata-i-panela-1-ms6i0z0s.jpg",
+            "alt": ""
+        },
+        {
+            "type": "image",
+            "src": "blog/images/2026-07-29-adi-testva-stranitsata-i-panela-2-ms6i14x0.jpg",
+            "alt": ""
+        }
+    ]
+}

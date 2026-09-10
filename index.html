@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <link rel="stylesheet" href="./css_page.css" />
+    <link rel="stylesheet" href="./blog.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -86,6 +87,15 @@
                 <iframe
                     src="https://www.google.com/maps/d/u/6/embed?mid=1el59Sg4yMOJ9vBBD_NmfiETjVC5R9i4&ehbc=2E312F&noprof=1&z=12"></iframe>
             </div>
+        </section>
+
+        <!-- Latest news -->
+        <section class="content-section" style="flex-direction: column; align-items: stretch; gap: 0;">
+            <div class="container-heading" data-aos="fade-up" data-aos-duration="800">
+                <h2>Последни новини</h2>
+            </div>
+            <div class="blog-grid" id="home-news-grid" data-nosnippet style="margin-top: 30px;"></div>
+            <a href="./blog.html" class="more-btn" style="align-self: center; margin-top: 40px;">ВСИЧКИ НОВИНИ ›</a>
         </section>
 
         <section class="content-section">
@@ -176,6 +186,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="./static/common.js"></script>
+    <script src="./static/blog.js"></script>
     <script>
         $(function () {
             $("#header").load("./common_elems/navbar.html", function () {
@@ -186,6 +197,7 @@
             $("#footer").load("./common_elems/footer.html");
             $("#timetable-section").load("./common_elems/timetable_section.html");
 
+            renderBlogList("home-news-grid", 3);
         });
         // Initialize AOS animation library
         AOS.init({

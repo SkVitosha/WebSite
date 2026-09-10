@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Админ · Новини</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rubik', sans-serif;
+            margin: 0;
+            background: #f4f5f4;
+            color: #161A19;
+        }
+
+        .admin-wrap {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+
+        h1 {
+            font-size: 26px;
+            margin: 0 0 4px;
+        }
+
+        .sub {
+            color: #666;
+            margin: 0 0 28px;
+            font-size: 14px;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            font-size: 14px;
+            margin: 0 0 6px;
+        }
+
+        input[type=text],
+        input[type=password],
+        input[type=date],
+        textarea,
+        input[type=file] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 15px;
+            margin-bottom: 16px;
+            background: #fff;
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        button {
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 500;
+            border: none;
+            border-radius: 6px;
+            padding: 11px 18px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #0A7852;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #086543;
+        }
+
+        .btn-primary:disabled {
+            background: #9bbcb0;
+            cursor: not-allowed;
+        }
+
+        .btn-ghost {
+            background: #eef0ef;
+            color: #161A19;
+        }
+
+        .btn-ghost:hover {
+            background: #e2e5e3;
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 13px;
+        }
+
+        .btn-danger {
+            background: #f6e5e5;
+            color: #b3261e;
+        }
+
+        .btn-danger:hover {
+            background: #f0d4d4;
+        }
+
+        .hint {
+            font-size: 13px;
+            color: #777;
+            margin: -8px 0 16px;
+            line-height: 1.5;
+        }
+
+        .hint code {
+            background: #eef0ef;
+            padding: 1px 5px;
+            border-radius: 4px;
+        }
+
+        .msg {
+            padding: 12px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .msg.error {
+            background: #fbe9e7;
+            color: #b3261e;
+            display: block;
+        }
+
+        .msg.ok {
+            background: #e7f4ee;
+            color: #0A7852;
+            display: block;
+        }
+
+        .msg.info {
+            background: #eef2fb;
+            color: #1a3e8c;
+            display: block;
+        }
+
+        .block {
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 14px;
+            background: #fafbfa;
+        }
+
+        .block-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .block-head .tag {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            color: #0A7852;
+        }
+
+        .block-head .controls {
+            display: flex;
+            gap: 6px;
+        }
+
+        .block textarea,
+        .block input {
+            margin-bottom: 8px;
+        }
+
+        .block .current-note {
+            font-size: 13px;
+            color: #777;
+            margin: 0 0 8px;
+        }
+
+        /* ---- Rich-text paragraph editor ---- */
+        .rte-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            align-items: center;
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            border-radius: 6px 6px 0 0;
+            background: #f4f5f4;
+        }
+
+        .rte-btn {
+            min-width: 30px;
+            height: 30px;
+            padding: 0 7px;
+            font-size: 15px;
+            line-height: 1;
+            border: 1px solid #d5d8d6;
+            border-radius: 4px;
+            background: #fff;
+            color: #161A19;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            /* No fade: the on/off (green/white) state switches instantly. */
+            transition: none;
+        }
+
+        .rte-btn:hover {
+            background: #e7f4ee;
+            border-color: #0A7852;
+        }
+
+        /* Toggled-on state: green while the caret is in this format. */
+        .rte-btn.active {
+            background: #0A7852;
+            border-color: #0A7852;
+            color: #fff;
+        }
+
+        .rte-btn.active:hover {
+            background: #086543;
+        }
+
+        .rte-btn.bold {
+            font-weight: 700;
+        }
+
+        .rte-btn.italic {
+            font-style: italic;
+        }
+
+        .rte-btn.underline {
+            text-decoration: underline;
+        }
+
+        .rte-sep {
+            width: 1px;
+            align-self: stretch;
+            background: #d5d8d6;
+            margin: 2px 3px;
+        }
+
+        .rte-select {
+            height: 30px;
+            border: 1px solid #d5d8d6;
+            border-radius: 4px;
+            background: #fff;
+            font-family: inherit;
+            font-size: 13px;
+            padding: 0 4px;
+            cursor: pointer;
+            margin: 0;
+            width: auto;
+        }
+
+        .rte-editor {
+            min-height: 110px;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 0 0 6px 6px;
+            background: #fff;
+            font-family: inherit;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+            overflow-wrap: break-word;
+        }
+
+        .rte-editor:focus {
+            outline: none;
+            border-color: #0A7852;
+        }
+
+        .rte-editor:empty::before {
+            content: attr(data-placeholder);
+            color: #999;
+        }
+
+        .rte-editor ul,
+        .rte-editor ol {
+            margin: 0 0 8px;
+            padding-left: 1.4em;
+        }
+
+        .add-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+            gap: 12px;
+        }
+
+        .topbar .topbar-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        a {
+            color: #0A7852;
+        }
+
+        /* Post list */
+        .post-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .post-row:last-child {
+            border-bottom: none;
+        }
+
+        .post-thumb {
+            width: 68px;
+            height: 48px;
+            flex: 0 0 auto;
+            border-radius: 4px;
+            background: #ddd center/cover no-repeat;
+        }
+
+        .post-meta {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .post-meta .t {
+            font-weight: 500;
+            margin: 0 0 2px;
+        }
+
+        .post-meta .d {
+            font-size: 13px;
+            color: #888;
+        }
+
+        .post-row .row-actions {
+            display: flex;
+            gap: 8px;
+            flex: 0 0 auto;
+        }
+
+        .list-empty {
+            color: #777;
+            padding: 10px 0;
+        }
+
+        /* ============ Mobile ============ */
+        @media (max-width: 600px) {
+            .admin-wrap {
+                padding: 24px 14px 60px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .card {
+                padding: 16px;
+            }
+
+            /* 16px keeps iOS from zooming in when a field is focused. */
+            input[type=text],
+            input[type=password],
+            input[type=date],
+            textarea,
+            input[type=file],
+            .rte-editor {
+                font-size: 16px;
+            }
+
+            /* Topbar: heading on one line, its buttons wrap full-width below. */
+            .topbar {
+                flex-wrap: wrap;
+            }
+
+            .topbar .topbar-actions {
+                flex: 1 1 100%;
+            }
+
+            .topbar .topbar-actions button {
+                flex: 1 1 auto;
+            }
+
+            /* Post rows: thumb + title first, actions on their own row. */
+            .post-row {
+                flex-wrap: wrap;
+            }
+
+            .post-meta {
+                flex: 1 1 0;
+            }
+
+            .post-row .row-actions {
+                flex: 1 1 100%;
+                margin-top: 4px;
+            }
+
+            .post-row .row-actions button,
+            .post-row .row-actions a {
+                flex: 1 1 auto;
+                text-align: center;
+            }
+
+            /* Let the two add-block buttons share the width evenly. */
+            .add-row {
+                flex-wrap: wrap;
+            }
+
+            .add-row button {
+                flex: 1 1 auto;
+            }
+
+            /* Roomier tap targets for the formatting toolbar. */
+            .rte-btn {
+                min-width: 34px;
+                height: 34px;
+            }
+
+            .rte-select {
+                height: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admin-wrap">
+
+        <!-- ============ LOGIN ============ -->
+        <div id="login-view">
+            <h1>Админ · Новини</h1>
+            <p class="sub">Влезте, за да управлявате новините.</p>
+
+            <div class="card">
+                <div id="login-msg" class="msg"></div>
+
+                <label for="name">Вашето име</label>
+                <input type="text" id="name" autocomplete="off" placeholder="Име и фамилия">
+
+                <label for="token">Токен</label>
+                <input type="password" id="token" autocomplete="off" placeholder="Парола">
+
+                <button class="btn-primary" id="login-btn">Вход</button>
+            </div>
+        </div>
+
+        <!-- ============ POST LIST ============ -->
+        <div id="list-view" class="hidden">
+            <div class="topbar">
+                <h1>Новини</h1>
+                <div class="topbar-actions">
+                    <button class="btn-primary btn-small" id="new-btn">＋ Нова публикация</button>
+                    <button class="btn-ghost btn-small" id="logout-btn">Изход</button>
+                </div>
+            </div>
+            <p class="sub">Всички публикувани новини. Изберете „Редактирай“, за да промените публикация.</p>
+
+            <div id="list-msg" class="msg"></div>
+
+            <div class="card">
+                <div id="post-list">
+                    <p class="list-empty">Зареждане…</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============ EDITOR (new / edit) ============ -->
+        <div id="editor-view" class="hidden">
+            <div class="topbar">
+                <h1 id="editor-title">Нова публикация</h1>
+                <button class="btn-ghost btn-small" id="back-to-list">← Към списъка</button>
+            </div>
+            <p class="sub">При запис файловете се качват в репозиторито и сайтът се преразгръща автоматично.</p>
+
+            <div id="publish-msg" class="msg"></div>
+
+            <div class="card">
+                <label for="post-title">Заглавие</label>
+                <input type="text" id="post-title" placeholder="Заглавие на новината">
+
+                <label for="post-date">Дата</label>
+                <input type="date" id="post-date">
+
+                <label for="post-cover">Заглавна снимка (корица)</label>
+                <input type="file" id="post-cover" accept="image/*">
+                <p class="hint" id="cover-current"></p>
+            </div>
+
+            <div class="card">
+                <label style="margin-bottom:12px;">Съдържание</label>
+                <div id="blocks"></div>
+                <div class="add-row">
+                    <button class="btn-ghost btn-small" id="add-paragraph">＋ Параграф</button>
+                    <button class="btn-ghost btn-small" id="add-image">＋ Снимка</button>
+                </div>
+                <p class="hint">Добавяйте параграфи и снимки в реда, в който да се показват (текст и снимки се редуват).
+                </p>
+            </div>
+
+            <button class="btn-primary" id="publish-btn">Публикувай</button>
+        </div>
+
+    </div>
+
+    <script src="./static/admin.js"></script>
+    <script>
+        (function () {
+            var $ = function (id) { return document.getElementById(id); };
+            var state = { editingSlug: null, existingCover: null };
+
+            function today() { return new Date().toISOString().slice(0, 10); }
+            function basename(p) { return String(p || "").split("/").pop(); }
+            function msg(el, type, text) { el.className = "msg " + type; el.textContent = text; }
+            function clearMsg(el) { el.className = "msg"; el.textContent = ""; }
+
+            /* ---------- View switching ---------- */
+            function show(view) {
+                ["login-view", "list-view", "editor-view"].forEach(function (id) {
+                    $(id).classList.toggle("hidden", id !== view);
+                });
+            }
+
+            /* ---------- Login ---------- */
+            $("login-btn").addEventListener("click", async function () {
+                var name = $("name").value.trim();
+                var token = $("token").value.trim();
+                if (!name) { return msg($("login-msg"), "error", "Въведете вашето име."); }
+                if (!token) { return msg($("login-msg"), "error", "Въведете GitHub токен."); }
+                this.disabled = true;
+                msg($("login-msg"), "info", "Проверка на достъпа…");
+                setConfig({ token: token, name: name });
+                try {
+                    await verifyLogin();
+                    $("token").value = "";
+                    clearMsg($("login-msg"));
+                    await openList();
+                } catch (e) {
+                    clearConfig();
+                    msg($("login-msg"), "error", e.message || "Входът се провали.");
+                } finally {
+                    this.disabled = false;
+                }
+            });
+
+            $("logout-btn").addEventListener("click", function () {
+                clearConfig();
+                show("login-view");
+            });
+
+            /* ---------- Post list ---------- */
+            async function openList() {
+                show("list-view");
+                clearMsg($("list-msg"));
+                $("post-list").innerHTML = '<p class="list-empty">Зареждане…</p>';
+                try {
+                    var posts = await fetchIndex();
+                    posts.sort(function (a, b) { return String(b.date).localeCompare(String(a.date)); });
+                    renderList(posts);
+                } catch (e) {
+                    $("post-list").innerHTML = "";
+                    msg($("list-msg"), "error", e.message || "Списъкът не можа да се зареди.");
+                }
+            }
+
+            function renderList(posts) {
+                var container = $("post-list");
+                container.innerHTML = "";
+                if (!posts.length) {
+                    container.innerHTML = '<p class="list-empty">Все още няма публикации.</p>';
+                    return;
+                }
+                posts.forEach(function (p) {
+                    var row = document.createElement("div");
+                    row.className = "post-row";
+
+                    var thumb = document.createElement("div");
+                    thumb.className = "post-thumb";
+                    if (p.cover) thumb.style.backgroundImage = "url('" + encodeURI(p.cover) + "')";
+
+                    var meta = document.createElement("div");
+                    meta.className = "post-meta";
+                    var t = document.createElement("p");
+                    t.className = "t";
+                    t.textContent = p.title;
+                    var d = document.createElement("p");
+                    d.className = "d";
+                    d.textContent = p.date;
+                    meta.appendChild(t); meta.appendChild(d);
+
+                    var actions = document.createElement("div");
+                    actions.className = "row-actions";
+                    var edit = document.createElement("button");
+                    edit.className = "btn-ghost btn-small";
+                    edit.textContent = "Редактирай";
+                    edit.addEventListener("click", function () { openEdit(p.slug); });
+                    var view = document.createElement("a");
+                    view.className = "btn-ghost btn-small";
+                    view.style.textDecoration = "none";
+                    view.textContent = "Виж";
+                    view.target = "_blank";
+                    view.href = "blog_post.html?slug=" + encodeURIComponent(p.slug);
+                    var del = document.createElement("button");
+                    del.className = "btn-danger btn-small";
+                    del.textContent = "Изтрий";
+                    del.addEventListener("click", async function () {
+                        if (!confirm("Сигурни ли сте, че искате да изтриете „" + p.title + "“?\nТова действие е необратимо.")) return;
+                        del.disabled = true;
+                        edit.disabled = true;
+                        msg($("list-msg"), "info", "Изтриване…");
+                        try {
+                            await deletePost(p.slug, function (s) { msg($("list-msg"), "info", s); });
+                            await openList();
+                            msg($("list-msg"), "ok", "Публикацията е изтрита.");
+                        } catch (e) {
+                            del.disabled = false;
+                            edit.disabled = false;
+                            msg($("list-msg"), "error", e.message || "Изтриването се провали.");
+                        }
+                    });
+                    actions.appendChild(edit); actions.appendChild(view); actions.appendChild(del);
+
+                    row.appendChild(thumb); row.appendChild(meta); row.appendChild(actions);
+                    container.appendChild(row);
+                });
+            }
+
+            $("new-btn").addEventListener("click", openNew);
+            $("back-to-list").addEventListener("click", openList);
+
+            /* ---------- Editor: open new / edit ---------- */
+            function openNew() {
+                state.editingSlug = null;
+                state.existingCover = null;
+                $("editor-title").textContent = "Нова публикация";
+                $("post-title").value = "";
+                $("post-date").value = today();
+                $("post-cover").value = "";
+                $("cover-current").textContent = "";
+                $("blocks").innerHTML = "";
+                $("publish-btn").textContent = "Публикувай";
+                clearMsg($("publish-msg"));
+                show("editor-view");
+            }
+
+            async function openEdit(slug) {
+                clearMsg($("list-msg"));
+                msg($("list-msg"), "info", "Зареждане на публикацията…");
+                try {
+                    var post = await fetchPost(slug);
+                    clearMsg($("list-msg"));
+                    state.editingSlug = slug;
+                    state.existingCover = post.cover;
+                    $("editor-title").textContent = "Редакция на публикация";
+                    $("post-title").value = post.title;
+                    $("post-date").value = post.date;
+                    $("post-cover").value = "";
+                    $("cover-current").textContent =
+                        "Текуща корица: " + basename(post.cover) +
+                        " — изберете файл само ако искате да я смените.";
+                    $("blocks").innerHTML = "";
+                    (post.blocks || []).forEach(function (b) {
+                        $("blocks").appendChild(makeBlock(b.type, b));
+                    });
+                    $("publish-btn").textContent = "Запази промените";
+                    clearMsg($("publish-msg"));
+                    show("editor-view");
+                } catch (e) {
+                    msg($("list-msg"), "error", e.message || "Публикацията не можа да се зареди.");
+                }
+            }
+
+            /* ---------- Rich-text paragraph editor ----------
+               A small contentEditable + toolbar. Uses document.execCommand:
+               deprecated, but universally supported and perfect for a no-build
+               static site. Output HTML is sanitised before it's stored. */
+            function makeRichEditor(data) {
+                var editor = document.createElement("div");
+                editor.className = "rte-editor block-text";
+                editor.contentEditable = "true";
+                editor.setAttribute("data-placeholder", "Текст на параграфа…");
+                if (data && data.html != null) {
+                    editor.innerHTML = sanitizeBlockHtml(data.html);
+                } else if (data && data.text) {
+                    editor.textContent = data.text; // migrate legacy plain text
+                }
+
+                // Remember the last caret/selection inside this editor, so a
+                // toolbar click (which briefly moves focus) acts on the right spot.
+                var savedRange = null;
+                function saveSel() {
+                    var sel = window.getSelection();
+                    if (sel && sel.rangeCount && editor.contains(sel.anchorNode)) {
+                        savedRange = sel.getRangeAt(0).cloneRange();
+                    }
+                }
+                function restoreSel() {
+                    editor.focus();
+                    if (savedRange) {
+                        var sel = window.getSelection();
+                        sel.removeAllRanges();
+                        sel.addRange(savedRange);
+                    }
+                }
+                // Toggle buttons (bold/italic/…) stay lit while their format is
+                // active at the caret — refreshed on every caret move.
+                var stateButtons = [];
+                function refreshToolbarState() {
+                    for (var i = 0; i < stateButtons.length; i++) {
+                        var on = false;
+                        try { on = document.queryCommandState(stateButtons[i].cmd); } catch (e) {}
+                        stateButtons[i].el.classList.toggle("active", on);
+                    }
+                }
+                function syncSel() { saveSel(); refreshToolbarState(); }
+                editor.addEventListener("keyup", syncSel);
+                editor.addEventListener("mouseup", syncSel);
+                editor.addEventListener("focus", syncSel);
+                editor.addEventListener("blur", saveSel);
+
+                function exec(cmd, val) {
+                    restoreSel();
+                    try { document.execCommand("styleWithCSS", false, false); } catch (e) {}
+                    document.execCommand(cmd, false, val || null);
+                    saveSel();
+                    refreshToolbarState();
+                }
+                function insertText(text) {
+                    restoreSel();
+                    document.execCommand("insertText", false, text);
+                    saveSel();
+                    refreshToolbarState();
+                }
+
+                var toolbar = document.createElement("div");
+                toolbar.className = "rte-toolbar";
+                // cmd (optional): a queryCommandState command whose on/off state
+                // drives this button's pressed (.active) look.
+                function tbtn(label, cls, title, onClick, cmd) {
+                    var b = document.createElement("button");
+                    b.type = "button";
+                    b.className = "rte-btn" + (cls ? " " + cls : "");
+                    b.innerHTML = label;
+                    b.title = title;
+                    b.addEventListener("mousedown", function (e) { e.preventDefault(); });
+                    b.addEventListener("click", onClick);
+                    if (cmd) stateButtons.push({ el: b, cmd: cmd });
+                    toolbar.appendChild(b);
+                }
+                function sep() {
+                    var s = document.createElement("span");
+                    s.className = "rte-sep";
+                    toolbar.appendChild(s);
+                }
+
+                tbtn("B", "bold", "Получер", function () { exec("bold"); }, "bold");
+                tbtn("I", "italic", "Курсив", function () { exec("italic"); }, "italic");
+                tbtn("U", "underline", "Подчертан", function () { exec("underline"); }, "underline");
+                sep();
+                tbtn("&bull;&nbsp;Списък", "", "Списък с точки", function () { exec("insertUnorderedList"); }, "insertUnorderedList");
+                tbtn("1.&nbsp;Списък", "", "Номериран списък", function () { exec("insertOrderedList"); }, "insertOrderedList");
+                sep();
+                tbtn("X<sup>2</sup>", "", "Горен индекс", function () { exec("superscript"); }, "superscript");
+                tbtn("X<sub>2</sub>", "", "Долен индекс", function () { exec("subscript"); }, "subscript");
+                sep();
+                tbtn("🥇", "", "Златен медал", function () { insertText("🥇"); });
+                tbtn("🥈", "", "Сребърен медал", function () { insertText("🥈"); });
+                tbtn("🥉", "", "Бронзов медал", function () { insertText("🥉"); });
+                tbtn("🏆", "", "Купа", function () { insertText("🏆"); });
+                tbtn("€", "", "Евро", function () { insertText("€"); });
+
+                var roman = document.createElement("select");
+                roman.className = "rte-select";
+                roman.title = "Римски цифри";
+                var ph = document.createElement("option");
+                ph.value = "";
+                ph.textContent = "Римски №";
+                roman.appendChild(ph);
+                ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"]
+                    .forEach(function (n) {
+                        var o = document.createElement("option");
+                        o.value = n; o.textContent = n;
+                        roman.appendChild(o);
+                    });
+                roman.addEventListener("change", function () {
+                    if (roman.value) { insertText(roman.value); roman.value = ""; }
+                });
+                toolbar.appendChild(roman);
+
+                return { toolbar: toolbar, editor: editor };
+            }
+
+            /* ---------- Block builder ---------- */
+            function makeBlock(type, data) {
+                data = data || {};
+                var wrap = document.createElement("div");
+                wrap.className = "block";
+                wrap.dataset.type = type;
+                if (type === "image" && data.src) wrap.dataset.existingSrc = data.src;
+
+                var head = document.createElement("div");
+                head.className = "block-head";
+                var tag = document.createElement("span");
+                tag.className = "tag";
+                tag.textContent = type === "paragraph" ? "Параграф" : "Снимка";
+                var controls = document.createElement("div");
+                controls.className = "controls";
+                controls.appendChild(mkBtn("↑", "btn-ghost", function () {
+                    if (wrap.previousElementSibling) wrap.parentNode.insertBefore(wrap, wrap.previousElementSibling);
+                }));
+                controls.appendChild(mkBtn("↓", "btn-ghost", function () {
+                    if (wrap.nextElementSibling) wrap.parentNode.insertBefore(wrap.nextElementSibling, wrap);
+                }));
+                controls.appendChild(mkBtn("Изтрий", "btn-danger", function () { wrap.remove(); }));
+                head.appendChild(tag); head.appendChild(controls);
+                wrap.appendChild(head);
+
+                if (type === "paragraph") {
+                    var rte = makeRichEditor(data);
+                    wrap.appendChild(rte.toolbar);
+                    wrap.appendChild(rte.editor);
+                } else {
+                    if (data.src) {
+                        var note = document.createElement("p");
+                        note.className = "current-note";
+                        note.textContent = "Текуща снимка: " + basename(data.src) +
+                            " — изберете файл само ако искате да я смените.";
+                        wrap.appendChild(note);
+                    }
+                    var file = document.createElement("input");
+                    file.type = "file";
+                    file.accept = "image/*";
+                    file.className = "block-file";
+                    var alt = document.createElement("input");
+                    alt.type = "text";
+                    alt.placeholder = "Кратко описание на снимката (по избор)";
+                    alt.className = "block-alt";
+                    if (data.alt) alt.value = data.alt;
+                    wrap.appendChild(file);
+                    wrap.appendChild(alt);
+                }
+                return wrap;
+            }
+            function mkBtn(label, cls, onClick) {
+                var b = document.createElement("button");
+                b.type = "button";
+                b.className = cls + " btn-small";
+                b.textContent = label;
+                b.addEventListener("click", onClick);
+                return b;
+            }
+            $("add-paragraph").addEventListener("click", function () {
+                $("blocks").appendChild(makeBlock("paragraph"));
+            });
+            $("add-image").addEventListener("click", function () {
+                $("blocks").appendChild(makeBlock("image"));
+            });
+
+            /* ---------- Collect + validate ---------- */
+            function collectBlocks() {
+                var out = [];
+                var nodes = $("blocks").querySelectorAll(".block");
+                for (var i = 0; i < nodes.length; i++) {
+                    var node = nodes[i];
+                    if (node.dataset.type === "paragraph") {
+                        var editor = node.querySelector(".rte-editor");
+                        var html = sanitizeBlockHtml(editor.innerHTML);
+                        if (!richHtmlIsEmpty(html)) out.push({ type: "paragraph", html: html });
+                    } else {
+                        var f = node.querySelector(".block-file").files[0];
+                        var alt = node.querySelector(".block-alt").value.trim();
+                        var existingSrc = node.dataset.existingSrc || "";
+                        if (f || existingSrc) {
+                            out.push({ type: "image", file: f, existingSrc: existingSrc, alt: alt });
+                        }
+                    }
+                }
+                return out;
+            }
+
+            /* ---------- Publish / Save ---------- */
+            $("publish-btn").addEventListener("click", async function () {
+                var title = $("post-title").value.trim();
+                var date = $("post-date").value;
+                var coverFile = $("post-cover").files[0];
+                var blocks = collectBlocks();
+                var editing = !!state.editingSlug;
+
+                if (!title) { return msg($("publish-msg"), "error", "Въведете заглавие."); }
+                if (!date) { return msg($("publish-msg"), "error", "Изберете дата."); }
+                if (!editing && !coverFile) { return msg($("publish-msg"), "error", "Изберете заглавна снимка."); }
+                if (blocks.length === 0) { return msg($("publish-msg"), "error", "Добавете поне един параграф или снимка."); }
+
+                this.disabled = true;
+                var progress = function (s) { msg($("publish-msg"), "info", s); };
+                try {
+                    if (editing) {
+                        await updatePost(state.editingSlug, {
+                            title: title, date: date, coverFile: coverFile,
+                            existingCover: state.existingCover, blocks: blocks
+                        }, progress);
+                    } else {
+                        await publishPost({
+                            title: title, date: date, coverFile: coverFile, blocks: blocks
+                        }, progress);
+                    }
+                    await openList();
+                    msg($("list-msg"), "ok",
+                        (editing ? "Промените са запазени." : "Публикувано!") +
+                        " Сайтът ще се обнови до минута.");
+                } catch (e) {
+                    msg($("publish-msg"), "error", e.message || "Записът се провали.");
+                } finally {
+                    this.disabled = false;
+                }
+            });
+
+            /* ---------- Boot: resume session if token still valid ---------- */
+            (async function boot() {
+                if (getConfig()) {
+                    try { await verifyLogin(); await openList(); return; }
+                    catch (e) { clearConfig(); }
+                }
+                show("login-view");
+            })();
+        })();
+    </script>
+</body>
+
+</html>
