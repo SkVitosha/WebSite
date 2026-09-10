@@ -1,0 +1,11 @@
+{
+    "title": "Тестова новина",
+    "date": "2026-09-10",
+    "cover": "blog/images/2026-09-10-testova-novina-cover-mtvwxdfp.jpg",
+    "blocks": [
+        {
+            "type": "paragraph",
+            "html": "sssss"
+        }
+    ]
+}
