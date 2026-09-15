@@ -1,7 +1,7 @@
 {
     "title": "Успешен летен карате лагер на СК Витоша в Боровец",
     "date": "2026-09-10",
-    "cover": "blog/images/2026-09-10-uspeshen-leten-karate-lager-na-sk-vitosha-v-borovets-cover-mu31tniw.jpg",
+    "cover": "blog/images/2026-09-10-uspeshen-leten-karate-lager-na-sk-vitosha-v-borovets-cover-mu31zw2i.jpg",
     "blocks": [
         {
             "type": "paragraph",
@@ -9,12 +9,12 @@
         },
         {
             "type": "image",
-            "src": "blog/images/2026-09-10-uspeshen-leten-karate-lager-na-sk-vitosha-v-borovets-1-mu31tnj2.jpg",
+            "src": "blog/images/2026-09-10-uspeshen-leten-karate-lager-na-sk-vitosha-v-borovets-1-mu31zw2n.jpg",
             "alt": ""
         },
         {
             "type": "image",
-            "src": "blog/images/2026-09-10-uspeshen-leten-karate-lager-na-sk-vitosha-v-borovets-2-mu31tnj4.jpg",
+            "src": "blog/images/2026-09-10-uspeshen-leten-karate-lager-na-sk-vitosha-v-borovets-2-mu31zw2p.jpg",
             "alt": ""
         },
         {
@@ -23,7 +23,7 @@
         },
         {
             "type": "image",
-            "src": "blog/images/2026-09-10-uspeshen-leten-karate-lager-na-sk-vitosha-v-borovets-3-mu31tnj7.jpg",
+            "src": "blog/images/2026-09-10-uspeshen-leten-karate-lager-na-sk-vitosha-v-borovets-3-mu31zw2q.jpg",
             "alt": ""
         },
         {
@@ -32,17 +32,21 @@
         },
         {
             "type": "image",
-            "src": "blog/images/2026-09-10-uspeshen-leten-karate-lager-na-sk-vitosha-v-borovets-4-mu31tnjf.jpg",
+            "src": "blog/images/2026-09-10-uspeshen-leten-karate-lager-na-sk-vitosha-v-borovets-4-mu31zw2u.jpg",
             "alt": ""
         },
         {
             "type": "paragraph",
-            "html": "<p><b>Рожден ден на СК Витоша</b></p>\n\n<p>Тазгодишният лагер беше още\nпо-специален, защото заедно отпразнувахме и рождения ден на СК Витоша.</p>\n\n<p>Демонстрации, музика, танци и много\nусмивки превърнаха празника в един от най-запомнящите се моменти от лагера и\nоще веднъж ни напомниха, че клубът е много повече от място за тренировки.</p>\n\n<p>След осем наситени дни се\nзавърнахме с нови знания, нови степени, нови приятелства и още по-голяма\nмотивация.</p>\n\n<p><b>Летният лагер приключи. Новият\nкарате сезон започва.</b></p>\n\n<p><b>Един\nклуб. Едно семейство. Един път напред.</b></p>"
+            "html": "<p><b>Рожден ден на СК Витоша</b></p>\n\n<p>Тазгодишният лагер беше още\nпо-специален, защото заедно отпразнувахме и рождения ден на СК Витоша.</p>\n\n<p>Демонстрации, музика, танци и много\nусмивки превърнаха празника в един от най-запомнящите се моменти от лагера и\nоще веднъж ни напомниха, че клубът е много повече от място за тренировки.</p>"
         },
         {
             "type": "image",
-            "src": "blog/images/2026-09-10-uspeshen-leten-karate-lager-na-sk-vitosha-v-borovets-5-mu31tnji.jpg",
+            "src": "blog/images/2026-09-10-uspeshen-leten-karate-lager-na-sk-vitosha-v-borovets-5-mu31zw2w.jpg",
             "alt": ""
+        },
+        {
+            "type": "paragraph",
+            "html": "<p>След осем наситени дни се\nзавърнахме с нови знания, нови степени, нови приятелства и още по-голяма\nмотивация.</p>\n\n<p><b>Летният лагер приключи. Новият\nкарате сезон започва.</b></p>\n\n<p><b>Един\nклуб. Едно семейство. Един път напред.</b></p>"
         }
     ]
 }
