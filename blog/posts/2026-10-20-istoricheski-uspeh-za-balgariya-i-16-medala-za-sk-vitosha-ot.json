@@ -1,7 +1,7 @@
 {
     "title": "ИСТОРИЧЕСКИ УСПЕХ ЗА БЪЛГАРИЯ И 16 МЕДАЛА ЗА СК „ВИТОША“ ОТ СВЕТОВНОТО ПО ШОТОКАН КАРАТЕ! 🇧🇬🥋",
     "date": "2026-10-20",
-    "cover": "blog/images/2026-10-20-istoricheski-uspeh-za-balgariya-i-16-medala-za-sk-vitosha-ot-cover-mvh57gmf.jpg",
+    "cover": "blog/images/2026-10-20-istoricheski-uspeh-za-balgariya-i-16-medala-za-sk-vitosha-ot-cover-mvh5o2hy.png",
     "blocks": [
         {
             "type": "paragraph",
@@ -9,7 +9,12 @@
         },
         {
             "type": "image",
-            "src": "blog/images/2026-10-20-istoricheski-uspeh-za-balgariya-i-16-medala-za-sk-vitosha-ot-1-mvh57gmr.png",
+            "src": "blog/images/2026-10-20-istoricheski-uspeh-za-balgariya-i-16-medala-za-sk-vitosha-ot-1-mvh5o2ig.jpg",
+            "alt": ""
+        },
+        {
+            "type": "image",
+            "src": "blog/images/2026-10-20-istoricheski-uspeh-za-balgariya-i-16-medala-za-sk-vitosha-ot-2-mvh5o2iq.png",
             "alt": ""
         }
     ]
